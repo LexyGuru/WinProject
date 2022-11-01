@@ -16,28 +16,27 @@ from datetime import datetime
 from sty import fg
 from subprocess import Popen, CREATE_NEW_CONSOLE
 
-
 test = speedtest.Speedtest()
 
 ROOT_DIR = os.path.abspath(os.curdir)
 file_exists = os.path.exists('ver.json')
 
-start = ROOT_DIR + "\winscript\godm.ps1"
-ms_list = ROOT_DIR + "\winscript\ms_list.ps1"
-win_install = ROOT_DIR + "\winscript\win_inst_list.ps1"
-win_search = ROOT_DIR + "\winscript\win_sear_que_inst.ps1"
-win_upgrade = ROOT_DIR + "\winscript\win_upg_all.ps1"
-power_set = ROOT_DIR + "\winscript\power_set.ps1"
+start = ROOT_DIR + "\\winscript\\godm.ps1"
+ms_list = ROOT_DIR + "\\winscript\\ms_list.ps1"
+win_install = ROOT_DIR + "\\winscript\\win_inst_list.ps1"
+win_search = ROOT_DIR + "\\winscript\\win_sear_que_inst.ps1"
+win_upgrade = ROOT_DIR + "\\winscript\\win_upg_all.ps1"
+power_set = ROOT_DIR + "\\winscript\\power_set.ps1"
 
-update_powershell = ROOT_DIR + "\winscript\windows_runas_update.ps1"
-update_powershell_fixer = ROOT_DIR + "\winscript\windows_runas_update_fixer.ps1"
+update_powershell = ROOT_DIR + "\\winscript\\windows_runas_update.ps1"
+update_powershell_fixer = ROOT_DIR + "\\winscript\\windows_runas_update_fixer.ps1"
 
-restart_vga_driver = ROOT_DIR + "\winscript\windows_runas_vga_driver_restart.ps1"
-restart_vga_driver_start = ROOT_DIR + "\winscript\windows_runas_vga_restart_start.ps1"
+restart_vga_driver = ROOT_DIR + "\\winscript\\windows_runas_vga_driver_restart.ps1"
+restart_vga_driver_start = ROOT_DIR + "\\winscript\\windows_runas_vga_restart_start.ps1"
 restart_vga_id = "pnputil /restart-device "
 vga_list = '"'
 
-steam_fix = ROOT_DIR + "\winscript\steam_fix_service.ps1"
+steam_fix = ROOT_DIR + "\\winscript\\steam_fix_service.ps1"
 
 C_DIR_VGA_IN = "C:/TEMP/"
 C_DIR_IN = "C:/TEMP/IMPORT.json"
@@ -47,12 +46,10 @@ w_scan_updates = "Update-MpSignature"
 w_scan_Quick = "Start-MpScan -ScanType QuickScan"
 w_scan_Full = "Start-MpScan -ScanType FullScan"
 
-
-
 url_beta = "https://raw.githubusercontent.com/LexyGuru/WinProject/beta/SVG_DIR/verzion.json"
 url_current = "https://raw.githubusercontent.com/LexyGuru/WinProject/main/SVG_DIR/verzion.json"
 
-@staticmethod
+
 def getListOfProcessSortedByMemory():
     listOfProcObjects = []
 
@@ -60,13 +57,14 @@ def getListOfProcessSortedByMemory():
         try:
             pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
             pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
-            listOfProcObjects.append(pinfo);
+            listOfProcObjects.append(pinfo)
 
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
 
     listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
     return listOfProcObjects
+
 
 def adjust_size(size):
     factor = 1024
@@ -184,7 +182,17 @@ class verch:
     @staticmethod
     def ver_ch_start():
 
-        if file_exists == True:
+        if not file_exists:
+            url = url_current
+            x = requests.get(url)
+            current = x.json()
+
+            json_object = json.dumps(current)
+
+            with open("ver.json", "w") as outfile:
+                outfile.write(json_object)
+
+        if file_exists:
             def Sysinfomenu():
                 uname = platform.uname()
                 print(
@@ -197,20 +205,11 @@ class verch:
                     fg(250, 195, 60) + ": " + fg.rs +
 
                     fg(250, 195, 255) + f"{uname.system} {uname.version}" + fg.rs)
+
             Sysinfomenu()
             verch.ver_ch()
             verch.ver_ch_beta()
             print('\n')
-
-        if file_exists == False:
-            url = url_current
-            x = requests.get(url)
-            current = x.json()
-
-            json_object = json.dumps(current)
-
-            with open("ver.json", "w") as outfile:
-                outfile.write(json_object)
 
 
 # ****************************************************************************
@@ -251,13 +250,6 @@ class menu_list_def:
         print("")
         print(lang.language.langs['main'][5])
         print("")
-
-    @staticmethod
-    def menu_listaA():
-        lista = lang.language.langs['menu_list']
-        i = 0
-        for i in range(0, len(lista)):
-            print(lista[i])
 
     @staticmethod
     def menu_A():
@@ -751,6 +743,15 @@ class menu_list_def:
             for i in range(0, len(lista)):
                 print(lista[i])
 
+
+def menu_listaA():
+    lista = lang.language.langs['menu_list']
+
+    i = 0
+    for i in range(0, len(lista)):
+        print(lista[i])
+
+
 # ****************************************************************************
 # modul
 # ****************************************************************************
@@ -783,23 +784,19 @@ class modul:
 
                             with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                                 jsonData = json.load(file)
+
                             keyin = jsonData['steam_key'][0]
 
                             keyloadd = int(input("" + lang.language.langs["main"][6]))
                             if keyloadd == 0:
-                                url = (
-                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                 x = requests.get(url)
                                 h = x.json()['result']['services']
 
-                                print(fg(255, 80, 250) + "SessionsLogon: " + fg(255, 180, 70) + h.get(
-                                    'SessionsLogon') + fg.rs)
-                                print(fg(255, 80, 240) + "SteamCommunity: " + fg(255, 180, 60) + h.get(
-                                    'SteamCommunity') + fg.rs)
-                                print(
-                                    fg(255, 80, 230) + "IEconItems: " + fg(255, 180, 50) + h.get('IEconItems') + fg.rs)
-                                print(fg(255, 80, 220) + "Leaderboards: " + fg(255, 180, 40) + h.get(
-                                    'Leaderboards') + fg.rs)
+                                print(fg(255, 80, 250) + "SessionsLogon: " + fg(255, 180, 70) + h.get('SessionsLogon') + fg.rs)
+                                print(fg(255, 80, 240) + "SteamCommunity: " + fg(255, 180, 60) + h.get('SteamCommunity') + fg.rs)
+                                print(fg(255, 80, 230) + "IEconItems: " + fg(255, 180, 50) + h.get('IEconItems') + fg.rs)
+                                print(fg(255, 80, 220) + "Leaderboards: " + fg(255, 180, 40) + h.get('Leaderboards') + fg.rs)
 
                                 menu_list_def.back_text()
                                 keyloadd = int(input("" + lang.language.langs["main"][6]))
@@ -812,8 +809,7 @@ class modul:
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
 
-                                    url = (
-                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['datacenters']
 
@@ -1011,24 +1007,22 @@ class modul:
                                     menu_list_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
-                                    url = (
-                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']
                                     dict_list_matchmaking = (h['matchmaking'])
                                     print(fg(255, 80, 250) +
                                           "Matchmaking: " + fg(255, 180, 70) + '\n'
-                                                                               "      scheduler: " + fg(255, 180,
-                                                                                                        70) + dict_list_matchmaking.get(
-                                        'scheduler') + '\n'
-                                                       "      online_servers: " + fg(255, 180, 70) + str(
-                                        dict_list_matchmaking.get('online_servers')) + '\n'
-                                                                                       "      online_players: " + fg(
-                                        255, 180, 70) + str(dict_list_matchmaking.get('online_players')) + '\n'
-                                                                                                           "      searching_players: " + fg(
-                                        255, 180, 70) + str(dict_list_matchmaking.get('searching_players')) + '\n'
-                                                                                                              "      search_seconds_avg: " + fg(
-                                        255, 180, 70) + str(dict_list_matchmaking.get('search_seconds_avg')) + fg.rs)
+                                          "      scheduler: " + fg(255, 180, 70) +
+                                          dict_list_matchmaking.get('scheduler') + '\n'
+                                          "      online_servers: " + fg(255, 180, 70) +
+                                          str(dict_list_matchmaking.get('online_servers')) + '\n'
+                                          "      online_players: " + fg(255, 180, 70) +
+                                          str(dict_list_matchmaking.get('online_players')) + '\n'
+                                          "      searching_players: " + fg(255, 180, 70) +
+                                          str(dict_list_matchmaking.get('searching_players')) + '\n'
+                                          "      search_seconds_avg: " + fg(255, 180, 70) +
+                                          str(dict_list_matchmaking.get('search_seconds_avg')) + fg.rs)
 
                                     menu_list_def.back_text()
                                     keyloadd = int(input("" + lang.language.langs["main"][6]))
@@ -1041,30 +1035,22 @@ class modul:
                                     menu_list_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
-                                    url = (
-                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['perfectworld']
                                     dict_list_perfectworld = (h['logon'])
                                     dict_list_purchase = (h['purchase'])
 
                                     print(fg(255, 80, 250) +
-                                          "Perfectworld: " + fg(255, 10, 70) + '\n'
-
-                                                                               "   Logon: " + fg(255, 180, 70) + '\n'
-                                                                                                                 "      availability: " + fg(
-                                        255, 180, 70) + dict_list_perfectworld.get('availability') + '\n'
-                                                                                                     "      latency: " + fg(
-                                        255, 180, 70) + dict_list_perfectworld.get('latency') + fg.rs)
+                                        "Perfectworld: " + fg(255, 10, 70) + '\n'
+                                        "   Logon: " + fg(255, 180, 70) + '\n'
+                                        "      availability: " + fg(255, 180, 70) + dict_list_perfectworld.get('availability') + '\n'
+                                        "      latency: " + fg(255, 180, 70) + dict_list_perfectworld.get('latency') + fg.rs)
 
                                     print(fg(255, 10, 70) +
-                                          "   Purchase: " + fg(255, 180, 70) + '\n'
-                                                                               "      availability: " + fg(255, 180,
-                                                                                                           70) + dict_list_purchase.get(
-                                        'availability') + '\n'
-                                                          "      purchase: " + fg(255, 180,
-                                                                                  70) + dict_list_purchase.get(
-                                        'latency') + fg.rs)
+                                        "   Purchase: " + fg(255, 180, 70) + '\n'
+                                        "      availability: " + fg(255, 180, 70) + dict_list_purchase.get('availability') + '\n'
+                                        "      purchase: " + fg(255, 180, 70) + dict_list_purchase.get('latency') + fg.rs)
 
                                     menu_list_def.back_text()
                                     keyloadd = int(input("" + lang.language.langs["main"][6]))
@@ -1092,8 +1078,7 @@ class modul:
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
 
-                        url = (
-                                "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
+                        url = ("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['game_count']
                         print("All Games in steam: " + str(h) + "\n")
@@ -1107,6 +1092,7 @@ class modul:
 
                     if system_lista == 20:
                         break
+
             @staticmethod
             def userid_info():
                 while True:
@@ -1121,8 +1107,7 @@ class modul:
                         webbrowser.open('https://steamcommunity.com/search/users/#text=')
                         steamid = input("steamID64 (Dec): ")
 
-                        url = (
-                                    "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
+                        url = ("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['game_count']
                         print("All Games in steam: " + str(h) + "\n")
@@ -1149,25 +1134,18 @@ class modul:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
-                        url = (
-                                    "https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin + "&steamids=" + steamid)
+                        url = ("https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin + "&steamids=" + steamid)
                         x = requests.get(url)
                         h = x.json()['players'][0]
                         print(fg(255, 80, 250) +
                               "Players: " + fg(255, 10, 70) + '\n'
                                                               "   SteamId: " + fg(255, 180, 70) + str(
                             h.get('SteamId')) + '\n' + fg(255, 10, 70) +
-                              "   CommunityBanned: " + fg(255, 180, 70) + str(h.get('CommunityBanned')) + '\n' + fg(255,
-                                                                                                                    10,
-                                                                                                                    70) +
+                              "   CommunityBanned: " + fg(255, 180, 70) + str(h.get('CommunityBanned')) + '\n' + fg(255, 10, 70) +
                               "   VACBanned: " + fg(255, 180, 70) + str(h.get('VACBanned')) + '\n' + fg(255, 10, 70) +
-                              "   NumberOfVACBans: " + fg(255, 180, 70) + str(h.get('NumberOfVACBans')) + '\n' + fg(255,
-                                                                                                                    10,
-                                                                                                                    70) +
-                              "   DaysSinceLastBan: " + fg(255, 180, 70) + str(h.get('DaysSinceLastBan')) + '\n' + fg(
-                            255, 10, 70) +
-                              "   NumberOfGameBans: " + fg(255, 180, 70) + str(h.get('NumberOfGameBans')) + '\n' + fg(
-                            255, 10, 70) +
+                              "   NumberOfVACBans: " + fg(255, 180, 70) + str(h.get('NumberOfVACBans')) + '\n' + fg(255, 10, 70) +
+                              "   DaysSinceLastBan: " + fg(255, 180, 70) + str(h.get('DaysSinceLastBan')) + '\n' + fg(255, 10, 70) +
+                              "   NumberOfGameBans: " + fg(255, 180, 70) + str(h.get('NumberOfGameBans')) + '\n' + fg(255, 10, 70) +
                               "   EconomyBan: " + fg(255, 180, 70) + str(h.get('EconomyBan')) + '\n' + fg.rs)
 
                         system_lista = int(input("[20]: Back: "))
@@ -1189,8 +1167,7 @@ class modul:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
-                        url = (
-                                    "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamid)
+                        url = ("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['players'][0]
 
@@ -1208,6 +1185,7 @@ class modul:
 
                     if system_lista == 20:
                         break
+
             @staticmethod
             def GetPlayerSummaries_player():
                 while True:
@@ -1240,8 +1218,7 @@ class modul:
 
                             steamids = input("steamID64 (Dec): ")
 
-                            url = (
-                                        "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamids)
+                            url = ("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamids)
                             x = requests.get(url)
                             h = x.json()['response']['players'][0]
 
@@ -1255,10 +1232,8 @@ class modul:
                             print(fg(255, 80, 220) + "profileurl: " + fg(255, 180, 40) + h.get('profileurl') + fg.rs)
                             print(fg(255, 80, 210) + "avatar: " + fg(255, 180, 30) + h.get('avatar') + fg.rs)
                             print(fg(255, 80, 200) + "avatarfull: " + fg(255, 180, 20) + h.get('avatarfull') + fg.rs)
-                            print(
-                                fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
-                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get(
-                                'loccountrycode') + fg.rs)
+                            print(fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
+                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get('loccountrycode') + fg.rs)
 
                             print("")
                             system_lista = int(input("" + lang.language.langs["main"][1]))
@@ -1287,7 +1262,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
 
-                        menu_list_def.accounts_list.menu_accounts_sigin_list('self')
+                        menu_list_def.accounts_list.menu_accounts_sigin_list()
                         menu_list_def.back_text()
                         account_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1311,7 +1286,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
 
-                        menu_list_def.accounts_list.menu_accounts_family_list('self')
+                        menu_list_def.accounts_list.menu_accounts_family_list()
                         menu_list_def.back_text()
                         account_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1343,7 +1318,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
 
-                        menu_list_def.apps_list.menu_apps_list('self')
+                        menu_list_def.apps_list.menu_apps_list()
                         menu_list_def.back_text()
                         apps_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1364,7 +1339,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
 
-                        menu_list_def.apps_list.menu_apps_ofline_maps_list('self')
+                        menu_list_def.apps_list.menu_apps_ofline_maps_list()
                         menu_list_def.back_text()
                         ofline_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1441,7 +1416,6 @@ class modul:
                 if system_lista == 20:
                     break
 
-
     class Ease_of_Access:
         @staticmethod
         def ease_of_Access():
@@ -1470,7 +1444,7 @@ class modul:
                         menu_list_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
-                        menu_list_def.ease_of_access.ease_of_access_narrator_list('self')
+                        menu_list_def.ease_of_access.ease_of_access_narrator_list()
                         menu_list_def.back_text()
                         ease_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1623,7 +1597,7 @@ class modul:
                         menu_list_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
-                        menu_list_def.goodm.power_listA('self')
+                        menu_list_def.goodm.power_listA()
                         menu_list_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1637,7 +1611,7 @@ class modul:
                             menu_list_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
-                            menu_list_def.goodm.power_menu_listA('self')
+                            menu_list_def.goodm.power_menu_listA()
                             menu_list_def.back_text()
 
                             Popen('powershell ' + power_set, creationflags=CREATE_NEW_CONSOLE)
@@ -1655,7 +1629,7 @@ class modul:
                         menu_list_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
-                        menu_list_def.microsoft.microsoft_listA('self')
+                        menu_list_def.microsoft.microsoft_listA()
                         menu_list_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1679,7 +1653,7 @@ class modul:
                                 menu_list_def.clear()
                                 logos.main_logo()
                                 verch.ver_ch_start()
-                                menu_list_def.microsoft.microsoft_install('self')
+                                menu_list_def.microsoft.microsoft_install()
                                 menu_list_def.back_text()
 
                                 if system_lista == 0:
@@ -1697,7 +1671,7 @@ class modul:
                                 menu_list_def.clear()
                                 logos.main_logo()
                                 verch.ver_ch_start()
-                                menu_list_def.microsoft.microsoft_uninstall('self')
+                                menu_list_def.microsoft.microsoft_uninstall()
                                 menu_list_def.back_text()
                                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1719,7 +1693,7 @@ class modul:
                         menu_list_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
-                        menu_list_def.goodm.Update_Fixer('self')
+                        menu_list_def.goodm.Update_Fixer()
                         menu_list_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1757,7 +1731,7 @@ class modul:
                         menu_list_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
-                        menu_list_def.goodm.Windows_Defender('self')
+                        menu_list_def.goodm.Windows_Defender()
                         menu_list_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1803,7 +1777,6 @@ class modul:
 
     class Network_Internet:
         pass
-
 
     class Sysinfo_all:
         @staticmethod
@@ -2579,7 +2552,7 @@ class menu:
                     menu_list_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
-                    menu_list_def.menu_listaA()
+                    menu_listaA()
                     menu_list_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
@@ -2831,12 +2804,12 @@ class menu:
                             system_lista = int(input("" + lang.language.langs["main"][6]))
                             if system_lista == 20:
                                 break
-                    
+
                     if system_lista == 20:
                         break
 
             if system_a == 20:
-                os.remove("ver.json")
+                # os.remove("ver.json")
                 exit()
 
 
