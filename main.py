@@ -1,15 +1,23 @@
+import webbrowser
+
 import requests
 import os
-from sty import fg
 import json
 import lang.language
 import psutil
 import platform
 import GPUtil
-from datetime import datetime
 import subprocess
 import speedtest
+
+from colorama import Fore, Style
+from pywinauto import Application
+from datetime import datetime
+from sty import fg
 from subprocess import Popen, CREATE_NEW_CONSOLE
+
+
+test = speedtest.Speedtest()
 
 ROOT_DIR = os.path.abspath(os.curdir)
 file_exists = os.path.exists('ver.json')
@@ -39,6 +47,22 @@ w_scan_updates = "Update-MpSignature"
 w_scan_Quick = "Start-MpScan -ScanType QuickScan"
 w_scan_Full = "Start-MpScan -ScanType FullScan"
 
+
+@staticmethod
+def getListOfProcessSortedByMemory():
+    listOfProcObjects = []
+
+    for proc in psutil.process_iter():
+        try:
+            pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
+            pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
+            listOfProcObjects.append(pinfo);
+
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+
+    listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
+    return listOfProcObjects
 
 def adjust_size(size):
     factor = 1024
@@ -715,13 +739,528 @@ class menu_list_def:
             for i in range(0, len(lista)):
                 print(lista[i])
 
+    class systeminfo:
+        @staticmethod
+        def sysinfo():
+            lista = lang.language.langs['systeminfo']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
 
 # ****************************************************************************
 # modul
 # ****************************************************************************
 class modul:
     class SteamDB:
-        pass
+        class game:
+            @staticmethod
+            def CSGOServer_730():
+                while True:
+                    menu_list_def.clear()
+                    logos.SteramDB_logo_v2()
+                    verch.ver_ch_start()
+                    menu_list_def.SteamDB_lang.GetGameServersStatus()
+                    menu_list_def.back_text()
+                    keyload = int(input("" + lang.language.langs["main"][6]))
+
+                    if keyload == 0:
+                        webbrowser.open('https://steamcommunity.com/dev/apikey')
+                        webbrowser.open('https://steamcommunity.com/search/users/#text=')
+                        config_steam = ROOT_DIR + "\\config\\SteamDB_key.json"
+                        app = Application().start("notepad.exe " + config_steam)
+
+                    if keyload == 1:
+                        while True:
+                            menu_list_def.clear()
+                            logos.SteramDB_logo_v2()
+                            verch.ver_ch_start()
+                            menu_list_def.SteamDB_lang.GetGameServersStatus_list()
+                            menu_list_def.back_text()
+
+                            with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
+                                jsonData = json.load(file)
+                            keyin = jsonData['steam_key'][0]
+
+                            keyloadd = int(input("" + lang.language.langs["main"][6]))
+                            if keyloadd == 0:
+                                url = (
+                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                x = requests.get(url)
+                                h = x.json()['result']['services']
+
+                                print(fg(255, 80, 250) + "SessionsLogon: " + fg(255, 180, 70) + h.get(
+                                    'SessionsLogon') + fg.rs)
+                                print(fg(255, 80, 240) + "SteamCommunity: " + fg(255, 180, 60) + h.get(
+                                    'SteamCommunity') + fg.rs)
+                                print(
+                                    fg(255, 80, 230) + "IEconItems: " + fg(255, 180, 50) + h.get('IEconItems') + fg.rs)
+                                print(fg(255, 80, 220) + "Leaderboards: " + fg(255, 180, 40) + h.get(
+                                    'Leaderboards') + fg.rs)
+
+                                menu_list_def.back_text()
+                                keyloadd = int(input("" + lang.language.langs["main"][6]))
+
+                                if keyloadd == 20:
+                                    break
+                            if keyloadd == 1:
+                                while True:
+                                    menu_list_def.clear()
+                                    logos.SteramDB_logo_v2()
+                                    verch.ver_ch_start()
+
+                                    url = (
+                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    x = requests.get(url)
+                                    h = x.json()['result']['datacenters']
+
+                                    dict_list_Peru = (h['Peru'])
+                                    dict_list_EU_West = (h['EU West'])
+                                    dict_list_EU_East = (h['EU East'])
+                                    dict_list_Poland = (h['Poland'])
+                                    dict_list_India_East = (h['India East'])
+                                    dict_list_Hong_Kong = (h['Hong Kong'])
+                                    dict_list_Spain = (h['Spain'])
+                                    dict_list_Chile = (h['Chile'])
+                                    dict_list_US_Southwest = (h['US Southwest'])
+                                    dict_list_US_Southeast = (h['US Southeast'])
+                                    dict_list_India = (h['India'])
+                                    dict_list_EU_North = (h['EU North'])
+                                    dict_list_Emirates = (h['Emirates'])
+                                    dict_list_US_Northwest = (h['US Northwest'])
+                                    dict_list_South_Africa = (h['South Africa'])
+                                    dict_list_Brazil = (h['Brazil'])
+                                    dict_list_US_Northeast = (h['US Northeast'])
+                                    dict_list_US_Northcentral = (h['US Northcentral'])
+                                    dict_list_Japan = (h['Japan'])
+                                    dict_list_Argentina = (h['Argentina'])
+                                    dict_list_South_Korea = (h['South Korea'])
+                                    dict_list_Singapore = (h['Singapore'])
+                                    dict_list_Australia = (h['Australia'])
+                                    dict_list_China_Shanghai = (h['China Shanghai'])
+                                    dict_list_China_Tianjin = (h['China Tianjin'])
+                                    dict_list_China_Guangzhou = (h['China Guangzhou'])
+
+                                    print(fg(255, 80, 250) +
+
+                                          "Peru: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Peru.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Peru.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 245) +
+
+                                          "EU West: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_EU_West.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_EU_West.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 240) +
+
+                                          "EU East: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_EU_East.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_EU_East.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 235) +
+
+                                          "Poland: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Poland.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Poland.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 230) +
+
+                                          "India East: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_India_East.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_India_East.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 225) +
+
+                                          "Hong Kong: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Hong_Kong.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Hong_Kong.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 220) +
+
+                                          "Spain: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Spain.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Spain.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 215) +
+
+                                          "Chile: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Chile.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Chile.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 210) +
+
+                                          "US Southwest: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_US_Southwest.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_US_Southwest.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 205) +
+
+                                          "US Southeast: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_US_Southeast.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_US_Southeast.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 200) +
+
+                                          "India: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_India.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_India.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 195) +
+
+                                          "EU North: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_EU_North.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_EU_North.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 190) +
+
+                                          "Emirates: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Emirates.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Emirates.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 185) +
+
+                                          "US Northwest: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_US_Northwest.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_US_Northwest.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 180) +
+
+                                          "South Africa: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_South_Africa.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_South_Africa.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 175) +
+
+                                          "Brazil: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Brazil.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Brazil.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 170) +
+
+                                          "US Northeast: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_US_Northeast.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_US_Northeast.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 165) +
+
+                                          "US Northcentral: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_US_Northcentral.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_US_Northcentral.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 160) +
+
+                                          "Japan: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Japan.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Japan.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 155) +
+
+                                          "Argentina: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Argentina.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Argentina.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 150) +
+
+                                          "South Korea: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_South_Korea.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_South_Korea.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 145) +
+
+                                          "Singapore: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Singapore.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Singapore.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 140) +
+
+                                          "Australia: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_Australia.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_Australia.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 135) +
+
+                                          "China Shanghai: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_China_Shanghai.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_China_Shanghai.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 130) +
+
+                                          "China Tianjin: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_China_Tianjin.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_China_Tianjin.get('load') + fg.rs)
+
+                                    print(fg(255, 80, 125) +
+
+                                          "China Guangzhou: " + fg(255, 180, 70) +
+                                          "capacity: " + fg(255, 180, 70) + dict_list_China_Guangzhou.get('capacity') +
+                                          " Load: " + fg(255, 180, 70) + dict_list_China_Guangzhou.get('load') + fg.rs)
+
+                                    menu_list_def.back_text()
+                                    keyloadd = int(input("" + lang.language.langs["main"][6]))
+
+                                    if keyloadd == 20:
+                                        break
+
+                            if keyloadd == 2:
+                                while True:
+                                    menu_list_def.clear()
+                                    logos.SteramDB_logo_v2()
+                                    verch.ver_ch_start()
+                                    url = (
+                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    x = requests.get(url)
+                                    h = x.json()['result']
+                                    dict_list_matchmaking = (h['matchmaking'])
+                                    print(fg(255, 80, 250) +
+                                          "Matchmaking: " + fg(255, 180, 70) + '\n'
+                                                                               "      scheduler: " + fg(255, 180,
+                                                                                                        70) + dict_list_matchmaking.get(
+                                        'scheduler') + '\n'
+                                                       "      online_servers: " + fg(255, 180, 70) + str(
+                                        dict_list_matchmaking.get('online_servers')) + '\n'
+                                                                                       "      online_players: " + fg(
+                                        255, 180, 70) + str(dict_list_matchmaking.get('online_players')) + '\n'
+                                                                                                           "      searching_players: " + fg(
+                                        255, 180, 70) + str(dict_list_matchmaking.get('searching_players')) + '\n'
+                                                                                                              "      search_seconds_avg: " + fg(
+                                        255, 180, 70) + str(dict_list_matchmaking.get('search_seconds_avg')) + fg.rs)
+
+                                    menu_list_def.back_text()
+                                    keyloadd = int(input("" + lang.language.langs["main"][6]))
+
+                                    if keyloadd == 20:
+                                        break
+
+                            if keyloadd == 3:
+                                while True:
+                                    menu_list_def.clear()
+                                    logos.SteramDB_logo_v2()
+                                    verch.ver_ch_start()
+                                    url = (
+                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    x = requests.get(url)
+                                    h = x.json()['result']['perfectworld']
+                                    dict_list_perfectworld = (h['logon'])
+                                    dict_list_purchase = (h['purchase'])
+
+                                    print(fg(255, 80, 250) +
+                                          "Perfectworld: " + fg(255, 10, 70) + '\n'
+
+                                                                               "   Logon: " + fg(255, 180, 70) + '\n'
+                                                                                                                 "      availability: " + fg(
+                                        255, 180, 70) + dict_list_perfectworld.get('availability') + '\n'
+                                                                                                     "      latency: " + fg(
+                                        255, 180, 70) + dict_list_perfectworld.get('latency') + fg.rs)
+
+                                    print(fg(255, 10, 70) +
+                                          "   Purchase: " + fg(255, 180, 70) + '\n'
+                                                                               "      availability: " + fg(255, 180,
+                                                                                                           70) + dict_list_purchase.get(
+                                        'availability') + '\n'
+                                                          "      purchase: " + fg(255, 180,
+                                                                                  70) + dict_list_purchase.get(
+                                        'latency') + fg.rs)
+
+                                    menu_list_def.back_text()
+                                    keyloadd = int(input("" + lang.language.langs["main"][6]))
+
+                                    if keyloadd == 20:
+                                        break
+
+                            if keyloadd == 20:
+                                break
+
+                    if keyload == 20:
+                        break
+
+        class userinfo:
+            @staticmethod
+            def my_userid_info():
+                while True:
+                    logos.SteramDB_logo_v2()
+                    verch.ver_ch_start()
+
+                    ROOT_DIR = os.path.abspath(os.curdir)
+
+                    with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
+                        jsonData = json.load(file)
+                        keyin = jsonData['steam_key'][0]
+                        steamid = jsonData['steamid'][0]
+
+                        url = (
+                                "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
+                        x = requests.get(url)
+                        h = x.json()['response']['game_count']
+                        print("All Games in steam: " + str(h) + "\n")
+
+                        hh = x.json()['response']['games']
+                        for item in hh:
+                            # write each item on a new line
+                            print("%s" % item)
+
+                        system_lista = int(input("[20]: Back: "))
+
+                    if system_lista == 20:
+                        break
+            @staticmethod
+            def userid_info():
+                while True:
+                    logos.SteramDB_logo_v2()
+                    verch.ver_ch_start()
+
+                    ROOT_DIR = os.path.abspath(os.curdir)
+
+                    with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
+                        jsonData = json.load(file)
+                        keyin = jsonData['steam_key'][0]
+                        webbrowser.open('https://steamcommunity.com/search/users/#text=')
+                        steamid = input("steamID64 (Dec): ")
+
+                        url = (
+                                    "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
+                        x = requests.get(url)
+                        h = x.json()['response']['game_count']
+                        print("All Games in steam: " + str(h) + "\n")
+
+                        hh = x.json()['response']['games']
+                        for item in hh:
+                            # write each item on a new line
+                            print("%s" % item)
+
+                        system_lista = int(input("[20]: Back: "))
+
+                    if system_lista == 20:
+                        break
+
+        class playerbans:
+            @staticmethod
+            def bann_user():
+                while True:
+                    menu_list_def.clear()
+                    logos.SteramDB_logo_v2()
+                    verch.ver_ch_start()
+
+                    with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
+                        jsonData = json.load(file)
+                        keyin = jsonData['steam_key'][0]
+                        steamid = jsonData['steamid'][0]
+                        url = (
+                                    "https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin + "&steamids=" + steamid)
+                        x = requests.get(url)
+                        h = x.json()['players'][0]
+                        print(fg(255, 80, 250) +
+                              "Players: " + fg(255, 10, 70) + '\n'
+                                                              "   SteamId: " + fg(255, 180, 70) + str(
+                            h.get('SteamId')) + '\n' + fg(255, 10, 70) +
+                              "   CommunityBanned: " + fg(255, 180, 70) + str(h.get('CommunityBanned')) + '\n' + fg(255,
+                                                                                                                    10,
+                                                                                                                    70) +
+                              "   VACBanned: " + fg(255, 180, 70) + str(h.get('VACBanned')) + '\n' + fg(255, 10, 70) +
+                              "   NumberOfVACBans: " + fg(255, 180, 70) + str(h.get('NumberOfVACBans')) + '\n' + fg(255,
+                                                                                                                    10,
+                                                                                                                    70) +
+                              "   DaysSinceLastBan: " + fg(255, 180, 70) + str(h.get('DaysSinceLastBan')) + '\n' + fg(
+                            255, 10, 70) +
+                              "   NumberOfGameBans: " + fg(255, 180, 70) + str(h.get('NumberOfGameBans')) + '\n' + fg(
+                            255, 10, 70) +
+                              "   EconomyBan: " + fg(255, 180, 70) + str(h.get('EconomyBan')) + '\n' + fg.rs)
+
+                        system_lista = int(input("[20]: Back: "))
+
+                    if system_lista == 20:
+                        break
+
+        class playersummaries:
+            @staticmethod
+            def GetPlayerSummaries():
+                while True:
+                    menu_list_def.clear()
+                    logos.SteramDB_logo_v2()
+                    verch.ver_ch_start()
+
+                    ROOT_DIR = os.path.abspath(os.curdir)
+
+                    with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
+                        jsonData = json.load(file)
+                        keyin = jsonData['steam_key'][0]
+                        steamid = jsonData['steamid'][0]
+                        url = (
+                                    "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamid)
+                        x = requests.get(url)
+                        h = x.json()['response']['players'][0]
+
+                        print(fg(255, 80, 250) + "steamid: " + fg(255, 180, 70) + h.get('steamid') + fg.rs)
+                        print(fg(255, 80, 240) + "personaname: " + fg(255, 180, 60) + h.get('personaname') + fg.rs)
+                        print(fg(255, 80, 230) + "realname: " + fg(255, 180, 50) + str(h.get('realname')) + fg.rs)
+                        print(fg(255, 80, 220) + "profileurl: " + fg(255, 180, 40) + h.get('profileurl') + fg.rs)
+                        print(fg(255, 80, 210) + "avatar: " + fg(255, 180, 30) + h.get('avatar') + fg.rs)
+                        print(fg(255, 80, 200) + "avatarfull: " + fg(255, 180, 20) + h.get('avatarfull') + fg.rs)
+                        print(fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
+                        print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get('loccountrycode') + fg.rs)
+
+                        print("")
+                        system_lista = int(input("" + lang.language.langs["main"][1]))
+
+                    if system_lista == 20:
+                        break
+            @staticmethod
+            def GetPlayerSummaries_player():
+                while True:
+                    menu_list_def.clear()
+                    logos.SteramDB_logo_v2()
+                    verch.ver_ch_start()
+
+                    menu_list_def.SteamDB_lang.SteamDB_Summaries()
+                    menu_list_def.back_text()
+
+                    ROOT_DIR = os.path.abspath(os.curdir)
+
+                    with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
+                        jsonData = json.load(file)
+                        keyin = jsonData['steam_key'][0]
+                        system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if system_lista == 0:
+                            webbrowser.open('https://steamcommunity.com/search/users/#text=')
+
+                        if system_lista == 1:
+                            menu_list_def.clear()
+                            logos.SteramDB_logo_v2()
+                            verch.ver_ch_start()
+
+                            print(50 * "-")
+                            print(Fore.RED + 'steamcommunity.com/profiles/', (Fore.GREEN + 'xxxxxxxxxxxxxxxxx'))
+                            print(Style.RESET_ALL)
+                            print(50 * "-")
+
+                            steamids = input("steamID64 (Dec): ")
+
+                            url = (
+                                        "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamids)
+                            x = requests.get(url)
+                            h = x.json()['response']['players'][0]
+
+                            menu_list_def.clear()
+                            logos.SteramDB_logo_v2()
+                            verch.ver_ch_start()
+
+                            print(fg(255, 80, 250) + "steamid: " + fg(255, 180, 70) + h.get('steamid') + fg.rs)
+                            print(fg(255, 80, 240) + "personaname: " + fg(255, 180, 60) + h.get('personaname') + fg.rs)
+                            print(fg(255, 80, 230) + "realname: " + fg(255, 180, 50) + str(h.get('realname')) + fg.rs)
+                            print(fg(255, 80, 220) + "profileurl: " + fg(255, 180, 40) + h.get('profileurl') + fg.rs)
+                            print(fg(255, 80, 210) + "avatar: " + fg(255, 180, 30) + h.get('avatar') + fg.rs)
+                            print(fg(255, 80, 200) + "avatarfull: " + fg(255, 180, 20) + h.get('avatarfull') + fg.rs)
+                            print(
+                                fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
+                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get(
+                                'loccountrycode') + fg.rs)
+
+                            print("")
+                            system_lista = int(input("" + lang.language.langs["main"][1]))
+
+                        if system_lista == 20:
+                            break
 
     class Accounts:
         @staticmethod
@@ -1853,8 +2392,8 @@ class modul:
                 fg(0, 255, 154) + f"{adjust_size(net_io.bytes_recv)}" + fg.rs)
 
     class speedtest_v2:
-        test = speedtest.Speedtest()
-        def speedtest_v2_run(self):
+        @staticmethod
+        def speedtest_v2_run():
             print(
                 fg(160, 70, 170) + "L" +
                 fg(165, 70, 165) + "o" +
@@ -1968,6 +2507,7 @@ class modul:
                                                               255) + f"{download_result / 1024 / 1024:.2f}" + fg(255,
                                                                                                                  10,
                                                                                                                  150) + " Mbit/s" + fg.rs)
+
             print(
                 fg(155, 70, 170) + "P" +
                 fg(160, 70, 165) + "e" +
@@ -1996,7 +2536,22 @@ class modul:
             print(fg(255, 255, 204) + "Upload speed: " + fg(255, 255, 255) + f"{upload_result / 1024 / 1024:.2f}" + fg(
                 255, 10, 150) + " Mbit/s" + fg.rs)
 
-            pass
+    class process_v2:
+        @staticmethod
+        def main():
+            print('*** Create a list of all running processes ***')
+
+            listOfProcessNames = list()
+            for proc in psutil.process_iter():
+                pInfoDict = proc.as_dict(attrs=['pid', 'name', 'cpu_percent'])
+                listOfProcessNames.append(pInfoDict)
+            for elem in listOfProcessNames:
+                print(elem)
+
+            print('*** Top 10 process with highest memory usage ***')
+            listOfRunningProcess = getListOfProcessSortedByMemory()
+            for elem in listOfRunningProcess[:10]:
+                print(elem)
 
 
 # ****************************************************************************
@@ -2093,17 +2648,17 @@ class menu:
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
                     if system_lista == 0:
-                        modul.SteamDB.GetGameServersStatus.game.CSGOServers_730()
+                        modul.SteamDB.game.CSGOServer_730()
                     if system_lista == 1:
-                        modul.SteamDB.GetOwnedGames.steamDB.my_userid_info()
+                        modul.SteamDB.userinfo.my_userid_info()
                     if system_lista == 2:
-                        modul.SteamDB.GetOwnedGames.steamDB.userid_info()
+                        modul.SteamDB.userinfo.userid_info()
                     if system_lista == 3:
-                        modul.SteamDB.GetPlayerBans.steamDB.bann_user()
+                        modul.SteamDB.playerbans.bann_user()
                     if system_lista == 4:
-                        modul.SteamDB.GetPlayerSummaries.GetPlayerSummaries()
+                        modul.SteamDB.playersummaries.GetPlayerSummaries()
                     if system_lista == 5:
-                        modul.SteamDB.GetPlayerSummaries.GetPlayerSummaries_player()
+                        modul.SteamDB.playersummaries.GetPlayerSummaries_player()
 
                     if system_lista == 20:
                         break
@@ -2113,10 +2668,7 @@ class menu:
                     menu_list_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
-
-                    print(lang.language.langs["systeminfo"][0])
-                    print(lang.language.langs["systeminfo"][1])
-                    print(lang.language.langs["systeminfo"][2])
+                    menu_list_def.systeminfo.sysinfo()
                     menu_list_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -2259,7 +2811,6 @@ class menu:
                             menu_list_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
-
                             modul.process_v2.main()
                             menu_list_def.back_text()
                             system_lista = int(input("" + lang.language.langs["main"][6]))
@@ -2271,7 +2822,6 @@ class menu:
                             menu_list_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
-
                             modul.speedtest_v2.speedtest_v2_run()
                             menu_list_def.back_text()
                             system_lista = int(input("" + lang.language.langs["main"][6]))
