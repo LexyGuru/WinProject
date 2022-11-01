@@ -8,8 +8,11 @@ import platform
 import GPUtil
 from datetime import datetime
 import subprocess
+import speedtest
 from subprocess import Popen, CREATE_NEW_CONSOLE
 
+
+test = speedtest.Speedtest()
 ROOT_DIR = os.path.abspath(os.curdir)
 file_exists = os.path.exists('ver.json')
 
@@ -23,12 +26,10 @@ power_set = ROOT_DIR + "\winscript\power_set.ps1"
 update_powershell = ROOT_DIR + "\winscript\windows_runas_update.ps1"
 update_powershell_fixer = ROOT_DIR + "\winscript\windows_runas_update_fixer.ps1"
 
-'''***************************************************************************************'''
 restart_vga_driver = ROOT_DIR + "\winscript\windows_runas_vga_driver_restart.ps1"
 restart_vga_driver_start = ROOT_DIR + "\winscript\windows_runas_vga_restart_start.ps1"
 restart_vga_id = "pnputil /restart-device "
 vga_list = '"'
-'''***************************************************************************************'''
 
 steam_fix = ROOT_DIR + "\winscript\steam_fix_service.ps1"
 
@@ -39,9 +40,6 @@ C_DIR_EX = "C:/TEMP/EXPORT.json"
 w_scan_updates = "Update-MpSignature"
 w_scan_Quick = "Start-MpScan -ScanType QuickScan"
 w_scan_Full = "Start-MpScan -ScanType FullScan"
-
-
-
 
 
 def adjust_size(size):
@@ -279,21 +277,21 @@ class menu_list_def:
                 print(lista[i])
 
         @staticmethod
-        def menu_system_focus_list(self):
+        def menu_system_focus_list():
             lista = lang.language.langs['menu_system_focus_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_system_battery_list(self):
+        def menu_system_battery_list():
             lista = lang.language.langs['menu_system_battery_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_system_storage_list(self):
+        def menu_system_storage_list():
             lista = lang.language.langs['menu_system_storage_list']
             i = 0
             for i in range(0, len(lista)):
@@ -302,14 +300,14 @@ class menu_list_def:
     class devices_list:
 
         @staticmethod
-        def devices_listA(self):
+        def devices_listA():
             lista = lang.language.langs['devices_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_devices_typing_list(self):
+        def menu_devices_typing_list():
             lista = lang.language.langs['devices_menu_typing_list']
             i = 0
             for i in range(0, len(lista)):
@@ -318,7 +316,7 @@ class menu_list_def:
     class phone_list:
 
         @staticmethod
-        def phone_listA(self):
+        def phone_listA():
             lista = lang.language.langs['phone_list']
             i = 0
             for i in range(0, len(lista)):
@@ -327,21 +325,21 @@ class menu_list_def:
     class network_list:
 
         @staticmethod
-        def network_listA(self):
+        def network_listA():
             lista = lang.language.langs['network_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_network_status_list(self):
+        def menu_network_status_list():
             lista = lang.language.langs['network_menu_status_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_network_wifi_list(self):
+        def menu_network_wifi_list():
             lista = lang.language.langs['network_menu_wifi_list']
             i = 0
             for i in range(0, len(lista)):
@@ -350,14 +348,14 @@ class menu_list_def:
     class personalization_list:
 
         @staticmethod
-        def personalization_listA(self):
+        def personalization_listA():
             lista = lang.language.langs['personalization_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_start_personalization_list(self):
+        def menu_start_personalization_list():
             lista = lang.language.langs['personalization_menu_start_list']
             i = 0
             for i in range(0, len(lista)):
@@ -366,21 +364,21 @@ class menu_list_def:
     class apps_list:
 
         @staticmethod
-        def apps_listA(self):
+        def apps_listA():
             lista = lang.language.langs['apps_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_apps_list(self):
+        def menu_apps_list():
             lista = lang.language.langs['apps_menu_apps_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_apps_ofline_maps_list(self):
+        def menu_apps_ofline_maps_list():
             lista = lang.language.langs['offline_maps_menu_apps_list']
             i = 0
             for i in range(0, len(lista)):
@@ -389,21 +387,21 @@ class menu_list_def:
     class accounts_list:
 
         @staticmethod
-        def accounts_listA(self):
+        def accounts_listA():
             lista = lang.language.langs['accounts_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_accounts_sigin_list(self):
+        def menu_accounts_sigin_list():
             lista = lang.language.langs['accounts_menu_sigin_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_accounts_family_list(self):
+        def menu_accounts_family_list():
             lista = lang.language.langs['accounts_menu_family_list']
             i = 0
             for i in range(0, len(lista)):
@@ -412,14 +410,14 @@ class menu_list_def:
     class time_language_list:
 
         @staticmethod
-        def time_language_listA(self):
+        def time_language_listA():
             lista = lang.language.langs['time_language_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_time_language_language_list(self):
+        def menu_time_language_language_list():
             lista = lang.language.langs['time_language_menu_language_list']
             i = 0
             for i in range(0, len(lista)):
@@ -428,7 +426,7 @@ class menu_list_def:
     class gaming_list:
 
         @staticmethod
-        def gaming_listA(self):
+        def gaming_listA():
             lista = lang.language.langs['gaming_list']
             i = 0
             for i in range(0, len(lista)):
@@ -437,14 +435,14 @@ class menu_list_def:
     class extra_list:
 
         @staticmethod
-        def extra_listA(self):
+        def extra_listA():
             lista = lang.language.langs['extras_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def menu_weather_list(self):
+        def menu_weather_list():
             lista = lang.language.langs['extras_menu_weather_list']
             i = 0
             for i in range(0, len(lista)):
@@ -453,14 +451,14 @@ class menu_list_def:
     class ease_of_access:
 
         @staticmethod
-        def eace_of_access_listA(self):
+        def eace_of_access_listA():
             lista = lang.language.langs['ease_of_access_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def ease_of_access_narrator_list(self):
+        def ease_of_access_narrator_list():
             lista = lang.language.langs['ease_of_access_menu_narrator_list']
             i = 0
             for i in range(0, len(lista)):
@@ -469,7 +467,7 @@ class menu_list_def:
     class search:
 
         @staticmethod
-        def search_listA(self):
+        def search_listA():
             lista = lang.language.langs['search_list']
             i = 0
             for i in range(0, len(lista)):
@@ -478,14 +476,14 @@ class menu_list_def:
     class privacy:
 
         @staticmethod
-        def privacy_listA(self):
+        def privacy_listA():
             lista = lang.language.langs['privacy_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def privacy_diagnostics_list(self):
+        def privacy_diagnostics_list():
             lista = lang.language.langs['privacy_menu_diagnostics_list']
             i = 0
             for i in range(0, len(lista)):
@@ -494,21 +492,21 @@ class menu_list_def:
     class update:
 
         @staticmethod
-        def update_listA(self):
+        def update_listA():
             lista = lang.language.langs['update_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def windows_menu_update_list(self):
+        def windows_menu_update_list():
             lista = lang.language.langs['windows_menu_update_list']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def windows_menu_security_list(self):
+        def windows_menu_security_list():
             lista = lang.language.langs['windows_menu_security_list']
             i = 0
             for i in range(0, len(lista)):
@@ -517,7 +515,7 @@ class menu_list_def:
     class mixed_reality:
 
         @staticmethod
-        def mixed_reality_listA(self):
+        def mixed_reality_listA():
             lista = lang.language.langs['mixed_reality_list']
             i = 0
             for i in range(0, len(lista)):
@@ -526,7 +524,7 @@ class menu_list_def:
     class surface_hub:
 
         @staticmethod
-        def surface_hub_listA(self):
+        def surface_hub_listA():
             lista = lang.language.langs['surface_hub_list']
             i = 0
             for i in range(0, len(lista)):
@@ -535,77 +533,77 @@ class menu_list_def:
     class shell:
 
         @staticmethod
-        def shell_commands_list_0(self):
+        def shell_commands_list_0():
             lista = lang.language.langs['shell_commads']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_1(self):
+        def shell_commands_list_1():
             lista = lang.language.langs['shell_commads_1']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_2(self):
+        def shell_commands_list_2():
             lista = lang.language.langs['shell_commads_2']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_3(self):
+        def shell_commands_list_3():
             lista = lang.language.langs['shell_commads_3']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_4(self):
+        def shell_commands_list_4():
             lista = lang.language.langs['shell_commads_4']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_5(self):
+        def shell_commands_list_5():
             lista = lang.language.langs['shell_commads_5']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_6(self):
+        def shell_commands_list_6():
             lista = lang.language.langs['shell_commads_6']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_7(self):
+        def shell_commands_list_7():
             lista = lang.language.langs['shell_commads_7']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_8(self):
+        def shell_commands_list_8():
             lista = lang.language.langs['shell_commads_8']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_9(self):
+        def shell_commands_list_9():
             lista = lang.language.langs['shell_commads_9']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def shell_commands_list_10(self):
+        def shell_commands_list_10():
             lista = lang.language.langs['shell_commads_10']
             i = 0
             for i in range(0, len(lista)):
@@ -614,35 +612,35 @@ class menu_list_def:
     class goodm:
 
         @staticmethod
-        def goodmod_listA(self):
+        def goodmod_listA():
             lista = lang.language.langs['goodmod']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def power_listA(self):
+        def power_listA():
             lista = lang.language.langs['power_goodmod']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def power_menu_listA(self):
+        def power_menu_listA():
             lista = lang.language.langs['manual_power']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def Update_Fixer(self):
+        def Update_Fixer():
             lista = lang.language.langs['Update_Fixer']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def Windows_Defender(self):
+        def Windows_Defender():
             lista = lang.language.langs['Windows_Defender']
             i = 0
             for i in range(0, len(lista)):
@@ -651,21 +649,21 @@ class menu_list_def:
     class microsoft:
 
         @staticmethod
-        def microsoft_listA(self):
+        def microsoft_listA():
             lista = lang.language.langs['Microsoft_Store']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def microsoft_install(self):
+        def microsoft_install():
             lista = lang.language.langs['Microsoft_Store_install_fixer']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def microsoft_uninstall(self):
+        def microsoft_uninstall():
             lista = lang.language.langs['Microsoft_Store_uninstall_fixer']
             i = 0
             for i in range(0, len(lista)):
@@ -674,14 +672,14 @@ class menu_list_def:
     class beta:
 
         @staticmethod
-        def beta_project_lang(self):
+        def beta_project_lang():
             lista = lang.language.langs['beta_project']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def beta_project_lang_steamdb(self):
+        def beta_project_lang_steamdb():
             lista = lang.language.langs['beta_project_steamdb']
             i = 0
             for i in range(0, len(lista)):
@@ -690,21 +688,21 @@ class menu_list_def:
     class SteamDB_lang:
 
         @staticmethod
-        def SteamDB_Summaries(self):
+        def SteamDB_Summaries():
             lista = lang.language.langdb['SteamDB_Summaries']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def GetGameServersStatus(self):
+        def GetGameServersStatus():
             lista = lang.language.langdb['GetGameServersStatus']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
 
         @staticmethod
-        def GetGameServersStatus_list(self):
+        def GetGameServersStatus_list():
             lista = lang.language.langdb['GetGameServersStatus_list']
             i = 0
             for i in range(0, len(lista)):
@@ -713,7 +711,7 @@ class menu_list_def:
     class verch:
 
         @staticmethod
-        def verch_lang(self):
+        def verch_lang():
             lista = lang.language.langdb['verch_lang']
             i = 0
             for i in range(0, len(lista)):
@@ -734,8 +732,7 @@ class modul:
                 menu_list_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
-
-                menu_list_def.accounts_list.accounts_listA('self')
+                menu_list_def.accounts_list.accounts_listA()
                 menu_list_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -795,7 +792,7 @@ class modul:
                 menu_list_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
-                menu_list_def.apps_list.apps_listA('self')
+                menu_list_def.apps_list.apps_listA()
                 menu_list_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -848,404 +845,417 @@ class modul:
                     break
 
     class Devices:
-        while True:
-            menu_list_def.clear()
-            logos.main_logo()
-            verch.ver_ch_start()
-            menu_list_def.devices_list.devices_listA('self')
-            menu_list_def.back_text()
+        @staticmethod
+        def devices():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.devices_list.devices_listA()
+                menu_list_def.back_text()
 
-            system_lista = int(input("" + lang.language.langs["main"][6]))
+                system_lista = int(input("" + lang.language.langs["main"][6]))
 
-            if system_lista == 0:
-                os.system("start ms-settings:bluetooth")
+                if system_lista == 0:
+                    os.system("start ms-settings:bluetooth")
 
-            if system_lista == 1:
-                os.system("start ms-settings:printers")
-            if system_lista == 2:
-                os.system("start ms-settings:mousetouchpad")
+                if system_lista == 1:
+                    os.system("start ms-settings:printers")
+                if system_lista == 2:
+                    os.system("start ms-settings:mousetouchpad")
 
-            if system_lista == 3:
-                os.system("start ms-settings:devices-touchpad")
+                if system_lista == 3:
+                    os.system("start ms-settings:devices-touchpad")
 
-            if system_lista == 4:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.devices_list.menu_devices_typing_list('self')
-                    menu_list_def.back_text()
-                    typing_lista = int(input("" + lang.language.langs["main"][6]))
-
-                    if typing_lista == 0:
-                        os.system("start ms-settings:typing")
-
-                    if typing_lista == 1:
-                        os.system("start ms - settings:devicestyping-hwkbtextsuggestions")
-
-                    if typing_lista == 20:
-                        break
-
-            if system_lista == 5:
-                os.system("start ms-settings:wheel")
-
-            if system_lista == 6:
-                os.system("start ms-settings:pen")
-
-            if system_lista == 7:
-                os.system("start ms-settings:autoplay")
-
-            if system_lista == 8:
-                os.system("start ms-settings:usb")
-
-            if system_lista == 20:
-                break
-
-    class Ease_of_Access:
-        while True:
-            menu_list_def.clear()
-            logos.main_logo()
-            verch.ver_ch_start()
-            menu_list_def.ease_of_access.eace_of_access_listA('self')
-            menu_list_def.back_text()
-            system_lista = int(input("" + lang.language.langs["main"][6]))
-
-            if system_lista == 0:
-                os.system("start ms-settings:easeofaccess-display")
-            if system_lista == 1:
-                os.system("start ms-settings:easeofaccess-cursorandpointersize")
-            if system_lista == 2:
-                os.system("start ms-settings:easeofaccess-cursor")
-            if system_lista == 3:
-                os.system("start ms-settings:easeofaccess-magnifier")
-            if system_lista == 4:
-                os.system("start ms-settings:easeofaccess-colorfilter")
-            if system_lista == 5:
-                os.system("start ms-settings:easeofaccess-highcontrast")
-            if system_lista == 6:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.ease_of_access.ease_of_access_narrator_list('self')
-                    menu_list_def.back_text()
-                    ease_lista = int(input("" + lang.language.langs["main"][6]))
-
-                    if ease_lista == 0:
-                        os.system("start ms-settings:easeofaccess-narrator")
-                    if ease_lista == 0:
-                        os.system("start ms-settings:easeofaccess-narrator-isautostartenabled")
-                    if ease_lista == 20:
-                        break
-
-            if system_lista == 7:
-                os.system("start ms-settings:easeofaccess-audio")
-            if system_lista == 8:
-                os.system("start ms-settings:easeofaccess-closedcaptioning")
-            if system_lista == 9:
-                os.system("start ms-settings:easeofaccess-speechrecognition")
-            if system_lista == 10:
-                os.system("start ms-settings:easeofaccess-keyboard")
-            if system_lista == 11:
-                os.system("start ms-settings:easeofaccess-mouse")
-            if system_lista == 12:
-                os.system("start ms-settings:easeofaccess-eyecontrol")
-
-            if system_lista == 20:
-                break
-
-    class Extras:
-        while True:
-            menu_list_def.clear()
-            logos.main_logo()
-            verch.ver_ch_start()
-            menu_list_def.extra_list.extra_listA('self')
-            menu_list_def.extra_back_text()
-            system_lista = int(input("" + lang.language.langs["main"][6]))
-
-            if system_lista == 0:
-                os.system("start ms-settings:extras")
-            if system_lista == 1:
-                os.system("start ms-availablenetworks:")
-            if system_lista == 2:
-                os.system("start calculator:")
-            if system_lista == 3:
-                os.system("start outlookcal:")
-            if system_lista == 4:
-                os.system("start microsoft.windows.camera:")
-            if system_lista == 5:
-                os.system("start ms-settings-connectabledevices:devicediscovery")
-            if system_lista == 6:
-                os.system("start ms-clock:")
-            if system_lista == 7:
-                os.system("start feedback-hub:")
-            if system_lista == 8:
-                os.system("start mswindowsmusic:")
-            if system_lista == 9:
-                os.system("start outlookmail:")
-            if system_lista == 10:
-                os.system("start 	bingmaps:")
-            if system_lista == 11:
-                os.system("start 	microsoft-edge:")
-            if system_lista == 12:
-                os.system("start 	bingnews:")
-            if system_lista == 13:
-                os.system("start xboxliveapp-1297287741:")
-            if system_lista == 14:
-                os.system("start 	ms-windows-store:")
-            if system_lista == 15:
-                os.system("start mswindowsvideo:")
-            if system_lista == 16:
-                os.system("start 	ms-actioncenter:")
-            if system_lista == 17:
-                os.system("start 	ms-people:")
-            if system_lista == 18:
-                os.system("start 	ms-people:settings")
-            if system_lista == 19:
-                os.system("start 	ms-photos:")
-            if system_lista == 20:
-                os.system("start 	ms-settings-displays-topology:projection")
-            if system_lista == 21:
-                os.system("start 	ms-settings:")
-            if system_lista == 22:
-                os.system("start 	ms-ScreenSketch:")
-            if system_lista == 23:
-                os.system("start 	ms-screenclip:")
-            if system_lista == 24:
-                os.system("start ms-get-started:")
-            if system_lista == 25:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.extra_list.menu_weather_list('self')
-                    menu_list_def.back_text()
-                    weather_lista = int(input("" + lang.language.langs["main"][6]))
-
-                    if weather_lista == 0:
-                        os.system("start bingweather:")
-                    if weather_lista == 1:
-                        os.system("start msnweather:")
-                    if weather_lista == 20:
-                        break
-
-            if system_lista == 26:
-                os.system("start windowsdefender:")
-            if system_lista == 30:
-                break
-
-    class Gaming:
-        while True:
-            menu_list_def.clear()
-            logos.main_logo()
-            verch.ver_ch_start()
-            menu_list_def.gaming_list.gaming_listA('self')
-            menu_list_def.back_text()
-            system_lista = int(input("" + lang.language.langs["main"][6]))
-
-            if system_lista == 0:
-                os.system("start ms-settings:gaming-gamebar")
-            if system_lista == 1:
-                os.system("start ms-settings:gaming-gamedvr")
-            if system_lista == 2:
-                os.system("start ms-settings:gaming-gamemode")
-            if system_lista == 3:
-                os.system("start ms-settings:gaming-xboxnetworking")
-            if system_lista == 20:
-                break
-
-    class GoodMod:
-        while True:
-            menu_list_def.clear()
-            logos.main_logo()
-            verch.ver_ch_start()
-            menu_list_def.goodm.goodmod_listA('self')
-            menu_list_def.back_text()
-            system_lista = int(input("" + lang.language.langs["main"][6]))
-
-            if system_lista == 0:
-                result = subprocess.run([r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',
-                                         r'' + start], stdout=subprocess.PIPE,
-                                        stderr=subprocess.STDOUT, shell=True)
-                print(result)
-
-            if system_lista == 1:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.goodm.power_listA('self')
-                    menu_list_def.back_text()
-                    system_lista = int(input("" + lang.language.langs["main"][6]))
-
-                    if system_lista == 0:
-                        os.system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61")
-
-                    if system_lista == 1:
-                        os.system("start powercfg.cpl")
-
-                    if system_lista == 2:
+                if system_lista == 4:
+                    while True:
                         menu_list_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
-                        menu_list_def.goodm.power_menu_listA('self')
+                        menu_list_def.devices_list.menu_devices_typing_list()
                         menu_list_def.back_text()
+                        typing_lista = int(input("" + lang.language.langs["main"][6]))
 
-                        Popen('powershell ' + power_set, creationflags=CREATE_NEW_CONSOLE)
-                        system_lista = input("" + lang.language.langs["main"][9])
-                        os.system("powercfg /setactive " + system_lista)
+                        if typing_lista == 0:
+                            os.system("start ms-settings:typing")
+
+                        if typing_lista == 1:
+                            os.system("start ms - settings:devicestyping-hwkbtextsuggestions")
+
+                        if typing_lista == 20:
+                            break
+
+                if system_lista == 5:
+                    os.system("start ms-settings:wheel")
+
+                if system_lista == 6:
+                    os.system("start ms-settings:pen")
+
+                if system_lista == 7:
+                    os.system("start ms-settings:autoplay")
+
+                if system_lista == 8:
+                    os.system("start ms-settings:usb")
+
+                if system_lista == 20:
+                    break
+
+
+    class Ease_of_Access:
+        @staticmethod
+        def ease_of_Access():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.ease_of_access.eace_of_access_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:easeofaccess-display")
+                if system_lista == 1:
+                    os.system("start ms-settings:easeofaccess-cursorandpointersize")
+                if system_lista == 2:
+                    os.system("start ms-settings:easeofaccess-cursor")
+                if system_lista == 3:
+                    os.system("start ms-settings:easeofaccess-magnifier")
+                if system_lista == 4:
+                    os.system("start ms-settings:easeofaccess-colorfilter")
+                if system_lista == 5:
+                    os.system("start ms-settings:easeofaccess-highcontrast")
+                if system_lista == 6:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.ease_of_access.ease_of_access_narrator_list('self')
+                        menu_list_def.back_text()
+                        ease_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if ease_lista == 0:
+                            os.system("start ms-settings:easeofaccess-narrator")
+                        if ease_lista == 0:
+                            os.system("start ms-settings:easeofaccess-narrator-isautostartenabled")
+                        if ease_lista == 20:
+                            break
+
+                if system_lista == 7:
+                    os.system("start ms-settings:easeofaccess-audio")
+                if system_lista == 8:
+                    os.system("start ms-settings:easeofaccess-closedcaptioning")
+                if system_lista == 9:
+                    os.system("start ms-settings:easeofaccess-speechrecognition")
+                if system_lista == 10:
+                    os.system("start ms-settings:easeofaccess-keyboard")
+                if system_lista == 11:
+                    os.system("start ms-settings:easeofaccess-mouse")
+                if system_lista == 12:
+                    os.system("start ms-settings:easeofaccess-eyecontrol")
+
+                if system_lista == 20:
+                    break
+
+    class Extras:
+        @staticmethod
+        def Extra():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.extra_list.extra_listA()
+                menu_list_def.extra_back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:extras")
+                if system_lista == 1:
+                    os.system("start ms-availablenetworks:")
+                if system_lista == 2:
+                    os.system("start calculator:")
+                if system_lista == 3:
+                    os.system("start outlookcal:")
+                if system_lista == 4:
+                    os.system("start microsoft.windows.camera:")
+                if system_lista == 5:
+                    os.system("start ms-settings-connectabledevices:devicediscovery")
+                if system_lista == 6:
+                    os.system("start ms-clock:")
+                if system_lista == 7:
+                    os.system("start feedback-hub:")
+                if system_lista == 8:
+                    os.system("start mswindowsmusic:")
+                if system_lista == 9:
+                    os.system("start outlookmail:")
+                if system_lista == 10:
+                    os.system("start 	bingmaps:")
+                if system_lista == 11:
+                    os.system("start 	microsoft-edge:")
+                if system_lista == 12:
+                    os.system("start 	bingnews:")
+                if system_lista == 13:
+                    os.system("start xboxliveapp-1297287741:")
+                if system_lista == 14:
+                    os.system("start 	ms-windows-store:")
+                if system_lista == 15:
+                    os.system("start mswindowsvideo:")
+                if system_lista == 16:
+                    os.system("start 	ms-actioncenter:")
+                if system_lista == 17:
+                    os.system("start 	ms-people:")
+                if system_lista == 18:
+                    os.system("start 	ms-people:settings")
+                if system_lista == 19:
+                    os.system("start 	ms-photos:")
+                if system_lista == 20:
+                    os.system("start 	ms-settings-displays-topology:projection")
+                if system_lista == 21:
+                    os.system("start 	ms-settings:")
+                if system_lista == 22:
+                    os.system("start 	ms-ScreenSketch:")
+                if system_lista == 23:
+                    os.system("start 	ms-screenclip:")
+                if system_lista == 24:
+                    os.system("start ms-get-started:")
+                if system_lista == 25:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.extra_list.menu_weather_list()
+                        menu_list_def.back_text()
+                        weather_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if weather_lista == 0:
+                            os.system("start bingweather:")
+                        if weather_lista == 1:
+                            os.system("start msnweather:")
+                        if weather_lista == 20:
+                            break
+
+                if system_lista == 26:
+                    os.system("start windowsdefender:")
+                if system_lista == 30:
+                    break
+
+    class Gaming:
+        @staticmethod
+        def gaming():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.gaming_list.gaming_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:gaming-gamebar")
+                if system_lista == 1:
+                    os.system("start ms-settings:gaming-gamedvr")
+                if system_lista == 2:
+                    os.system("start ms-settings:gaming-gamemode")
+                if system_lista == 3:
+                    os.system("start ms-settings:gaming-xboxnetworking")
+                if system_lista == 20:
+                    break
+
+    class GoodMod:
+        @staticmethod
+        def good():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.goodm.goodmod_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    result = subprocess.run([r'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe',
+                                             r'' + start], stdout=subprocess.PIPE,
+                                            stderr=subprocess.STDOUT, shell=True)
+                    print(result)
+
+                if system_lista == 1:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.goodm.power_listA('self')
+                        menu_list_def.back_text()
+                        system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if system_lista == 0:
+                            os.system("powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61")
+
+                        if system_lista == 1:
+                            os.system("start powercfg.cpl")
+
+                        if system_lista == 2:
+                            menu_list_def.clear()
+                            logos.main_logo()
+                            verch.ver_ch_start()
+                            menu_list_def.goodm.power_menu_listA('self')
+                            menu_list_def.back_text()
+
+                            Popen('powershell ' + power_set, creationflags=CREATE_NEW_CONSOLE)
+                            system_lista = input("" + lang.language.langs["main"][9])
+                            os.system("powercfg /setactive " + system_lista)
+
+                            if system_lista == 20:
+                                break
 
                         if system_lista == 20:
                             break
 
-                    if system_lista == 20:
-                        break
+                if system_lista == 2:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.microsoft.microsoft_listA('self')
+                        menu_list_def.back_text()
+                        system_lista = int(input("" + lang.language.langs["main"][6]))
 
-            if system_lista == 2:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.microsoft.microsoft_listA('self')
-                    menu_list_def.back_text()
-                    system_lista = int(input("" + lang.language.langs["main"][6]))
+                        if system_lista == 0:
+                            Popen('powershell ' + ms_list, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 0:
-                        Popen('powershell ' + ms_list, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 1:
+                            Popen('powershell ' + win_install, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 1:
-                        Popen('powershell ' + win_install, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 2:
+                            Popen('powershell ' + win_upgrade, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 2:
-                        Popen('powershell ' + win_upgrade, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 3:
+                            os.system("winget import " + C_DIR_IN)
 
-                    if system_lista == 3:
-                        os.system("winget import " + C_DIR_IN)
+                        if system_lista == 4:
+                            os.system("winget export " + C_DIR_EX)
 
-                    if system_lista == 4:
-                        os.system("winget export " + C_DIR_EX)
+                        if system_lista == 5:
+                            while True:
+                                menu_list_def.clear()
+                                logos.main_logo()
+                                verch.ver_ch_start()
+                                menu_list_def.microsoft.microsoft_install('self')
+                                menu_list_def.back_text()
 
-                    if system_lista == 5:
-                        while True:
-                            menu_list_def.clear()
-                            logos.main_logo()
-                            verch.ver_ch_start()
-                            menu_list_def.microsoft.microsoft_install('self')
-                            menu_list_def.back_text()
+                                if system_lista == 0:
+                                    Popen('powershell ' + win_search, creationflags=CREATE_NEW_CONSOLE)
 
-                            if system_lista == 0:
-                                Popen('powershell ' + win_search, creationflags=CREATE_NEW_CONSOLE)
+                                if system_lista == 1:
+                                    system_lista = input("" + lang.language.langs["main"][9])
+                                    os.system("winget install " + system_lista)
 
-                            if system_lista == 1:
-                                system_lista = input("" + lang.language.langs["main"][9])
-                                os.system("winget install " + system_lista)
+                                if system_lista == 20:
+                                    break
 
-                            if system_lista == 20:
-                                break
+                        if system_lista == 6:
+                            while True:
+                                menu_list_def.clear()
+                                logos.main_logo()
+                                verch.ver_ch_start()
+                                menu_list_def.microsoft.microsoft_uninstall('self')
+                                menu_list_def.back_text()
+                                system_lista = int(input("" + lang.language.langs["main"][6]))
 
-                    if system_lista == 6:
-                        while True:
-                            menu_list_def.clear()
-                            logos.main_logo()
-                            verch.ver_ch_start()
-                            menu_list_def.microsoft.microsoft_uninstall('self')
-                            menu_list_def.back_text()
-                            system_lista = int(input("" + lang.language.langs["main"][6]))
+                                if system_lista == 0:
+                                    Popen('powershell ' + win_install, creationflags=CREATE_NEW_CONSOLE)
 
-                            if system_lista == 0:
-                                Popen('powershell ' + win_install, creationflags=CREATE_NEW_CONSOLE)
+                                if system_lista == 1:
+                                    system_lista = input("" + lang.language.langs["main"][9])
+                                    os.system("winget uninstall " + system_lista)
 
-                            if system_lista == 1:
-                                system_lista = input("" + lang.language.langs["main"][9])
-                                os.system("winget uninstall " + system_lista)
+                                if system_lista == 20:
+                                    break
 
-                            if system_lista == 20:
-                                break
+                        if system_lista == 20:
+                            break
 
-                    if system_lista == 20:
-                        break
+                if system_lista == 3:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.goodm.Update_Fixer('self')
+                        menu_list_def.back_text()
+                        system_lista = int(input("" + lang.language.langs["main"][6]))
 
-            if system_lista == 3:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.goodm.Update_Fixer('self')
-                    menu_list_def.back_text()
-                    system_lista = int(input("" + lang.language.langs["main"][6]))
+                        if system_lista == 0:
+                            Popen('powershell ' + update_powershell, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 0:
-                        Popen('powershell ' + update_powershell, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 1:
+                            Popen('powershell ' + update_powershell_fixer, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 1:
-                        Popen('powershell ' + update_powershell_fixer, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 2:
+                            Popen('powershell ' + steam_fix, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 2:
-                        Popen('powershell ' + steam_fix, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 3:
+                            Popen('powershell ' + restart_vga_driver, creationflags=CREATE_NEW_CONSOLE)
+                            system_lista = input("" + lang.language.langs["main"][10])
 
-                    if system_lista == 3:
-                        Popen('powershell ' + restart_vga_driver, creationflags=CREATE_NEW_CONSOLE)
-                        system_lista = input("" + lang.language.langs["main"][10])
+                            ''' 
+                            "x" - Create - will create a file, returns an error if the file exist 
+                            "a" - Append - will create a file if the specified file does not exist
+                            "w" - Write - will create a file if the specified file does not exist
+                            '''
 
-                        ''' 
-                        "x" - Create - will create a file, returns an error if the file exist 
-                        "a" - Append - will create a file if the specified file does not exist
-                        "w" - Write - will create a file if the specified file does not exist
-                        '''
+                            f = open(C_DIR_VGA_IN + "ScriptVGARestart.ps1", "w")
+                            f.write(restart_vga_id + vga_list + system_lista + vga_list)
+                            f.close()
 
-                        f = open(C_DIR_VGA_IN + "ScriptVGARestart.ps1", "w")
-                        f.write(restart_vga_id + vga_list + system_lista + vga_list)
-                        f.close()
+                            file = restart_vga_driver_start
+                            Popen('powershell ' + file)
 
-                        file = restart_vga_driver_start
-                        Popen('powershell ' + file)
+                        if system_lista == 20:
+                            break
 
-                    if system_lista == 20:
-                        break
+                if system_lista == 4:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.goodm.Windows_Defender('self')
+                        menu_list_def.back_text()
+                        system_lista = int(input("" + lang.language.langs["main"][6]))
 
-            if system_lista == 4:
-                while True:
-                    menu_list_def.clear()
-                    logos.main_logo()
-                    verch.ver_ch_start()
-                    menu_list_def.goodm.Windows_Defender('self')
-                    menu_list_def.back_text()
-                    system_lista = int(input("" + lang.language.langs["main"][6]))
+                        if system_lista == 0:
+                            Popen('powershell ' + w_scan_updates, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 0:
-                        Popen('powershell ' + w_scan_updates, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 1:
+                            Popen('powershell ' + w_scan_Quick, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 1:
-                        Popen('powershell ' + w_scan_Quick, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 2:
+                            Popen('powershell ' + w_scan_Full, creationflags=CREATE_NEW_CONSOLE)
 
-                    if system_lista == 2:
-                        Popen('powershell ' + w_scan_Full, creationflags=CREATE_NEW_CONSOLE)
+                        if system_lista == 20:
+                            break
 
-                    if system_lista == 20:
-                        break
-
-            if system_lista == 20:
-                break
+                if system_lista == 20:
+                    break
 
     class Mixed_reality:
-        while True:
-            menu_list_def.clear()
-            logos.main_logo()
-            verch.ver_ch_start()
-            menu_list_def.mixed_reality.mixed_reality_listA('self')
-            menu_list_def.back_text()
-            system_lista = int(input("" + lang.language.langs["main"][6]))
+        @staticmethod
+        def mixed_reality():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.mixed_reality.mixed_reality_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
 
-            if system_lista == 0:
-                os.system("start ms-settings:holographic-audio")
-            if system_lista == 1:
-                os.system("start ms-settings:privacy-holographic-environment")
-            if system_lista == 2:
-                os.system("start ms-settings:holographic-headset")
-            if system_lista == 3:
-                os.system("start ms-settings:holographic-management")
-            if system_lista == 20:
-                break
+                if system_lista == 0:
+                    os.system("start ms-settings:holographic-audio")
+                if system_lista == 1:
+                    os.system("start ms-settings:privacy-holographic-environment")
+                if system_lista == 2:
+                    os.system("start ms-settings:holographic-headset")
+                if system_lista == 3:
+                    os.system("start ms-settings:holographic-management")
+                if system_lista == 20:
+                    break
 
     class my_script:
         pass
@@ -1844,10 +1854,158 @@ class modul:
                 fg(0, 75, 75) + ": " +
                 fg(0, 255, 154) + f"{adjust_size(net_io.bytes_recv)}" + fg.rs)
 
+    class speedtest_v2:
+        #global test
+        @staticmethod
+        def speedtest_v2_run():
+            print(
+                fg(160, 70, 170) + "L" +
+                fg(165, 70, 165) + "o" +
+                fg(170, 70, 160) + "a" +
+                fg(175, 70, 155) + "d" +
+                fg(180, 70, 150) + "i" +
+                fg(185, 70, 145) + "n" +
+                fg(190, 70, 140) + "g " +
+                fg(195, 70, 135) + "s" +
+                fg(200, 70, 130) + "e" +
+                fg(205, 70, 125) + "r" +
+                fg(210, 70, 120) + "v" +
+                fg(215, 70, 115) + "e" +
+                fg(220, 70, 110) + "r " +
+                fg(225, 70, 105) + "l" +
+                fg(230, 70, 100) + "i" +
+                fg(235, 70, 95) + "s" +
+                fg(240, 70, 90) + "t" +
+                fg(245, 70, 85) + "." +
+                fg(250, 70, 80) + "." +
+                fg(255, 70, 75) + "." + fg.rs)
+            test.get_servers()
+
+            print(
+                fg(155, 70, 170) + "C" +
+                fg(160, 70, 165) + "h" +
+                fg(165, 70, 160) + "o" +
+                fg(170, 70, 155) + "o" +
+                fg(175, 70, 150) + "s" +
+                fg(180, 70, 145) + "i" +
+                fg(185, 70, 140) + "n" +
+                fg(190, 70, 135) + "g " +
+                fg(195, 70, 130) + "b" +
+                fg(200, 70, 125) + "e" +
+                fg(205, 70, 120) + "s" +
+                fg(210, 70, 115) + "t " +
+                fg(215, 70, 110) + "s" +
+                fg(220, 70, 105) + "e" +
+                fg(225, 70, 100) + "r" +
+                fg(230, 70, 95) + "v" +
+                fg(235, 70, 90) + "e" +
+                fg(240, 70, 85) + "r" +
+                fg(245, 70, 80) + "." +
+                fg(250, 70, 75) + "." +
+                fg(255, 70, 70) + "." + fg.rs)
+            best = test.get_best_server()
+
+            print(
+                fg(155, 70, 170) + "F" +
+                fg(160, 70, 165) + "o" +
+                fg(165, 70, 160) + "u" +
+                fg(170, 70, 155) + "n" +
+                fg(175, 70, 150) + "d" +
+                fg(180, 70, 145) + ": " +
+                fg(255, 255, 255) + f"{best['host']} " +
+                fg(185, 70, 135) + "l" +
+                fg(190, 70, 130) + "o" +
+                fg(195, 70, 125) + "c" +
+                fg(200, 70, 120) + "a" +
+                fg(205, 70, 115) + "t" +
+                fg(210, 70, 110) + "e" +
+                fg(215, 70, 105) + "d " +
+                fg(220, 70, 100) + "i" +
+                fg(225, 70, 95) + "n " +
+                fg(255, 255, 255) + f"{best['country']}" + fg.rs)
+
+            print(
+                fg(155, 70, 170) + "P" +
+                fg(160, 70, 165) + "i" +
+                fg(165, 70, 160) + "n" +
+                fg(170, 70, 155) + "g " +
+                fg(175, 70, 150) + "t" +
+                fg(180, 70, 145) + "e" +
+                fg(185, 70, 140) + "s" +
+                fg(190, 70, 135) + "t" +
+                fg(195, 70, 130) + "." +
+                fg(200, 70, 125) + "." +
+                fg(205, 70, 120) + "." + fg.rs)
+            ping_result = test.results.ping
+            print(
+                fg(255, 255, 204) + "Ping: " + fg(255, 255, 255) + f"{ping_result}" + fg(255, 10, 150) + " ms" + fg.rs)
+
+            print(
+                fg(155, 70, 170) + "P" +
+                fg(160, 70, 165) + "e" +
+                fg(165, 70, 160) + "r" +
+                fg(170, 70, 155) + "f" +
+                fg(175, 70, 150) + "o" +
+                fg(180, 70, 145) + "r" +
+                fg(185, 70, 140) + "m" +
+                fg(190, 70, 135) + "i" +
+                fg(195, 70, 130) + "n" +
+                fg(200, 70, 125) + "g " +
+                fg(205, 70, 120) + "d" +
+                fg(210, 70, 115) + "o" +
+                fg(215, 70, 110) + "w" +
+                fg(220, 70, 105) + "n" +
+                fg(225, 70, 100) + "l" +
+                fg(230, 70, 95) + "o" +
+                fg(235, 70, 90) + "a" +
+                fg(240, 70, 85) + "d " +
+                fg(245, 70, 80) + "t" +
+                fg(250, 70, 75) + "e" +
+                fg(255, 70, 70) + "s" +
+                fg(255, 70, 65) + "t" +
+                fg(255, 70, 60) + "." +
+                fg(255, 70, 55) + "." +
+                fg(255, 70, 50) + "." + fg.rs)
+            download_result = test.download()
+            print(fg(255, 255, 204) + "Download speed: " + fg(255, 255,
+                                                              255) + f"{download_result / 1024 / 1024:.2f}" + fg(255,
+                                                                                                                 10,
+                                                                                                                 150) + " Mbit/s" + fg.rs)
+            print(
+                fg(155, 70, 170) + "P" +
+                fg(160, 70, 165) + "e" +
+                fg(165, 70, 160) + "r" +
+                fg(170, 70, 155) + "f" +
+                fg(175, 70, 150) + "o" +
+                fg(180, 70, 145) + "r" +
+                fg(185, 70, 140) + "m" +
+                fg(190, 70, 135) + "i" +
+                fg(195, 70, 130) + "n" +
+                fg(200, 70, 125) + "g " +
+                fg(205, 70, 120) + "u" +
+                fg(210, 70, 115) + "p" +
+                fg(215, 70, 110) + "l" +
+                fg(220, 70, 105) + "o" +
+                fg(225, 70, 100) + "a" +
+                fg(230, 70, 95) + "d " +
+                fg(235, 70, 90) + "t" +
+                fg(240, 70, 85) + "e" +
+                fg(245, 70, 80) + "s" +
+                fg(250, 70, 75) + "t" +
+                fg(255, 70, 70) + "." +
+                fg(255, 70, 65) + "." +
+                fg(255, 70, 60) + "." + fg.rs)
+            upload_result = test.upload()
+            print(fg(255, 255, 204) + "Upload speed: " + fg(255, 255, 255) + f"{upload_result / 1024 / 1024:.2f}" + fg(
+                255, 10, 150) + " Mbit/s" + fg.rs)
+
+            pass
+
 
 # ****************************************************************************
 # MAIN SCRIPT
 # ****************************************************************************
+
 class menu:
     @staticmethod
     def menulista():
@@ -1855,7 +2013,6 @@ class menu:
             menu_list_def.clear()
             logos.main_logo()
             verch.ver_ch_start()
-
             menu_list_def.menu_A()
             menu_list_def.exits_text()
 
@@ -1941,11 +2098,11 @@ class menu:
                     if system_lista == 0:
                         modul.SteamDB.GetGameServersStatus.game.CSGOServers_730()
                     if system_lista == 1:
-                        modul.SteamDB.GetOwnedGames.steamDB.my_userid_info('self')
+                        modul.SteamDB.GetOwnedGames.steamDB.my_userid_info()
                     if system_lista == 2:
-                        modul.SteamDB.GetOwnedGames.steamDB.userid_info('self')
+                        modul.SteamDB.GetOwnedGames.steamDB.userid_info()
                     if system_lista == 3:
-                        modul.SteamDB.GetPlayerBans.steamDB.bann_user('self')
+                        modul.SteamDB.GetPlayerBans.steamDB.bann_user()
                     if system_lista == 4:
                         modul.SteamDB.GetPlayerSummaries.GetPlayerSummaries()
                     if system_lista == 5:
@@ -1953,6 +2110,7 @@ class menu:
 
                     if system_lista == 20:
                         break
+
             if system_a == 3:
                 while True:
                     menu_list_def.clear()
@@ -2122,7 +2280,7 @@ class menu:
                             system_lista = int(input("" + lang.language.langs["main"][6]))
                             if system_lista == 20:
                                 break
-
+                    
                     if system_lista == 20:
                         break
 
