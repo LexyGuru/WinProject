@@ -48,6 +48,10 @@ w_scan_Quick = "Start-MpScan -ScanType QuickScan"
 w_scan_Full = "Start-MpScan -ScanType FullScan"
 
 
+
+url_beta = "https://raw.githubusercontent.com/LexyGuru/WinProject/beta/SVG_DIR/verzion.json"
+url_current = "https://raw.githubusercontent.com/LexyGuru/WinProject/main/SVG_DIR/verzion.json"
+
 @staticmethod
 def getListOfProcessSortedByMemory():
     listOfProcObjects = []
@@ -140,7 +144,8 @@ class verch:
 
     @staticmethod
     def ver_ch():
-        url = 'https://raw.githubusercontent.com/LexyGuru/Terminal_Windows_URI_PY/main/SVG_DIR/verzion.json'
+        #url = 'https://raw.githubusercontent.com/LexyGuru/Terminal_Windows_URI_PY/main/SVG_DIR/verzion.json'
+        url = url_current
         x = requests.get(url)
         new_ver = x.json()['next_current'][0]
 
@@ -159,11 +164,11 @@ class verch:
 
     @staticmethod
     def ver_ch_beta():
-        url = 'https://raw.githubusercontent.com/LexyGuru/Terminal_Windows_URI_PY/beta/SVG_DIR/verzion.json'
+
+        url = url_beta
         x = requests.get(url)
         beta_ver = x.json()['next_beta'][0]
 
-        url = 'https://raw.githubusercontent.com/LexyGuru/Terminal_Windows_URI_PY/beta/SVG_DIR/verzion.json'
         x = requests.get(url)
         current = x.json()['current_beta'][0]
 
@@ -199,7 +204,7 @@ class verch:
             print('\n')
 
         if file_exists == False:
-            url = 'https://raw.githubusercontent.com/LexyGuru/Terminal_Windows_URI_PY/main/SVG_DIR/verzion.json'
+            url = url_current
             x = requests.get(url)
             current = x.json()
 
