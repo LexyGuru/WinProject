@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+from main import menu
 
 url_current = "https://raw.githubusercontent.com/LexyGuru/WinProject/main/SVG_DIR/verzion.json"
 file_exists = os.path.exists('ver.json')
@@ -23,7 +24,4 @@ def start():
 
 
 start()
-
-from main import menu
-
 menu.menulista()
