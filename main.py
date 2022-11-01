@@ -11,8 +11,6 @@ import subprocess
 import speedtest
 from subprocess import Popen, CREATE_NEW_CONSOLE
 
-
-test = speedtest.Speedtest()
 ROOT_DIR = os.path.abspath(os.curdir)
 file_exists = os.path.exists('ver.json')
 
@@ -1855,9 +1853,8 @@ class modul:
                 fg(0, 255, 154) + f"{adjust_size(net_io.bytes_recv)}" + fg.rs)
 
     class speedtest_v2:
-        #global test
-        @staticmethod
-        def speedtest_v2_run():
+        test = speedtest.Speedtest()
+        def speedtest_v2_run(self):
             print(
                 fg(160, 70, 170) + "L" +
                 fg(165, 70, 165) + "o" +
