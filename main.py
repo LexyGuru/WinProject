@@ -144,7 +144,6 @@ class verch:
 
     @staticmethod
     def ver_ch():
-        #url = 'https://raw.githubusercontent.com/LexyGuru/Terminal_Windows_URI_PY/main/SVG_DIR/verzion.json'
         url = url_current
         x = requests.get(url)
         new_ver = x.json()['next_current'][0]
@@ -2837,7 +2836,7 @@ class menu:
                         break
 
             if system_a == 20:
-                # os.remove("ver.json")
+                os.remove("ver.json")
                 exit()
 
 
