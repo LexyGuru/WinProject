@@ -259,6 +259,13 @@ class menu_list_def:
             print(lista[i])
 
     @staticmethod
+    def menu_listaA():
+        lista = lang.language.langs['menu_list']
+        i = 0
+        for i in range(0, len(lista)):
+            print(lista[i])
+
+    @staticmethod
     def menu_B():
         lista = lang.language.langs['menu_b']
         i = 0
@@ -744,14 +751,6 @@ class menu_list_def:
                 print(lista[i])
 
 
-def menu_listaA():
-    lista = lang.language.langs['menu_list']
-
-    i = 0
-    for i in range(0, len(lista)):
-        print(lista[i])
-
-
 # ****************************************************************************
 # modul
 # ****************************************************************************
@@ -789,14 +788,19 @@ class modul:
 
                             keyloadd = int(input("" + lang.language.langs["main"][6]))
                             if keyloadd == 0:
-                                url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                url = (
+                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                 x = requests.get(url)
                                 h = x.json()['result']['services']
 
-                                print(fg(255, 80, 250) + "SessionsLogon: " + fg(255, 180, 70) + h.get('SessionsLogon') + fg.rs)
-                                print(fg(255, 80, 240) + "SteamCommunity: " + fg(255, 180, 60) + h.get('SteamCommunity') + fg.rs)
-                                print(fg(255, 80, 230) + "IEconItems: " + fg(255, 180, 50) + h.get('IEconItems') + fg.rs)
-                                print(fg(255, 80, 220) + "Leaderboards: " + fg(255, 180, 40) + h.get('Leaderboards') + fg.rs)
+                                print(fg(255, 80, 250) + "SessionsLogon: " + fg(255, 180, 70) + h.get(
+                                    'SessionsLogon') + fg.rs)
+                                print(fg(255, 80, 240) + "SteamCommunity: " + fg(255, 180, 60) + h.get(
+                                    'SteamCommunity') + fg.rs)
+                                print(
+                                    fg(255, 80, 230) + "IEconItems: " + fg(255, 180, 50) + h.get('IEconItems') + fg.rs)
+                                print(fg(255, 80, 220) + "Leaderboards: " + fg(255, 180, 40) + h.get(
+                                    'Leaderboards') + fg.rs)
 
                                 menu_list_def.back_text()
                                 keyloadd = int(input("" + lang.language.langs["main"][6]))
@@ -809,7 +813,8 @@ class modul:
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
 
-                                    url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    url = (
+                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['datacenters']
 
@@ -1007,21 +1012,27 @@ class modul:
                                     menu_list_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
-                                    url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    url = (
+                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']
                                     dict_list_matchmaking = (h['matchmaking'])
                                     print(fg(255, 80, 250) +
                                           "Matchmaking: " + fg(255, 180, 70) + '\n'
-                                          "      scheduler: " + fg(255, 180, 70) +
+                                                                               "      scheduler: " + fg(255, 180, 70) +
                                           dict_list_matchmaking.get('scheduler') + '\n'
-                                          "      online_servers: " + fg(255, 180, 70) +
+                                                                                   "      online_servers: " + fg(255,
+                                                                                                                 180,
+                                                                                                                 70) +
                                           str(dict_list_matchmaking.get('online_servers')) + '\n'
-                                          "      online_players: " + fg(255, 180, 70) +
+                                                                                             "      online_players: " + fg(
+                                        255, 180, 70) +
                                           str(dict_list_matchmaking.get('online_players')) + '\n'
-                                          "      searching_players: " + fg(255, 180, 70) +
+                                                                                             "      searching_players: " + fg(
+                                        255, 180, 70) +
                                           str(dict_list_matchmaking.get('searching_players')) + '\n'
-                                          "      search_seconds_avg: " + fg(255, 180, 70) +
+                                                                                                "      search_seconds_avg: " + fg(
+                                        255, 180, 70) +
                                           str(dict_list_matchmaking.get('search_seconds_avg')) + fg.rs)
 
                                     menu_list_def.back_text()
@@ -1035,22 +1046,29 @@ class modul:
                                     menu_list_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
-                                    url = ("https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
+                                    url = (
+                                                "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['perfectworld']
                                     dict_list_perfectworld = (h['logon'])
                                     dict_list_purchase = (h['purchase'])
 
                                     print(fg(255, 80, 250) +
-                                        "Perfectworld: " + fg(255, 10, 70) + '\n'
-                                        "   Logon: " + fg(255, 180, 70) + '\n'
-                                        "      availability: " + fg(255, 180, 70) + dict_list_perfectworld.get('availability') + '\n'
-                                        "      latency: " + fg(255, 180, 70) + dict_list_perfectworld.get('latency') + fg.rs)
+                                          "Perfectworld: " + fg(255, 10, 70) + '\n'
+                                                                               "   Logon: " + fg(255, 180, 70) + '\n'
+                                                                                                                 "      availability: " + fg(
+                                        255, 180, 70) + dict_list_perfectworld.get('availability') + '\n'
+                                                                                                     "      latency: " + fg(
+                                        255, 180, 70) + dict_list_perfectworld.get('latency') + fg.rs)
 
                                     print(fg(255, 10, 70) +
-                                        "   Purchase: " + fg(255, 180, 70) + '\n'
-                                        "      availability: " + fg(255, 180, 70) + dict_list_purchase.get('availability') + '\n'
-                                        "      purchase: " + fg(255, 180, 70) + dict_list_purchase.get('latency') + fg.rs)
+                                          "   Purchase: " + fg(255, 180, 70) + '\n'
+                                                                               "      availability: " + fg(255, 180,
+                                                                                                           70) + dict_list_purchase.get(
+                                        'availability') + '\n'
+                                                          "      purchase: " + fg(255, 180,
+                                                                                  70) + dict_list_purchase.get(
+                                        'latency') + fg.rs)
 
                                     menu_list_def.back_text()
                                     keyloadd = int(input("" + lang.language.langs["main"][6]))
@@ -1071,14 +1089,13 @@ class modul:
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
 
-                    ROOT_DIR = os.path.abspath(os.curdir)
-
                     with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
 
-                        url = ("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
+                        url = (
+                                    "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['game_count']
                         print("All Games in steam: " + str(h) + "\n")
@@ -1099,15 +1116,14 @@ class modul:
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
 
-                    ROOT_DIR = os.path.abspath(os.curdir)
-
                     with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
                         webbrowser.open('https://steamcommunity.com/search/users/#text=')
                         steamid = input("steamID64 (Dec): ")
 
-                        url = ("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
+                        url = (
+                                    "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + keyin + "&steamid=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['game_count']
                         print("All Games in steam: " + str(h) + "\n")
@@ -1134,18 +1150,25 @@ class modul:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
-                        url = ("https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin + "&steamids=" + steamid)
+                        url = (
+                                    "https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin + "&steamids=" + steamid)
                         x = requests.get(url)
                         h = x.json()['players'][0]
                         print(fg(255, 80, 250) +
                               "Players: " + fg(255, 10, 70) + '\n'
                                                               "   SteamId: " + fg(255, 180, 70) + str(
                             h.get('SteamId')) + '\n' + fg(255, 10, 70) +
-                              "   CommunityBanned: " + fg(255, 180, 70) + str(h.get('CommunityBanned')) + '\n' + fg(255, 10, 70) +
+                              "   CommunityBanned: " + fg(255, 180, 70) + str(h.get('CommunityBanned')) + '\n' + fg(255,
+                                                                                                                    10,
+                                                                                                                    70) +
                               "   VACBanned: " + fg(255, 180, 70) + str(h.get('VACBanned')) + '\n' + fg(255, 10, 70) +
-                              "   NumberOfVACBans: " + fg(255, 180, 70) + str(h.get('NumberOfVACBans')) + '\n' + fg(255, 10, 70) +
-                              "   DaysSinceLastBan: " + fg(255, 180, 70) + str(h.get('DaysSinceLastBan')) + '\n' + fg(255, 10, 70) +
-                              "   NumberOfGameBans: " + fg(255, 180, 70) + str(h.get('NumberOfGameBans')) + '\n' + fg(255, 10, 70) +
+                              "   NumberOfVACBans: " + fg(255, 180, 70) + str(h.get('NumberOfVACBans')) + '\n' + fg(255,
+                                                                                                                    10,
+                                                                                                                    70) +
+                              "   DaysSinceLastBan: " + fg(255, 180, 70) + str(h.get('DaysSinceLastBan')) + '\n' + fg(
+                            255, 10, 70) +
+                              "   NumberOfGameBans: " + fg(255, 180, 70) + str(h.get('NumberOfGameBans')) + '\n' + fg(
+                            255, 10, 70) +
                               "   EconomyBan: " + fg(255, 180, 70) + str(h.get('EconomyBan')) + '\n' + fg.rs)
 
                         system_lista = int(input("[20]: Back: "))
@@ -1161,13 +1184,12 @@ class modul:
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
 
-                    ROOT_DIR = os.path.abspath(os.curdir)
-
                     with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
-                        url = ("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamid)
+                        url = (
+                                    "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['players'][0]
 
@@ -1196,8 +1218,6 @@ class modul:
                     menu_list_def.SteamDB_lang.SteamDB_Summaries()
                     menu_list_def.back_text()
 
-                    ROOT_DIR = os.path.abspath(os.curdir)
-
                     with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                         jsonData = json.load(file)
                         keyin = jsonData['steam_key'][0]
@@ -1218,7 +1238,8 @@ class modul:
 
                             steamids = input("steamID64 (Dec): ")
 
-                            url = ("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamids)
+                            url = (
+                                        "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin + "&steamids=" + steamids)
                             x = requests.get(url)
                             h = x.json()['response']['players'][0]
 
@@ -1232,8 +1253,10 @@ class modul:
                             print(fg(255, 80, 220) + "profileurl: " + fg(255, 180, 40) + h.get('profileurl') + fg.rs)
                             print(fg(255, 80, 210) + "avatar: " + fg(255, 180, 30) + h.get('avatar') + fg.rs)
                             print(fg(255, 80, 200) + "avatarfull: " + fg(255, 180, 20) + h.get('avatarfull') + fg.rs)
-                            print(fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
-                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get('loccountrycode') + fg.rs)
+                            print(
+                                fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
+                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get(
+                                'loccountrycode') + fg.rs)
 
                             print("")
                             system_lista = int(input("" + lang.language.langs["main"][1]))
@@ -1776,7 +1799,993 @@ class modul:
         pass
 
     class Network_Internet:
-        pass
+        @staticmethod
+        def networks():
+            while True:
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.network_list.network_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    while True:
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.network_list.menu_network_status_list()
+                        menu_list_def.back_text()
+
+                        net_list = int(input("" + lang.language.langs["main"][6]))
+
+                        if net_list == 0:
+                            os.system("start ms-settings:network-status")
+                        if net_list == 1:
+                            os.system("start ms-settings:datausage")
+                        if net_list == 2:
+                            os.system("start ms-availablenetworks:")
+
+                        if net_list == 20:
+                            break
+
+                if system_lista == 1:
+                    os.system("start ms-settings:network-cellular")
+
+                if system_lista == 2:
+                    while True:
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.network_list.menu_network_wifi_list()
+                        menu_list_def.back_text()
+
+                        wifi_list = int(input("" + lang.language.langs["main"][6]))
+
+                        if wifi_list == 0:
+                            os.system("start ms-settings:network-wifi")
+
+                        if wifi_list == 1:
+                            os.system("start ms-availablenetworks:")
+
+                        if wifi_list == 2:
+                            os.system("start ms-settings:network-wifisettings")
+
+                        if wifi_list == 20:
+                            break
+
+                if system_lista == 3:
+                    os.system("start ms-settings:network-wificalling")
+
+                if system_lista == 4:
+                    os.system("start ms-settings:network-ethernet")
+
+                if system_lista == 5:
+                    os.system("start ms-settings:network-dialup")
+
+                if system_lista == 6:
+                    os.system("start ms-settings:network-directaccess")
+
+                if system_lista == 7:
+                    os.system("start ms-settings:network-vpn")
+
+                if system_lista == 8:
+                    os.system("start ms-settings:network-airplanemode")
+
+                if system_lista == 9:
+                    os.system("start ms-settings:network-mobilehotspot")
+
+                if system_lista == 10:
+                    os.system("start ms-settings:nfctransactions")
+
+                if system_lista == 11:
+                    os.system("start ms-settings:network-proxy")
+
+                if system_lista == 20:
+                    break
+
+    class Personalization:
+        @staticmethod
+        def personalization():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.personalization_list.personalization_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:personalization-background")
+                if system_lista == 1:
+                    os.system("start ms-settings:colors")
+                if system_lista == 2:
+                    os.system("start ms-settings:lockscreen")
+                if system_lista == 3:
+                    os.system("start ms-settings:themes")
+                if system_lista == 4:
+                    os.system("start 	ms-settings:fonts")
+                if system_lista == 5:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.personalization_list.menu_start_personalization_list()
+                        menu_list_def.back_text()
+                        start_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if start_lista == 0:
+                            os.system("start ms-settings:personalization-start")
+                        if start_lista == 1:
+                            os.system("start ms-settings:personalization-start-places")
+
+                        if start_lista == 20:
+                            break
+
+                if system_lista == 6:
+                    os.system("start ms-settings:taskbar")
+
+                if system_lista == 20:
+                    break
+
+    class Phone:
+        @staticmethod
+        def phone():
+            while True:
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.phone_list.phone_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:mobile-devices")
+
+                if system_lista == 1:
+                    os.system("start ms-settings:mobile-devices-addphone")
+
+                if system_lista == 2:
+                    os.system("start ms-settings:mobile-devices-addphone-direct")
+
+                if system_lista == 20:
+                    break
+
+    class Privacy:
+        @staticmethod
+        def privacy():
+            while True:
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.privacy.privacy_listA()
+                menu_list_def.extra_back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:privacy")
+                if system_lista == 1:
+                    os.system("start ms-settings:privacy-speech")
+                if system_lista == 2:
+                    os.system("start ms-settings:privacy-speechtyping")
+                if system_lista == 3:
+                    while True:
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.privacy.privacy_diagnostics_list()
+                        menu_list_def.back_text()
+                        diagnostics_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if diagnostics_lista == 0:
+                            os.system("start ms-settings:privacy-feedback")
+                        if diagnostics_lista == 1:
+                            os.system("start ms-settings:privacy-feedback")
+                        if diagnostics_lista == 20:
+                            break
+                if system_lista == 4:
+                    os.system("start ms-settings:privacy-activityhistory")
+                if system_lista == 5:
+                    os.system("start ms-settings:privacy-location")
+                if system_lista == 6:
+                    os.system("start ms-settings:privacy-webcam")
+                if system_lista == 7:
+                    os.system("start ms-settings:privacy-microphone")
+                if system_lista == 8:
+                    os.system("start ms-settings:privacy-voiceactivation")
+                if system_lista == 9:
+                    os.system("start ms-settings:privacy-notifications")
+                if system_lista == 10:
+                    os.system("start ms-settings:privacy-accountinfo")
+                if system_lista == 11:
+                    os.system("start ms-settings:privacy-contacts")
+                if system_lista == 12:
+                    os.system("start ms-settings:privacy-calendar")
+                if system_lista == 13:
+                    os.system("start ms-settings:privacy-phonecalls")
+                if system_lista == 14:
+                    os.system("start ms-settings:privacy-callhistory")
+                if system_lista == 15:
+                    os.system("start ms-settings:privacy-email")
+                if system_lista == 16:
+                    os.system("start ms-settings:privacy-eyetracker")
+                if system_lista == 17:
+                    os.system("start ms-settings:privacy-tasks")
+                if system_lista == 18:
+                    os.system("start ms-settings:privacy-messaging")
+                if system_lista == 19:
+                    os.system("start ms-settings:privacy-radios")
+                if system_lista == 20:
+                    os.system("start ms-settings:privacy-customdevices")
+                if system_lista == 21:
+                    os.system("start ms-settings:privacy-backgroundapps")
+                if system_lista == 22:
+                    os.system("start ms-settings:privacy-appdiagnostics")
+                if system_lista == 23:
+                    os.system("start ms-settings:privacy-automaticfiledownloads")
+                if system_lista == 24:
+                    os.system("start ms-settings:privacy-documents")
+                if system_lista == 25:
+                    os.system("start ms-settings:privacy-downloadsfolder")
+                if system_lista == 26:
+                    os.system("start ms-settings:privacy-pictures")
+                if system_lista == 27:
+                    os.system("start ms-settings:privacy-documents")
+                if system_lista == 28:
+                    os.system("start ms-settings:privacy-broadfilesystemaccess")
+
+                if system_lista == 30:
+                    break
+
+    class Search:
+        @staticmethod
+        def search():
+            while True:
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.search.search_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:search-permissions")
+                if system_lista == 1:
+                    os.system("start ms-settings:cortana-windowssearch")
+                if system_lista == 20:
+                    break
+
+    class Shell_Command:
+        @staticmethod
+        def menu():
+            modul.Shell_Command.shell_command.shell_cmd_list_0()
+
+        class shell_command:
+            @staticmethod
+            def shell_cmd_list_0():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_0()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:3D Objects"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:AccountPictures"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:AddNewProgramsFolder"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:Administrative Tools"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:AppData"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:Application Shortcuts"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:AppsFolder"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:AppUpdatesFolder"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:Cache"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:Camera Roll"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:CD Burning"')
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_1()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_1():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_1()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:ChangeRemoveProgramsFolder"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:Common Administrative Tools"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:Common AppData"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:Common Desktop"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:Common Documents"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:CommonDownloads"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:CommonMusic"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:CommonPictures"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:Common Programs"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:CommonRingtones"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:Common Start Menu"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_2()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_2():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_2()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:Common Startup"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:Common Templates"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:CommonVideo"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:ConflictFolder"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:ConnectionsFolder"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:Contacts"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:ControlPanelFolder"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:Cookies"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:Cookies\\Low"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:CredentialManager"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:CryptoKeys"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_3()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_3():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_3()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:desktop"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:device Metadata Store"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:documentsLibrary"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:downloads"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:dpapiKeys"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:Favorites"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:Fonts"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:Games"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:GameTasks"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:History"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:HomeGroupCurrentUserFolder"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_4()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_4():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_4()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:HomeGroupFolder"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:ImplicitAppShortcuts	"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:InternetFolder"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:Libraries"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:Links"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:Local AppData"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:LocalAppDataLow"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:LocalAppDataLow"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:MyComputerFolder"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:My Music"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:My Pictures"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_5()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_5():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_5()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:My Video"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:NetHood"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:NetworkPlacesFolder"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:OneDrive	"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:OneDriveCameraRoll"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:OneDriveDocuments"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:OneDriveMusic"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:OneDrivePictures"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:Personal"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:PicturesLibrary"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:PrintersFolder"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_6()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_6():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_6()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:PrintHood"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:Profile"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:ProgramFiles"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:ProgramFilesCommon"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:ProgramFilesCommonX64"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:ProgramFilesCommonX86"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:ProgramFilesX64"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:ProgramFilesX86"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:Programs"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:Public"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:PublicAccountPictures"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_7()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_7():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_7()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:PublicGameTasks"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:PublicLibraries"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:Quick Launch"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:Recent"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:RecordedTVLibrary"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:RecycleBinFolder"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:ResourceDir"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:Ringtones"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:Roamed Tile Images"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:Roaming Tiles"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:::{2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_8()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_8():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_8()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:SavedGames"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:Screenshots"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:Searches"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:SearchHistoryFolder"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:SearchHomeFolder"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:SearchTemplatesFolder"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:SendTo"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:Start Menu"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:StartMenuAllPrograms"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:Startup"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:SyncCenterFolder"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_9()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_9():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_9()
+                    menu_list_def.next_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:SyncResultsFolder"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:SyncSetupFolder"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:System"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:SystemCertificates"')
+                    if system_lista == 4:
+                        os.system('explorer "shell:SystemX86"')
+                    if system_lista == 5:
+                        os.system('explorer "shell:Templates"')
+                    if system_lista == 6:
+                        os.system('explorer "shell:ThisPCDesktopFolder"')
+                    if system_lista == 7:
+                        os.system('explorer "shell:UsersFilesFolder"')
+                    if system_lista == 8:
+                        os.system('explorer "shell:UsersFilesFolder"')
+                    if system_lista == 9:
+                        os.system('explorer "shell:UserProfiles"')
+                    if system_lista == 10:
+                        os.system('explorer "shell:UserProgramFiles"')
+
+                    if system_lista == 11:
+                        modul.Shell_Command.shell_command.shell_cmd_list_10()
+
+                    if system_lista == 20:
+                        break
+
+            @staticmethod
+            def shell_cmd_list_10():
+                while True:
+                    menu_list_def.clear()
+                    logos.main_logo()
+                    verch.ver_ch_start()
+                    menu_list_def.shell.shell_commands_list_10()
+                    menu_list_def.back_to_menu_text()
+                    menu_list_def.back_text()
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        os.system('explorer "shell:UserProgramFilesCommon"')
+                    if system_lista == 1:
+                        os.system('explorer "shell:UsersLibrariesFolder"')
+                    if system_lista == 2:
+                        os.system('explorer "shell:VideosLibrary"')
+                    if system_lista == 3:
+                        os.system('explorer "shell:Windows"')
+
+                    if system_lista == 11:
+                        menu.menulista()
+
+                    if system_lista == 20:
+                        break
+
+    class Surface_Hub:
+        @staticmethod
+        def surface_hub():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.surface_hub.surface_hub_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system("start ms-settings:surfacehub-accounts")
+                if system_lista == 1:
+                    os.system("start ms-settings:surfacehub-calling")
+                if system_lista == 2:
+                    os.system("start ms-settings:surfacehub-devicemanagenent")
+                if system_lista == 3:
+                    os.system("start ms-settings:surfacehub-sessioncleanup")
+                if system_lista == 4:
+                    os.system("start ms-settings:surfacehub-welcome")
+                if system_lista == 20:
+                    break
+
+    class System:
+        @staticmethod
+        def systems():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.system_lista.system_listaA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                """Display SYSTEM LIST"""
+                if system_lista == 0:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.system_lista.menu_system_display_list()
+                        menu_list_def.back_text()
+                        display_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if display_lista == 0:
+                            os.system("start ms-settings:display")
+                        if display_lista == 1:
+                            os.system("start ms-settings:nightlight")
+                        if display_lista == 2:
+                            os.system("start ms-settings:display-advanced")
+                        if display_lista == 3:
+                            os.system("start ms-settings-connectabledevices:devicediscovery")
+                        if display_lista == 4:
+                            os.system("start ms-settings:display-advancedgraphics")
+
+                        if display_lista == 20:
+                            break
+
+                """Sound (build 17063) SYSTEM LIST"""
+                if system_lista == 1:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.system_lista.menu_system_audio_list()
+                        menu_list_def.back_text()
+                        display_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if display_lista == 0:
+                            os.system("start ms-settings:sound")
+
+                        if display_lista == 1:
+                            os.system("start ms-settings:sound-devices")
+
+                        if display_lista == 2:
+                            os.system("start ms-settings:apps-volume")
+
+                        if display_lista == 20:
+                            break
+
+                """	Notifications & actions  SYSTEM LIST"""
+                if system_lista == 2:
+                    os.system("start ms-settings:notifications")
+
+                """Focus assist (build 17074) SYSTEM LIST"""
+                if system_lista == 3:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.system_lista.menu_system_focus_list()
+                        menu_list_def.back_text()
+                        display_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if display_lista == 0:
+                            os.system("start ms-settings:quiethours")
+
+                        if display_lista == 1:
+                            os.system("start ms-settings:quietmomentsscheduled")
+
+                        if display_lista == 2:
+                            os.system("start ms-settings:quietmomentspresentation")
+
+                        if display_lista == 3:
+                            os.system("start ms-settings:quietmomentsgame")
+
+                        if display_lista == 20:
+                            break
+
+                """Power & sleep SYSTEM LIST"""
+                if system_lista == 4:
+                    os.system("start ms-settings:powersleep")
+
+                """	Battery SYSTEM LIST"""
+                if system_lista == 5:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.system_lista.menu_system_battery_list()
+                        menu_list_def.back_text()
+                        display_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if display_lista == 0:
+                            os.system("start ms-settings:batterysaver")
+
+                        if display_lista == 1:
+                            os.system("start ms-settings:batterysaver-usagedetails")
+
+                        if display_lista == 2:
+                            os.system("start ms-settings:batterysaver-settings")
+
+                        if display_lista == 20:
+                            break
+
+                """Storage SYSTEM LIST"""
+                if system_lista == 6:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.system_lista.menu_system_storage_list()
+                        menu_list_def.back_text()
+                        display_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if display_lista == 0:
+                            os.system("start ms-settings:storagesense")
+
+                        if display_lista == 1:
+                            os.system("start ms-settings:storagepolicies")
+
+                        if display_lista == 2:
+                            os.system("start ms-settings:savelocations")
+
+                        if display_lista == 20:
+                            break
+
+                """Tablet SYSTEM LIST"""
+                if system_lista == 7:
+                    os.system("start ms-settings:tabletmode")
+
+                """Multitasking SYSTEM LIST"""
+                if system_lista == 8:
+                    os.system("start ms-settings:multitasking")
+
+                """	Projecting to this PC SYSTEM LIST"""
+                if system_lista == 9:
+                    os.system("start ms-settings:project")
+
+                """Shared experiences SYSTEM LIST"""
+                if system_lista == 10:
+                    os.system("start ms-settings:crossdevice")
+
+                """Clipboard (build 17666) SYSTEM LIST"""
+                if system_lista == 11:
+                    os.system("start ms-settings:clipboard")
+
+                """Remote Desktop SYSTEM LIST"""
+                if system_lista == 12:
+                    os.system("start ms-settings:remotedesktop")
+
+                """Device Encryption (if available) SYSTEM LIST"""
+                if system_lista == 13:
+                    os.system("start ms-settings:deviceencryption")
+
+                """About SYSTEM LIST"""
+                if system_lista == 14:
+                    os.system("start ms-settings:about")
+
+                if system_lista == 20:
+                    break
+
+    class Time_Language:
+        @staticmethod
+        def time_language():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.time_language_list.time_language_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    os.system('start ms-settings:dateandtime')
+                if system_lista == 1:
+                    os.system('start ms-settings:regionlanguage-jpnime')
+                if system_lista == 2:
+                    os.system('start ms-settings:regionlanguage-chsime-pinyin')
+                if system_lista == 5:
+                    os.system('start ms-settings:regionlanguage-chsime-wubi')
+                if system_lista == 4:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.time_language_list.menu_time_language_language_list()
+                        menu_list_def.back_text()
+                        language_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if language_lista == 0:
+                            os.system('start ms-settings:regionlanguage')
+                        if language_lista == 1:
+                            os.system('start ms-settings:regionlanguage-setdisplaylanguage')
+                        if language_lista == 2:
+                            os.system('start ms-settings:regionlanguage-adddisplaylanguage')
+                        if language_lista == 20:
+                            break
+                if system_lista == 5:
+                    os.system('start ms-settings:speech')
+                if system_lista == 20:
+                    break
+
+    class Update_Security:
+        @staticmethod
+        def update():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.update.update_listA()
+                menu_list_def.back_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.update.windows_menu_update_list()
+                        menu_list_def.back_text()
+                        update_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if update_lista == 0:
+                            os.system("start ms-settings:windowsupdate")
+                        if update_lista == 1:
+                            os.system("start ms-settings:windowsupdate-action")
+                        if update_lista == 2:
+                            os.system("start ms-settings:windowsupdate-optionalupdates")
+                        if update_lista == 3:
+                            os.system("start ms-settings:windowsupdate-activehours")
+                        if update_lista == 4:
+                            os.system("start ms-settings:windowsupdate-history")
+                        if update_lista == 5:
+                            os.system("start ms-settings:windowsupdate-restartoptions")
+                        if update_lista == 6:
+                            os.system("start ms-settings:windowsupdate-options")
+
+                        if update_lista == 20:
+                            break
+
+                if system_lista == 1:
+                    os.system("start ms-settings:delivery-optimization")
+                if system_lista == 2:
+                    while True:
+                        menu_list_def.clear()
+                        logos.main_logo()
+                        verch.ver_ch_start()
+                        menu_list_def.update.windows_menu_security_list()
+                        menu_list_def.back_text()
+                        security_lista = int(input("" + lang.language.langs["main"][6]))
+
+                        if security_lista == 0:
+                            os.system("start ms-settings:windowsdefender")
+                        if security_lista == 1:
+                            os.system("start windowsdefender:")
+                        if security_lista == 20:
+                            break
+
+                if system_lista == 3:
+                    os.system("start ms-settings:backup")
+                if system_lista == 4:
+                    os.system("start ms-settings:troubleshoot")
+                if system_lista == 5:
+                    os.system("start ms-settings:recovery")
+                if system_lista == 6:
+                    os.system("start ms-settings:activation")
+                if system_lista == 7:
+                    os.system("start ms-settings:findmydevice")
+                if system_lista == 8:
+                    os.system("start ms-settings:developers")
+                if system_lista == 9:
+                    os.system("start ms-settings:windowsinsider")
+
+                if system_lista == 20:
+                    break
 
     class Sysinfo_all:
         @staticmethod
@@ -2552,7 +3561,7 @@ class menu:
                     menu_list_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
-                    menu_listaA()
+                    menu_list_def.menu_listaA()
                     menu_list_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
@@ -2576,9 +3585,9 @@ class menu:
                     if system_lista == 8:
                         modul.Gaming.gaming()
                     if system_lista == 9:
-                        modul.Extras.extra()
+                        modul.Extras.Extra()
                     if system_lista == 10:
-                        modul.Ease_of_Access.ease_of_access()
+                        modul.Ease_of_Access.ease_of_Access()
                     if system_lista == 11:
                         modul.Search.search()
                     if system_lista == 12:
@@ -2592,7 +3601,8 @@ class menu:
                     if system_lista == 16:
                         modul.Shell_Command.menu()
                     if system_lista == 17:
-                        modul.GoogMod.good()
+                        # modul.GoogMod.good()
+                        pass
 
                     if system_lista == 20:
                         break
@@ -2609,7 +3619,8 @@ class menu:
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
-                        modul.my_script.beta_my_script()
+                        # modul.my_script.beta_my_script()
+                        pass
 
                     if system_lista == 20:
                         break
