@@ -151,6 +151,7 @@ class logos:
         print(fg(255, 80, 50) + "/_____/ \__,_/ \__/ \__/ /_/  \___/_(_)_/ /_/\___/\__/  " + fg.rs)
         print("")
 
+
 # ****************************************************************************
 # ver_ch
 # ****************************************************************************
@@ -233,67 +234,68 @@ class verch:
 # ****************************************************************************
 class menu_list_def:
 
-    @staticmethod
-    def clear():
-        os.system("cls")
+    class menu_def():
+        @staticmethod
+        def clear():
+            os.system("cls")
 
-    @staticmethod
-    def next_text():
-        print("")
-        print(lang.language.langs['main'][2])
-        print("")
+        @staticmethod
+        def next_text():
+            print("")
+            print(lang.language.langs['main'][2])
+            print("")
 
-    @staticmethod
-    def back_to_menu_text():
-        print("")
-        print(lang.language.langs['main'][3])
-        print("")
+        @staticmethod
+        def back_to_menu_text():
+            print("")
+            print(lang.language.langs['main'][3])
+            print("")
 
-    @staticmethod
-    def back_text():
-        print("")
-        print(lang.language.langs['main'][1])
-        print("")
+        @staticmethod
+        def back_text():
+            print("")
+            print(lang.language.langs['main'][1])
+            print("")
 
-    @staticmethod
-    def extra_back_text():
-        print("")
-        print(lang.language.langs['main'][8])
-        print("")
+        @staticmethod
+        def extra_back_text():
+            print("")
+            print(lang.language.langs['main'][8])
+            print("")
 
-    @staticmethod
-    def exits_text():
-        print("")
-        print(lang.language.langs['main'][5])
-        print("")
+        @staticmethod
+        def exits_text():
+            print("")
+            print(lang.language.langs['main'][5])
+            print("")
 
-    @staticmethod
-    def menu_A():
-        lista = lang.language.langs['menu_a']
-        i = 0
-        for i in range(0, len(lista)):
-            print(lista[i])
+        @staticmethod
+        def menu_A():
+            lista = lang.language.langs['menu_a']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
 
-    @staticmethod
-    def menu_listaA():
-        lista = lang.language.langs['menu_list']
-        i = 0
-        for i in range(0, len(lista)):
-            print(lista[i])
+        @staticmethod
+        def menu_listaA():
+            lista = lang.language.langs['menu_list']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
 
-    @staticmethod
-    def menu_B():
-        lista = lang.language.langs['menu_b']
-        i = 0
-        for i in range(0, len(lista)):
-            print(lista[i])
+        @staticmethod
+        def menu_B():
+            lista = lang.language.langs['menu_b']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
 
-    @staticmethod
-    def menu_C():
-        lista = lang.language.langs['menu_c']
-        i = 0
-        for i in range(0, len(lista)):
-            print(lista[i])
+        @staticmethod
+        def menu_C():
+            lista = lang.language.langs['menu_c']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
 
     class system_lista:
         @staticmethod
@@ -780,7 +782,6 @@ class menu_list_def:
                 print(lista[i])
 
 
-
 # ****************************************************************************
 # modul
 # ****************************************************************************
@@ -790,11 +791,11 @@ class modul:
             @staticmethod
             def CSGOServer_730():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
                     menu_list_def.SteamDB_lang.GetGameServersStatus()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.back_text()
                     keyload = int(input("" + lang.language.langs["main"][6]))
 
                     if keyload == 0:
@@ -805,11 +806,11 @@ class modul:
 
                     if keyload == 1:
                         while True:
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.SteramDB_logo_v2()
                             verch.ver_ch_start()
                             menu_list_def.SteamDB_lang.GetGameServersStatus_list()
-                            menu_list_def.back_text()
+                            menu_list_def.menu_def.back_text()
 
                             with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                                 jsonData = json.load(file)
@@ -833,20 +834,20 @@ class modul:
                                 print(fg(255, 80, 220) + "Leaderboards: " + fg(255, 180, 40) + h.get(
                                     'Leaderboards') + fg.rs)
 
-                                menu_list_def.back_text()
+                                menu_list_def.menu_def.back_text()
                                 keyloadd = int(input("" + lang.language.langs["main"][6]))
 
                                 if keyloadd == 20:
                                     break
                             if keyloadd == 1:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
 
                                     url = (
-                                        "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                        keyin)
+                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
+                                            keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['datacenters']
 
@@ -1033,7 +1034,7 @@ class modul:
                                           "capacity: " + fg(255, 180, 70) + dict_list_China_Guangzhou.get('capacity') +
                                           " Load: " + fg(255, 180, 70) + dict_list_China_Guangzhou.get('load') + fg.rs)
 
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     keyloadd = int(input("" + lang.language.langs["main"][6]))
 
                                     if keyloadd == 20:
@@ -1041,29 +1042,34 @@ class modul:
 
                             if keyloadd == 2:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
                                     url = (
-                                        "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                        keyin)
+                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
+                                            keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']
                                     dict_list_matchmaking = (h['matchmaking'])
                                     print(fg(255, 80, 250) +
                                           "Matchmaking: " + fg(255, 180, 70) + '\n'
-                                          "      scheduler: " + fg(255, 180, 70) +
+                                                                               "      scheduler: " + fg(255, 180, 70) +
                                           dict_list_matchmaking.get('scheduler') + '\n'
-                                          "      online_servers: " + fg(255, 180, 70) +
+                                                                                   "      online_servers: " + fg(255,
+                                                                                                                 180,
+                                                                                                                 70) +
                                           str(dict_list_matchmaking.get('online_servers')) + '\n'
-                                          "      online_players: " + fg(255, 180, 70) +
+                                                                                             "      online_players: " + fg(
+                                        255, 180, 70) +
                                           str(dict_list_matchmaking.get('online_players')) + '\n'
-                                          "      searching_players: " + fg(255, 180, 70) +
+                                                                                             "      searching_players: " + fg(
+                                        255, 180, 70) +
                                           str(dict_list_matchmaking.get('searching_players')) + '\n'
-                                          "      search_seconds_avg: " + fg(255, 180, 70) +
+                                                                                                "      search_seconds_avg: " + fg(
+                                        255, 180, 70) +
                                           str(dict_list_matchmaking.get('search_seconds_avg')) + fg.rs)
 
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     keyloadd = int(input("" + lang.language.langs["main"][6]))
 
                                     if keyloadd == 20:
@@ -1071,12 +1077,12 @@ class modul:
 
                             if keyloadd == 3:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
                                     url = (
-                                        "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                        keyin)
+                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
+                                            keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['perfectworld']
                                     dict_list_perfectworld = (h['logon'])
@@ -1084,20 +1090,24 @@ class modul:
 
                                     print(fg(255, 80, 250) +
                                           "Perfectworld: " + fg(255, 10, 70) + '\n'
-                                          "   Logon: " + fg(255, 180, 70) + '\n'
-                                          "      availability: " + fg(255, 180, 70) +
+                                                                               "   Logon: " + fg(255, 180, 70) + '\n'
+                                                                                                                 "      availability: " + fg(
+                                        255, 180, 70) +
                                           dict_list_perfectworld.get('availability') + '\n'
-                                          "      latency: " + fg(255, 180, 70) +
+                                                                                       "      latency: " + fg(255, 180,
+                                                                                                              70) +
                                           dict_list_perfectworld.get('latency') + fg.rs)
 
                                     print(fg(255, 10, 70) +
                                           "   Purchase: " + fg(255, 180, 70) + '\n'
-                                          "      availability: " + fg(255, 180, 70) +
+                                                                               "      availability: " + fg(255, 180,
+                                                                                                           70) +
                                           dict_list_purchase.get('availability') + '\n'
-                                          "      purchase: " + fg(255, 180, 70) +
+                                                                                   "      purchase: " + fg(255, 180,
+                                                                                                           70) +
                                           dict_list_purchase.get('latency') + fg.rs)
 
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     keyloadd = int(input("" + lang.language.langs["main"][6]))
 
                                     if keyloadd == 20:
@@ -1149,8 +1159,8 @@ class modul:
                         webbrowser.open('https://steamcommunity.com/search/users/#text=')
                         steamid = input("steamID64 (Dec): ")
                         url = (
-                              "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" +
-                              keyin + "&steamid=" + steamid)
+                                "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" +
+                                keyin + "&steamid=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['game_count']
                         print("All Games in steam: " + str(h) + "\n")
@@ -1169,7 +1179,7 @@ class modul:
             @staticmethod
             def bann_user():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
 
@@ -1178,8 +1188,8 @@ class modul:
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
                         url = (
-                            "https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin +
-                            "&steamids=" + steamid)
+                                "https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=" + keyin +
+                                "&steamids=" + steamid)
                         x = requests.get(url)
                         h = x.json()['players'][0]
                         print(fg(255, 80, 250) +
@@ -1208,7 +1218,7 @@ class modul:
             @staticmethod
             def GetPlayerSummaries():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
 
@@ -1217,8 +1227,8 @@ class modul:
                         keyin = jsonData['steam_key'][0]
                         steamid = jsonData['steamid'][0]
                         url = (
-                            "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin +
-                            "&steamids=" + steamid)
+                                "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin +
+                                "&steamids=" + steamid)
                         x = requests.get(url)
                         h = x.json()['response']['players'][0]
 
@@ -1240,12 +1250,12 @@ class modul:
             @staticmethod
             def GetPlayerSummaries_player():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.SteramDB_logo_v2()
                     verch.ver_ch_start()
 
                     menu_list_def.SteamDB_lang.SteamDB_Summaries()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.back_text()
 
                     with open(ROOT_DIR + '\\config\\SteamDB_key.json', "r") as file:
                         jsonData = json.load(file)
@@ -1256,7 +1266,7 @@ class modul:
                             webbrowser.open('https://steamcommunity.com/search/users/#text=')
 
                         if system_lista == 1:
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.SteramDB_logo_v2()
                             verch.ver_ch_start()
 
@@ -1268,12 +1278,12 @@ class modul:
                             steamids = input("steamID64 (Dec): ")
 
                             url = (
-                                "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin +
-                                "&steamids=" + steamids)
+                                    "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keyin +
+                                    "&steamids=" + steamids)
                             x = requests.get(url)
                             h = x.json()['response']['players'][0]
 
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.SteramDB_logo_v2()
                             verch.ver_ch_start()
 
@@ -1300,108 +1310,99 @@ class modul:
     class BattleNET:
         @staticmethod
         def D3():
-            while True:
-                menu_list_def.clear()
-                print("-"*50 + "BATTELENET LOGO" + "-"*50 )
-                logos.BattleNet()
-                verch.ver_ch_start()
-                # https://develop.battle.net/access/clients API KEY
-                # getApiAccount
-                # /d3/profile/{account}/
 
-                config = ROOT_DIR + "\\config\\battenet.json"
+            config = ROOT_DIR + "\\config\\battenet.json"
 
-                json.load(codecs.open(config, 'r', 'utf-8-sig'))
-                with open(config, encoding='utf-8-sig') as f:
-                    configs = json.load(f)
+            json.load(codecs.open(config, 'r', 'utf-8-sig'))
+            with open(config, encoding='utf-8-sig') as f:
+                configs = json.load(f)
 
-                account = str(configs['account'][0])
-                account_id = str(configs['account_num'][0])
-                locate = str(configs['locale'][0])
-                region = str(configs['region'][0])
-                hashtag = "%23"
+            account = str(configs['account'][0])
+            account_id = str(configs['account_num'][0])
+            locate = str(configs['locale'][0])
+            region = str(configs['region'][0])
+            hashtag = "%23"
 
-                url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + hashtag + account_id + \
+            url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + hashtag + account_id + \
                       "/?locale=" + locate + "&access_token=EULxLe7GhUQkF8DQiUKOgIuQvPDxl8D3rY"
-                x = requests.get(url)
-                h = x.json()
+            x = requests.get(url)
+            h = x.json()
 
-                '''
-                Black: \u001b[30m
-                Red: \u001b[31m
-                Green: \u001b[32m
-                Yellow: \u001b[33m
-                Blue: \u001b[34m
-                Magenta: \u001b[35m
-                Cyan: \u001b[36m
-                White: \u001b[37m
-                Reset: \u001b[0m
-                '''
+            '''
+            Black: \u001b[30m
+            Red: \u001b[31m
+            Green: \u001b[32m
+            Yellow: \u001b[33m
+            Blue: \u001b[34m
+            Magenta: \u001b[35m
+            Cyan: \u001b[36m
+            White: \u001b[37m
+            Reset: \u001b[0m
+            '''
 
-                a1 = "\u001b[32m battleTag: \u001b[31m{battleTag} \n" \
-                     "\u001b[32m paragonLevel: \u001b[31m{paragonLevel} \n" \
-                     "\u001b[32m paragonLevelHardcore: \u001b[31m{paragonLevelHardcore} \n" \
-                     "\u001b[32m paragonLevelSeason: \u001b[31m{paragonLevelSeason} \n" \
-                     "\u001b[32m paragonLevelSeasonHardcore: \u001b[31m{paragonLevelSeasonHardcore} \n" \
-                     "\u001b[32m guildName: \u001b[31m{guildName} \n" \
-                     "\u001b[32m heroes: \n" \
-                     "     \u001b[31m {heroes}\n \u001b[0m".format(**h)
+            a1 = "\u001b[32m battleTag: \u001b[31m{battleTag} \n" \
+                "\u001b[32m paragonLevel: \u001b[31m{paragonLevel} \n" \
+                "\u001b[32m paragonLevelHardcore: \u001b[31m{paragonLevelHardcore} \n" \
+                "\u001b[32m paragonLevelSeason: \u001b[31m{paragonLevelSeason} \n" \
+                "\u001b[32m paragonLevelSeasonHardcore: \u001b[31m{paragonLevelSeasonHardcore} \n" \
+                "\u001b[32m guildName: \u001b[31m{guildName} \n" \
+                "\u001b[32m heroes: \n" \
+                "     \u001b[31m {heroes}\n \u001b[0m".format(**h)
 
-                a2 = "\u001b[32m lastHeroPlayed: \u001b[31m{lastHeroPlayed}\n" \
-                     "\u001b[32m lastUpdated: \u001b[31m{lastUpdated}\n" \
-                     "\u001b[32m kills: \n" \
-                     "     \u001b[31m{kills}\n" \
-                     "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n" \
-                     "\u001b[32m timePlayed: \u001b[31m{timePlayed}\n \u001b[0m".format(**h)
+            a2 = "\u001b[32m lastHeroPlayed: \u001b[31m{lastHeroPlayed}\n" \
+                "\u001b[32m lastUpdated: \u001b[31m{lastUpdated}\n" \
+                "\u001b[32m kills: \n" \
+                "     \u001b[31m{kills}\n" \
+                "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n" \
+                "\u001b[32m timePlayed: \u001b[31m{timePlayed}\n \u001b[0m".format(**h)
 
-                a3 = "\u001b[32m progression: \n" \
-                     "     \u001b[31m {progression}\n \u001b[0m".format(**h)
+            a3 = "\u001b[32m progression: \n" \
+                 "     \u001b[31m {progression}\n \u001b[0m".format(**h)
 
-                a4 = "\u001b[32m seasonalProfiles: \n" \
-                     "     \u001b[31m {seasonalProfiles}\n \u001b[0m".format(**h)
+            a4 = "\u001b[32m seasonalProfiles: \n" \
+                 "     \u001b[31m {seasonalProfiles}\n \u001b[0m".format(**h)
 
-                a5 = "\u001b[32m timePlayed: \n" \
-                     "     \u001b[31m {timePlayed}\n \u001b[0m".format(**h)
+            a5 = "\u001b[32m timePlayed: \n" \
+                 "     \u001b[31m {timePlayed}\n \u001b[0m".format(**h)
 
-                a6 = "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n \u001b[0m".format(**h)
+            a6 = "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n \u001b[0m".format(**h)
 
-                b1 = "\u001b[32m blacksmith: \n" \
-                     "     \u001b[31m {blacksmith}\n" \
-                     "\u001b[32m jeweler \n" \
-                     "     \u001b[31m {jeweler}\n" \
-                     "\u001b[32m mystic \n" \
-                     "     \u001b[31m {mystic}\n" \
-                     "\u001b[32m blacksmithSeason \n" \
-                     "     \u001b[31m {blacksmithSeason}\n" \
-                     "\u001b[32m jewelerSeason \n" \
-                     "     \u001b[31m {jewelerSeason}\n" \
-                     "\u001b[32m mysticSeason \n" \
-                     "     \u001b[31m {mysticSeason}\n" \
-                     "\u001b[32m blacksmithHardcore \n" \
-                     "     \u001b[31m {blacksmithHardcore}\n" \
-                     "\u001b[32m jewelerHardcore \n" \
-                     "     \u001b[31m {jewelerHardcore}\n" \
-                     "\u001b[32m mysticHardcore \n" \
-                     "     \u001b[31m {mysticHardcore}\n" \
-                     "\u001b[32m blacksmithSeasonHardcore \n" \
-                     "     \u001b[31m {blacksmithSeasonHardcore}\n" \
-                     "\u001b[32m jewelerSeasonHardcore \n" \
-                     "     \u001b[31m {jewelerSeasonHardcore}\n" \
-                     "\u001b[32m mysticSeasonHardcore \n" \
-                     "     \u001b[31m {mysticSeasonHardcore}\n \u001b[0m".format(**h)
+            b1 = "\u001b[32m blacksmith: \n" \
+                "     \u001b[31m {blacksmith}\n" \
+                "\u001b[32m jeweler \n" \
+                "     \u001b[31m {jeweler}\n" \
+                "\u001b[32m mystic \n" \
+                "     \u001b[31m {mystic}\n" \
+                "\u001b[32m blacksmithSeason \n" \
+                "     \u001b[31m {blacksmithSeason}\n" \
+                "\u001b[32m jewelerSeason \n" \
+                "     \u001b[31m {jewelerSeason}\n" \
+                "\u001b[32m mysticSeason \n" \
+                "     \u001b[31m {mysticSeason}\n" \
+                "\u001b[32m blacksmithHardcore \n" \
+                "     \u001b[31m {blacksmithHardcore}\n" \
+                "\u001b[32m jewelerHardcore \n" \
+                "     \u001b[31m {jewelerHardcore}\n" \
+                "\u001b[32m mysticHardcore \n" \
+                "     \u001b[31m {mysticHardcore}\n" \
+                "\u001b[32m blacksmithSeasonHardcore \n" \
+                "     \u001b[31m {blacksmithSeasonHardcore}\n" \
+                "\u001b[32m jewelerSeasonHardcore \n" \
+                "     \u001b[31m {jewelerSeasonHardcore}\n" \
+                "\u001b[32m mysticSeasonHardcore \n" \
+                "     \u001b[31m {mysticSeasonHardcore}\n \u001b[0m".format(**h)
 
-                #: {}
-                print(a1 + a2 + a3 + a4 + a5 + a6 + b1)
-                system_lista = int(input("" + lang.language.langs["main"][1]))
+            #: {}
+            print(a1 + a2 + a3 + a4 + a5 + a6 + b1)
+            print("")
 
-                if system_lista == 20:
-                    break
+
 
     class SteamDB_finder:
 
         @staticmethod
         def steamdb_generate():
-            menu_list_def.clear()
+            menu_list_def.menu_def.clear()
             logos.SteramDB_logo_v2()
             verch.ver_ch_start()
             url = 'http://api.steampowered.com/ISteamApps/GetAppList/v2'
@@ -1414,7 +1415,7 @@ class modul:
                     fp.read("%s\n" % item)
                     print('Done' + str(item))
 
-            menu_list_def.clear()
+            menu_list_def.menu_def.clear()
 
             text_main = lang.language.langdb['steam_menu'][0]
             text_inf = lang.language.langdb['steam_menu'][1]
@@ -1438,7 +1439,7 @@ class modul:
         @staticmethod
         def steamdb_finder_a():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.SteramDB_logo_v2()
                 verch.ver_ch_start()
                 # string to search in file
@@ -1461,7 +1462,7 @@ class modul:
 
         @staticmethod
         def steamdb_finder_b():
-            menu_list_def.clear()
+            menu_list_def.menu_def.clear()
             logos.SteramDB_logo_v2()
             verch.ver_ch_start()
 
@@ -1507,11 +1508,11 @@ class modul:
         @staticmethod
         def accounts():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.accounts_list.accounts_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
                 if system_lista == 0:
                     os.system("start ms-settings:yourinfo")
@@ -1519,12 +1520,12 @@ class modul:
                     os.system("start ms-settings:emailandaccounts")
                 if system_lista == 2:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
 
                         menu_list_def.accounts_list.menu_accounts_sigin_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         account_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if account_lista == 0:
@@ -1543,12 +1544,12 @@ class modul:
                     os.system("start ms-settings:workplace")
                 if system_lista == 4:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
 
                         menu_list_def.accounts_list.menu_accounts_family_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         account_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if account_lista == 0:
@@ -1566,21 +1567,21 @@ class modul:
         @staticmethod
         def apps():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.apps_list.apps_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
 
                         menu_list_def.apps_list.menu_apps_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         apps_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if apps_lista == 0:
@@ -1596,12 +1597,12 @@ class modul:
 
                 if system_lista == 2:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
 
                         menu_list_def.apps_list.menu_apps_ofline_maps_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         ofline_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if ofline_lista == 0:
@@ -1625,11 +1626,11 @@ class modul:
         @staticmethod
         def devices():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.devices_list.devices_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
 
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -1646,11 +1647,11 @@ class modul:
 
                 if system_lista == 4:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.devices_list.menu_devices_typing_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         typing_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if typing_lista == 0:
@@ -1681,11 +1682,11 @@ class modul:
         @staticmethod
         def ease_of_Access():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.ease_of_access.eace_of_access_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -1702,11 +1703,11 @@ class modul:
                     os.system("start ms-settings:easeofaccess-highcontrast")
                 if system_lista == 6:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.ease_of_access.ease_of_access_narrator_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         ease_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if ease_lista == 0:
@@ -1736,11 +1737,11 @@ class modul:
         @staticmethod
         def Extra():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.extra_list.extra_listA()
-                menu_list_def.extra_back_text()
+                menu_list_def.menu_def.extra_back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -1795,11 +1796,11 @@ class modul:
                     os.system("start ms-get-started:")
                 if system_lista == 25:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.extra_list.menu_weather_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         weather_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if weather_lista == 0:
@@ -1818,11 +1819,11 @@ class modul:
         @staticmethod
         def gaming():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.gaming_list.gaming_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -1840,11 +1841,11 @@ class modul:
         @staticmethod
         def good():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.goodm.goodmod_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -1855,11 +1856,11 @@ class modul:
 
                 if system_lista == 1:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.goodm.power_listA()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if system_lista == 0:
@@ -1869,11 +1870,11 @@ class modul:
                             os.system("start powercfg.cpl")
 
                         if system_lista == 2:
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
                             menu_list_def.goodm.power_menu_listA()
-                            menu_list_def.back_text()
+                            menu_list_def.menu_def.back_text()
 
                             Popen('powershell ' + power_set, creationflags=CREATE_NEW_CONSOLE)
                             system_lista = input("" + lang.language.langs["main"][9])
@@ -1887,11 +1888,11 @@ class modul:
 
                 if system_lista == 2:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.microsoft.microsoft_listA()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if system_lista == 0:
@@ -1911,11 +1912,11 @@ class modul:
 
                         if system_lista == 5:
                             while True:
-                                menu_list_def.clear()
+                                menu_list_def.menu_def.clear()
                                 logos.main_logo()
                                 verch.ver_ch_start()
                                 menu_list_def.microsoft.microsoft_install()
-                                menu_list_def.back_text()
+                                menu_list_def.menu_def.back_text()
 
                                 if system_lista == 0:
                                     Popen('powershell ' + win_search, creationflags=CREATE_NEW_CONSOLE)
@@ -1929,11 +1930,11 @@ class modul:
 
                         if system_lista == 6:
                             while True:
-                                menu_list_def.clear()
+                                menu_list_def.menu_def.clear()
                                 logos.main_logo()
                                 verch.ver_ch_start()
                                 menu_list_def.microsoft.microsoft_uninstall()
-                                menu_list_def.back_text()
+                                menu_list_def.menu_def.back_text()
                                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                                 if system_lista == 0:
@@ -1951,11 +1952,11 @@ class modul:
 
                 if system_lista == 3:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.goodm.Update_Fixer()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if system_lista == 0:
@@ -1989,11 +1990,11 @@ class modul:
 
                 if system_lista == 4:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.goodm.Windows_Defender()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         system_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if system_lista == 0:
@@ -2015,11 +2016,11 @@ class modul:
         @staticmethod
         def mixed_reality():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.mixed_reality.mixed_reality_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2037,11 +2038,11 @@ class modul:
         @staticmethod
         def beta_my_script():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.beta.beta_project_lang()
-                menu_list_def.exits_text()
+                menu_list_def.menu_def.exits_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2063,7 +2064,7 @@ class modul:
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.network_list.network_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2071,7 +2072,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.network_list.menu_network_status_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
 
                         net_list = int(input("" + lang.language.langs["main"][6]))
 
@@ -2093,7 +2094,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.network_list.menu_network_wifi_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
 
                         wifi_list = int(input("" + lang.language.langs["main"][6]))
 
@@ -2143,11 +2144,11 @@ class modul:
         @staticmethod
         def personalization():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.personalization_list.personalization_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2162,11 +2163,11 @@ class modul:
                     os.system("start ms-settings:fonts")
                 if system_lista == 5:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.personalization_list.menu_start_personalization_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         start_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if start_lista == 0:
@@ -2190,7 +2191,7 @@ class modul:
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.phone_list.phone_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2212,7 +2213,7 @@ class modul:
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.privacy.privacy_listA()
-                menu_list_def.extra_back_text()
+                menu_list_def.menu_def.extra_back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2226,7 +2227,7 @@ class modul:
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.privacy.privacy_diagnostics_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         diagnostics_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if diagnostics_lista == 0:
@@ -2296,7 +2297,7 @@ class modul:
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.search.search_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2315,12 +2316,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_0():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_0()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2354,12 +2355,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_1():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_1()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2394,12 +2395,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_2():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_2()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2434,12 +2435,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_3():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_3()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2474,12 +2475,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_4():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_4()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2514,12 +2515,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_5():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_5()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2554,12 +2555,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_6():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_6()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2594,12 +2595,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_7():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_7()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2634,12 +2635,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_8():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_8()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2674,12 +2675,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_9():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_9()
-                    menu_list_def.next_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.next_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2714,12 +2715,12 @@ class modul:
             @staticmethod
             def shell_cmd_list_10():
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.shell.shell_commands_list_10()
-                    menu_list_def.back_to_menu_text()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.back_to_menu_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
@@ -2741,11 +2742,11 @@ class modul:
         @staticmethod
         def surface_hub():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.surface_hub.surface_hub_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2765,21 +2766,21 @@ class modul:
         @staticmethod
         def systems():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.system_lista.system_listaA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 """Display SYSTEM LIST"""
                 if system_lista == 0:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.system_lista.menu_system_display_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         display_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if display_lista == 0:
@@ -2799,11 +2800,11 @@ class modul:
                 """Sound (build 17063) SYSTEM LIST"""
                 if system_lista == 1:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.system_lista.menu_system_audio_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         display_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if display_lista == 0:
@@ -2825,11 +2826,11 @@ class modul:
                 """Focus assist (build 17074) SYSTEM LIST"""
                 if system_lista == 3:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.system_lista.menu_system_focus_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         display_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if display_lista == 0:
@@ -2854,11 +2855,11 @@ class modul:
                 """	Battery SYSTEM LIST"""
                 if system_lista == 5:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.system_lista.menu_system_battery_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         display_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if display_lista == 0:
@@ -2876,11 +2877,11 @@ class modul:
                 """Storage SYSTEM LIST"""
                 if system_lista == 6:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.system_lista.menu_system_storage_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         display_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if display_lista == 0:
@@ -2934,11 +2935,11 @@ class modul:
         @staticmethod
         def time_language():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.time_language_list.time_language_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
@@ -2951,11 +2952,11 @@ class modul:
                     os.system('start ms-settings:regionlanguage-chsime-wubi')
                 if system_lista == 4:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.time_language_list.menu_time_language_language_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         language_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if language_lista == 0:
@@ -2975,20 +2976,20 @@ class modul:
         @staticmethod
         def update():
             while True:
-                menu_list_def.clear()
+                menu_list_def.menu_def.clear()
                 logos.main_logo()
                 verch.ver_ch_start()
                 menu_list_def.update.update_listA()
-                menu_list_def.back_text()
+                menu_list_def.menu_def.back_text()
                 system_lista = int(input("" + lang.language.langs["main"][6]))
 
                 if system_lista == 0:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.update.windows_menu_update_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         update_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if update_lista == 0:
@@ -3013,11 +3014,11 @@ class modul:
                     os.system("start ms-settings:delivery-optimization")
                 if system_lista == 2:
                     while True:
-                        menu_list_def.clear()
+                        menu_list_def.menu_def.clear()
                         logos.main_logo()
                         verch.ver_ch_start()
                         menu_list_def.update.windows_menu_security_list()
-                        menu_list_def.back_text()
+                        menu_list_def.menu_def.back_text()
                         security_lista = int(input("" + lang.language.langs["main"][6]))
 
                         if security_lista == 0:
@@ -3804,21 +3805,21 @@ class menu:
     @staticmethod
     def menulista():
         while True:
-            menu_list_def.clear()
+            menu_list_def.menu_def.clear()
             logos.main_logo()
             verch.ver_ch_start()
-            menu_list_def.menu_A()
-            menu_list_def.exits_text()
+            menu_list_def.menu_def.menu_A()
+            menu_list_def.menu_def.exits_text()
 
             system_a = int(input("" + lang.language.langs["main"][6]))
 
             if system_a == 0:
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
-                    menu_list_def.menu_listaA()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.menu_listaA()
+                    menu_list_def.menu_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -3864,12 +3865,12 @@ class menu:
 
             if system_a == 1:
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
 
-                    menu_list_def.menu_C()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.menu_C()
+                    menu_list_def.menu_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -3881,12 +3882,12 @@ class menu:
 
             if system_a == 2:
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
 
-                    menu_list_def.menu_B()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.menu_B()
+                    menu_list_def.menu_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
@@ -3916,125 +3917,146 @@ class menu:
                         break
 
             if system_a == 3:
-                modul.BattleNET.D3()
+                while True:
+                    menu_list_def.menu_def.clear()
+                    logos.BattleNet()
+                    verch.ver_ch_start()
+                    print("[ 0]: Diablo III - Account")
+                    menu_list_def.menu_def.back_text()
+                    system_lista = int(input(" " + lang.language.langs["main"][6]))
+
+                    if system_lista == 0:
+                        while True:
+                            menu_list_def.menu_def.clear()
+                            logos.BattleNet()
+                            verch.ver_ch_start()
+                            modul.BattleNET.D3()
+                            menu_list_def.menu_def.back_text()
+                            system_lista = int(input(" " + lang.language.langs["main"][6]))
+
+                            if system_lista == 20:
+                                break
+
+                    if system_lista == 20:
+                        break
 
             if system_a == 4:
                 while True:
-                    menu_list_def.clear()
+                    menu_list_def.menu_def.clear()
                     logos.main_logo()
                     verch.ver_ch_start()
                     menu_list_def.systeminfo.systeminfo()
-                    menu_list_def.back_text()
+                    menu_list_def.menu_def.back_text()
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
                         while True:
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
                             menu_list_def.systeminfo.sysinfo()
-                            menu_list_def.back_text()
+                            menu_list_def.menu_def.back_text()
                             system_lista = int(input("" + lang.language.langs["main"][6]))
 
                             if system_lista == 0:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_win()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 1:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_boot()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 2:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_CPU()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 3:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_ram()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 4:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_SWAP()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 5:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_Network()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 6:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_GPU()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 7:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
 
                                     modul.Sysinfo_all.Sysinfo_HDD()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
 
                             if system_lista == 8:
                                 while True:
-                                    menu_list_def.clear()
+                                    menu_list_def.menu_def.clear()
                                     logos.main_logo()
                                     verch.ver_ch_start()
                                     modul.Sysinfo_all.Sysinfo_win()
@@ -4044,7 +4066,7 @@ class menu:
                                     modul.Sysinfo_all.Sysinfo_HDD()
                                     modul.Sysinfo_all.Sysinfo_GPU()
                                     modul.Sysinfo_all.Sysinfo_boot()
-                                    menu_list_def.back_text()
+                                    menu_list_def.menu_def.back_text()
                                     system_lista = int(input("" + lang.language.langs["main"][6]))
                                     if system_lista == 20:
                                         break
@@ -4054,22 +4076,22 @@ class menu:
 
                     if system_lista == 1:
                         while True:
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
                             modul.process_v2.main()
-                            menu_list_def.back_text()
+                            menu_list_def.menu_def.back_text()
                             system_lista = int(input("" + lang.language.langs["main"][6]))
                             if system_lista == 20:
                                 break
 
                     if system_lista == 2:
                         while True:
-                            menu_list_def.clear()
+                            menu_list_def.menu_def.clear()
                             logos.main_logo()
                             verch.ver_ch_start()
                             modul.speedtest_v2.speedtest_v2_run()
-                            menu_list_def.back_text()
+                            menu_list_def.menu_def.back_text()
                             system_lista = int(input("" + lang.language.langs["main"][6]))
                             if system_lista == 20:
                                 break
