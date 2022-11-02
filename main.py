@@ -140,6 +140,14 @@ class logos:
         print(fg(20, 180, 90) + "            Create by LexyGuru" + fg(255, 80, 50) + "          /_/        " + fg.rs)
         print("")
 
+    @staticmethod
+    def BattleNet():
+        print(fg(255, 80, 250) + "________       ________________                   _____ " + fg.rs)
+        print(fg(255, 80, 200) + "___  __ )_____ __  /__  /___  /____   ______________  /_" + fg.rs)
+        print(fg(255, 80, 150) + "__  __  |  __ `/  __/  __/_  /_  _ \  __  __ \  _ \  __/" + fg.rs)
+        print(fg(255, 80, 100) + "_  /_/ // /_/ // /_ / /_ _  / /  __/___  / / /  __/ /_  " + fg.rs)
+        print(fg(255, 80, 50) + "/_____/ \__,_/ \__/ \__/ /_/  \___/_(_)_/ /_/\___/\__/  " + fg.rs)
+
 
 # ****************************************************************************
 # ver_ch
@@ -1287,6 +1295,91 @@ class modul:
                         if system_lista == 20:
                             break
 
+    class BattleNET:
+        @staticmethod
+        def D3():
+            while True:
+                menu_list_def.clear()
+                print("-"*50 + "BATTELENET LOGO" + "-"*50 )
+                logos.BattleNet()
+                verch.ver_ch_start()
+                # https://develop.battle.net/access/clients API KEY
+
+                # getApiAccount
+                # /d3/profile/{account}/
+                account = "LexyGuru"
+                account_id = "21491"
+                locate = "en_US"
+                region = "eu"
+                jel = "%23"
+
+                url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + jel + account_id + \
+                      "/?locale=" + locate + "&access_token=EULxLe7GhUQkF8DQiUKOgIuQvPDxl8D3rY"
+                x = requests.get(url)
+                h = x.json()
+                m = x.json()['heroes']
+
+                a1 = "battleTag: {battleTag} \n" \
+                     "paragonLevel: {paragonLevel} \n" \
+                     "paragonLevelHardcore: {paragonLevelHardcore} \n" \
+                     "paragonLevelSeason: {paragonLevelSeason} \n" \
+                     "paragonLevelSeasonHardcore: {paragonLevelSeasonHardcore} \n" \
+                     "guildName: {guildName} \n" \
+                     "heroes: \n" \
+                     "     {heroes}\n".format(**h)
+
+                a2 = "lastHeroPlayed: {lastHeroPlayed}\n" \
+                     "lastUpdated: {lastUpdated}\n" \
+                     "kills: \n" \
+                     "     {kills}\n" \
+                     "highestHardcoreLevel: {highestHardcoreLevel}\n" \
+                     "timePlayed: {timePlayed}\n".format(**h)
+
+                a3 = "progression: \n" \
+                     "     {progression}\n".format(**h)
+
+                a4 = "seasonalProfiles: \n" \
+                     "     {seasonalProfiles}\n".format(**h)
+
+                a5 = "timePlayed: \n" \
+                     "     {timePlayed}\n".format(**h)
+
+                a6 = "highestHardcoreLevel: {highestHardcoreLevel}\n".format(**h)
+
+                b1 = "blacksmith: \n" \
+                     "     {blacksmith}\n" \
+                     "jeweler \n" \
+                     "     {jeweler}\n" \
+                     "mystic \n" \
+                     "     {mystic}\n" \
+                     "blacksmithSeason \n" \
+                     "     {blacksmithSeason}\n" \
+                     "jewelerSeason \n" \
+                     "     {jewelerSeason}\n" \
+                     "mysticSeason \n" \
+                     "     {mysticSeason}\n" \
+                     "blacksmithHardcore \n" \
+                     "     {blacksmithHardcore}\n" \
+                     "jewelerHardcore \n" \
+                     "     {jewelerHardcore}\n" \
+                     "mysticHardcore \n" \
+                     "     {mysticHardcore}\n" \
+                     "blacksmithSeasonHardcore \n" \
+                     "     {blacksmithSeasonHardcore}\n" \
+                     "jewelerSeasonHardcore \n" \
+                     "     {jewelerSeasonHardcore}\n" \
+                     "mysticSeasonHardcore \n" \
+                     "     {mysticSeasonHardcore}\n".format(**h)
+
+                #: {}
+                print(a1 + a2 + a3 + a4 + a5 + a6 + b1)
+                system_lista = int(input("" + lang.language.langs["main"][1]))
+
+                if system_lista == 20:
+                    break
+
+
+
     class SteamDB_finder:
 
         @staticmethod
@@ -1301,7 +1394,7 @@ class modul:
             with open(r'c:\\temp\\steamdb.txt', 'w', encoding="utf8") as fp:
                 for item in h:
                     # write each item on a new line
-                    fp.write("%s\n" % item)
+                    fp.read("%s\n" % item)
                     print('Done' + str(item))
 
             menu_list_def.clear()
@@ -2049,7 +2142,7 @@ class modul:
                 if system_lista == 3:
                     os.system("start ms-settings:themes")
                 if system_lista == 4:
-                    os.system("start 	ms-settings:fonts")
+                    os.system("start ms-settings:fonts")
                 if system_lista == 5:
                     while True:
                         menu_list_def.clear()
@@ -3765,6 +3858,9 @@ class menu:
 
                     if system_lista == 0:
                         modul.my_script.beta_my_script()
+
+                    if system_lista == 1:
+                        modul.BattleNET.D3()
 
                     if system_lista == 20:
                         break
