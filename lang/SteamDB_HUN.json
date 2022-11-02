@@ -12,5 +12,17 @@
     "[ 1]: CS:GO Datacenters",
     "[ 2]: CS:GO Matchmaking",
     "[ 3]: CS:GO Perfectworld"
+  ],
+
+  "steam_menu": [
+    "Downloads Complete",
+    "Download SteamDB in C:\\temp\\",
+    "Selected: "
+  ],
+
+  "language_selected": [
+    "[ 0]: Hungarian",
+    "[ 1]: English",
+    "[ 2]: German"
   ]
 }

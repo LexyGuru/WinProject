@@ -17,7 +17,8 @@
     "[ 0]: WindowsURIpy List",
     "[ 1]: Beta Project",
     "[ 2]: SteamDB API",
-    "[ 3]: System Info Log"
+    "[ 3]: Battle.net API",
+    "[ 4]: System Info Log"
   ],
 
   "systeminfo": [
@@ -27,14 +28,19 @@
   ],
 
   "menu_b": [
-    "-------------STEAM-------------",
-    "[ 0]: SteamDB API Szerver",
-    "[ 1]: SteamDB MyGame Info",
-    "[ 2]: SteamDB PlayerGame Info",
-    "[ 3]: SteamDB MyBan Info",
-    "[ 4]: SteamDB My Summaries",
-    "[ 5]: SteamDB Player Summaries",
-    "-------------------------------"
+    "---------------------STEAM---------------------",
+    "[ 0]: SteamDB Generate",
+    "[ 1]: SteamDB Finder (NO LOG FILE)",
+    "[ 2]: SteamDB Finder (notepad)",
+    "[ 3]: Run Steam Game (PL.: (CS:GO Appid:730)",
+    "-----------------------------------------------",
+    "[ 4]: SteamDB API Szerver",
+    "[ 5]: SteamDB MyGame Info",
+    "[ 6]: SteamDB PlayerGame Info",
+    "[ 7]: SteamDB MyBan Info",
+    "[ 8]: SteamDB My Summaries",
+    "[ 9]: SteamDB Player Summaries",
+    "-----------------------------------------------"
   ],
 
   "menu_c": [
@@ -587,16 +593,7 @@
     "----------------------------------------",
     "[ 0]: Ethernet Disabled",
     "[ 1]: Ethernet Enabled",
-    "[ 2]: HOSTS EDIT!!!",
-    "[ 3]: SteamDB finder starter"
-  ],
-
-  "beta_project_steamdb": [
-    "{[BETA TESTED] {[BETA TESTED]} {[BETA TESTED]}",
-    "",
-    "[ 0]: SteamDB Finder (NO LOG FILE)",
-    "[ 1]: SteamDB Finder (notepad (eng, hun !!!!!))",
-    "[ 2]: Run Steam Game (PL.: (CS:GO Appid:730)"
+    "[ 2]: HOSTS EDIT!!!"
   ],
 
   "verch_lang":[
@@ -609,5 +606,17 @@
   "about": [
     "Create by Apps: LexyGuru",
     "Translet 'hungary': LET000"
+  ],
+
+  "sysinfo": [
+    "[ 0]: System WINDOWS",
+    "[ 1]: System BOOT",
+    "[ 2]: System CPU",
+    "[ 3]: System RAM",
+    "[ 4]: System SWAP",
+    "[ 5]: System NETWORK",
+    "[ 6]: System GPU",
+    "[ 7]: System HDD",
+    "[ 8]: All"
   ]
 }
