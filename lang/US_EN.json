@@ -605,5 +605,17 @@
   "about": [
     "Create by Apps: LexyGuru",
     "Translet 'hungary': LET000"
+  ],
+
+  "sysinfo": [
+    "[ 0]: System WINDOWS",
+    "[ 1]: System BOOT",
+    "[ 2]: System CPU",
+    "[ 3]: System RAM",
+    "[ 4]: System SWAP",
+    "[ 5]: System NETWORK",
+    "[ 6]: System GPU",
+    "[ 7]: System HDD",
+    "[ 8]: All"
   ]
 }

@@ -2,8 +2,9 @@ import requests
 import json
 import os
 import webbrowser
+import subprocess
 
-from pywinauto import Application
+# from pywinauto import Application
 
 url_current = "https://raw.githubusercontent.com/LexyGuru/WinProject/main/SVG_DIR/verzion.json"
 file_exists = os.path.exists('ver.json')
@@ -13,13 +14,13 @@ startcfg = ROOT_DIR + "\\lang\\language.json"
 
 
 def configurator():
-
-    '''webbrowser.open('https://steamcommunity.com/dev/apikey')
-    webbrowser.open('https://steamcommunity.com/search/users/#text=')
+    webbrowser.open('https://steamcommunity.com/dev/apikey')
+    webbrowser.open('https://www.steamidfinder.com/')
     config_steam = ROOT_DIR + "\\config\\SteamDB_key.json"
-    app = Application().start("notepad.exe " + config_steam)'''
-
-    app = Application().start("notepad.exe " + startcfg)
+    command = config_steam
+    commandd = startcfg
+    subprocess.run(["start", "/wait", "notepad ", command], shell=True)
+    subprocess.run(["start", "/wait", "notepad ", commandd], shell=True)
 
 
 def start():
@@ -42,4 +43,3 @@ def start():
 
 
 start()
-
