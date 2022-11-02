@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-import webbrowser
+#import webbrowser
 import subprocess
 
 # from pywinauto import Application
@@ -14,12 +14,12 @@ startcfg = ROOT_DIR + "\\lang\\language.json"
 
 
 def configurator():
-    webbrowser.open('https://steamcommunity.com/dev/apikey')
-    webbrowser.open('https://www.steamidfinder.com/')
-    config_steam = ROOT_DIR + "\\config\\SteamDB_key.json"
-    command = config_steam
+    #webbrowser.open('https://steamcommunity.com/dev/apikey')
+    #webbrowser.open('https://www.steamidfinder.com/')
+    #config_steam = ROOT_DIR + "\\config\\SteamDB_key.json"
+    #command = config_steam
     commandd = startcfg
-    subprocess.run(["start", "/wait", "notepad ", command], shell=True)
+    #subprocess.run(["start", "/wait", "notepad ", command], shell=True)
     subprocess.run(["start", "/wait", "notepad ", commandd], shell=True)
 
 

@@ -142,12 +142,14 @@ class logos:
 
     @staticmethod
     def BattleNet():
-        print(fg(255, 80, 250) + "________       ________________                   _____ " + fg.rs)
+        print(fg(255, 80, 250) + "________       ________________ " +
+              fg(20, 180, 90) + "Create by LexyGuru" +
+              fg(255, 80, 250) + "_____ " + fg.rs)
         print(fg(255, 80, 200) + "___  __ )_____ __  /__  /___  /____   ______________  /_" + fg.rs)
         print(fg(255, 80, 150) + "__  __  |  __ `/  __/  __/_  /_  _ \  __  __ \  _ \  __/" + fg.rs)
         print(fg(255, 80, 100) + "_  /_/ // /_/ // /_ / /_ _  / /  __/___  / / /  __/ /_  " + fg.rs)
         print(fg(255, 80, 50) + "/_____/ \__,_/ \__/ \__/ /_/  \___/_(_)_/ /_/\___/\__/  " + fg.rs)
-
+        print("")
 
 # ****************************************************************************
 # ver_ch
@@ -1304,72 +1306,89 @@ class modul:
                 logos.BattleNet()
                 verch.ver_ch_start()
                 # https://develop.battle.net/access/clients API KEY
-
                 # getApiAccount
                 # /d3/profile/{account}/
-                account = "LexyGuru"
-                account_id = "21491"
-                locate = "en_US"
-                region = "eu"
-                jel = "%23"
 
-                url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + jel + account_id + \
+                config = ROOT_DIR + "\\config\\battenet.json"
+
+                json.load(codecs.open(config, 'r', 'utf-8-sig'))
+                with open(config, encoding='utf-8-sig') as f:
+                    configs = json.load(f)
+
+                account = str(configs['account'][0])
+                account_id = str(configs['account_num'][0])
+                locate = str(configs['locale'][0])
+                region = str(configs['region'][0])
+                hashtag = "%23"
+
+                url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + hashtag + account_id + \
                       "/?locale=" + locate + "&access_token=EULxLe7GhUQkF8DQiUKOgIuQvPDxl8D3rY"
                 x = requests.get(url)
                 h = x.json()
-                m = x.json()['heroes']
 
-                a1 = "battleTag: {battleTag} \n" \
-                     "paragonLevel: {paragonLevel} \n" \
-                     "paragonLevelHardcore: {paragonLevelHardcore} \n" \
-                     "paragonLevelSeason: {paragonLevelSeason} \n" \
-                     "paragonLevelSeasonHardcore: {paragonLevelSeasonHardcore} \n" \
-                     "guildName: {guildName} \n" \
-                     "heroes: \n" \
-                     "     {heroes}\n".format(**h)
+                '''
+                Black: \u001b[30m
+                Red: \u001b[31m
+                Green: \u001b[32m
+                Yellow: \u001b[33m
+                Blue: \u001b[34m
+                Magenta: \u001b[35m
+                Cyan: \u001b[36m
+                White: \u001b[37m
+                Reset: \u001b[0m
+                '''
 
-                a2 = "lastHeroPlayed: {lastHeroPlayed}\n" \
-                     "lastUpdated: {lastUpdated}\n" \
-                     "kills: \n" \
-                     "     {kills}\n" \
-                     "highestHardcoreLevel: {highestHardcoreLevel}\n" \
-                     "timePlayed: {timePlayed}\n".format(**h)
+                a1 = "\u001b[32m battleTag: \u001b[31m{battleTag} \n" \
+                     "\u001b[32m paragonLevel: \u001b[31m{paragonLevel} \n" \
+                     "\u001b[32m paragonLevelHardcore: \u001b[31m{paragonLevelHardcore} \n" \
+                     "\u001b[32m paragonLevelSeason: \u001b[31m{paragonLevelSeason} \n" \
+                     "\u001b[32m paragonLevelSeasonHardcore: \u001b[31m{paragonLevelSeasonHardcore} \n" \
+                     "\u001b[32m guildName: \u001b[31m{guildName} \n" \
+                     "\u001b[32m heroes: \n" \
+                     "     \u001b[31m {heroes}\n \u001b[0m".format(**h)
 
-                a3 = "progression: \n" \
-                     "     {progression}\n".format(**h)
+                a2 = "\u001b[32m lastHeroPlayed: \u001b[31m{lastHeroPlayed}\n" \
+                     "\u001b[32m lastUpdated: \u001b[31m{lastUpdated}\n" \
+                     "\u001b[32m kills: \n" \
+                     "     \u001b[31m{kills}\n" \
+                     "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n" \
+                     "\u001b[32m timePlayed: \u001b[31m{timePlayed}\n \u001b[0m".format(**h)
 
-                a4 = "seasonalProfiles: \n" \
-                     "     {seasonalProfiles}\n".format(**h)
+                a3 = "\u001b[32m progression: \n" \
+                     "     \u001b[31m {progression}\n \u001b[0m".format(**h)
 
-                a5 = "timePlayed: \n" \
-                     "     {timePlayed}\n".format(**h)
+                a4 = "\u001b[32m seasonalProfiles: \n" \
+                     "     \u001b[31m {seasonalProfiles}\n \u001b[0m".format(**h)
 
-                a6 = "highestHardcoreLevel: {highestHardcoreLevel}\n".format(**h)
+                a5 = "\u001b[32m timePlayed: \n" \
+                     "     \u001b[31m {timePlayed}\n \u001b[0m".format(**h)
 
-                b1 = "blacksmith: \n" \
-                     "     {blacksmith}\n" \
-                     "jeweler \n" \
-                     "     {jeweler}\n" \
-                     "mystic \n" \
-                     "     {mystic}\n" \
-                     "blacksmithSeason \n" \
-                     "     {blacksmithSeason}\n" \
-                     "jewelerSeason \n" \
-                     "     {jewelerSeason}\n" \
-                     "mysticSeason \n" \
-                     "     {mysticSeason}\n" \
-                     "blacksmithHardcore \n" \
-                     "     {blacksmithHardcore}\n" \
-                     "jewelerHardcore \n" \
-                     "     {jewelerHardcore}\n" \
-                     "mysticHardcore \n" \
-                     "     {mysticHardcore}\n" \
-                     "blacksmithSeasonHardcore \n" \
-                     "     {blacksmithSeasonHardcore}\n" \
-                     "jewelerSeasonHardcore \n" \
-                     "     {jewelerSeasonHardcore}\n" \
-                     "mysticSeasonHardcore \n" \
-                     "     {mysticSeasonHardcore}\n".format(**h)
+                a6 = "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n \u001b[0m".format(**h)
+
+                b1 = "\u001b[32m blacksmith: \n" \
+                     "     \u001b[31m {blacksmith}\n" \
+                     "\u001b[32m jeweler \n" \
+                     "     \u001b[31m {jeweler}\n" \
+                     "\u001b[32m mystic \n" \
+                     "     \u001b[31m {mystic}\n" \
+                     "\u001b[32m blacksmithSeason \n" \
+                     "     \u001b[31m {blacksmithSeason}\n" \
+                     "\u001b[32m jewelerSeason \n" \
+                     "     \u001b[31m {jewelerSeason}\n" \
+                     "\u001b[32m mysticSeason \n" \
+                     "     \u001b[31m {mysticSeason}\n" \
+                     "\u001b[32m blacksmithHardcore \n" \
+                     "     \u001b[31m {blacksmithHardcore}\n" \
+                     "\u001b[32m jewelerHardcore \n" \
+                     "     \u001b[31m {jewelerHardcore}\n" \
+                     "\u001b[32m mysticHardcore \n" \
+                     "     \u001b[31m {mysticHardcore}\n" \
+                     "\u001b[32m blacksmithSeasonHardcore \n" \
+                     "     \u001b[31m {blacksmithSeasonHardcore}\n" \
+                     "\u001b[32m jewelerSeasonHardcore \n" \
+                     "     \u001b[31m {jewelerSeasonHardcore}\n" \
+                     "\u001b[32m mysticSeasonHardcore \n" \
+                     "     \u001b[31m {mysticSeasonHardcore}\n \u001b[0m".format(**h)
 
                 #: {}
                 print(a1 + a2 + a3 + a4 + a5 + a6 + b1)
@@ -1377,8 +1396,6 @@ class modul:
 
                 if system_lista == 20:
                     break
-
-
 
     class SteamDB_finder:
 
@@ -3859,9 +3876,6 @@ class menu:
                     if system_lista == 0:
                         modul.my_script.beta_my_script()
 
-                    if system_lista == 1:
-                        modul.BattleNET.D3()
-
                     if system_lista == 20:
                         break
 
@@ -3902,6 +3916,9 @@ class menu:
                         break
 
             if system_a == 3:
+                modul.BattleNET.D3()
+
+            if system_a == 4:
                 while True:
                     menu_list_def.clear()
                     logos.main_logo()

@@ -17,7 +17,8 @@
     "[ 0]: WindowsURIpy List",
     "[ 1]: Beta Project",
     "[ 2]: SteamDB API",
-    "[ 3]: System Info Log"
+    "[ 3]: Battle.net API",
+    "[ 4]: System Info Log"
   ],
 
   "systeminfo": [
