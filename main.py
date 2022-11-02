@@ -1,5 +1,5 @@
 import webbrowser
-
+import codecs
 import requests
 import os
 import json
@@ -9,6 +9,7 @@ import platform
 import GPUtil
 import subprocess
 import speedtest
+import PySimpleGUI as sg
 
 from colorama import Fore, Style
 from pywinauto import Application
@@ -38,13 +39,18 @@ vga_list = '"'
 
 steam_fix = ROOT_DIR + "\\winscript\\steam_fix_service.ps1"
 
-C_DIR_VGA_IN = "C:/TEMP/"
-C_DIR_IN = "C:/TEMP/IMPORT.json"
-C_DIR_EX = "C:/TEMP/EXPORT.json"
+C_DIR_VGA_IN = "C:\\TEMP\\"
+C_DIR_IN = "C:\\TEMP\\IMPORT.json"
+C_DIR_EX = "C:\\TEMP\\EXPORT.json"
+steamjson = "c:\\temp\\steamdb.json"
 
 w_scan_updates = "Update-MpSignature"
 w_scan_Quick = "Start-MpScan -ScanType QuickScan"
 w_scan_Full = "Start-MpScan -ScanType FullScan"
+
+net_disabled = ROOT_DIR + "\\beta\\net_disabled.ps1"
+net_enabled = ROOT_DIR + "\\beta\\net_enabled.ps1"
+host_edit = ROOT_DIR + "\\beta\\hosts_edit.ps1"
 
 url_beta = "https://raw.githubusercontent.com/LexyGuru/WinProject/beta/SVG_DIR/verzion.json"
 url_current = "https://raw.githubusercontent.com/LexyGuru/WinProject/main/SVG_DIR/verzion.json"
@@ -703,12 +709,12 @@ class menu_list_def:
             for i in range(0, len(lista)):
                 print(lista[i])
 
-        @staticmethod
+        '''        @staticmethod
         def beta_project_lang_steamdb():
             lista = lang.language.langs['beta_project_steamdb']
             i = 0
             for i in range(0, len(lista)):
-                print(lista[i])
+                print(lista[i])'''
 
     class SteamDB_lang:
 
@@ -729,6 +735,20 @@ class menu_list_def:
         @staticmethod
         def GetGameServersStatus_list():
             lista = lang.language.langdb['GetGameServersStatus_list']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
+
+        @staticmethod
+        def steam_menu():
+            lista = lang.language.langdb['steam_menu']
+            i = 0
+            for i in range(0, len(lista)):
+                print(lista[i])
+
+        @staticmethod
+        def steamdb_selected_lang():
+            lista = lang.language.langdb['language_selected']
             i = 0
             for i in range(0, len(lista)):
                 print(lista[i])
@@ -1253,16 +1273,125 @@ class modul:
                             print(fg(255, 80, 220) + "profileurl: " + fg(255, 180, 40) + h.get('profileurl') + fg.rs)
                             print(fg(255, 80, 210) + "avatar: " + fg(255, 180, 30) + h.get('avatar') + fg.rs)
                             print(fg(255, 80, 200) + "avatarfull: " + fg(255, 180, 20) + h.get('avatarfull') + fg.rs)
-                            print(
-                                fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
-                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get(
-                                'loccountrycode') + fg.rs)
+                            print(fg(255, 80, 190) + "lastlogoff: " + fg(255, 180, 10) + str(h.get('lastlogoff')) + fg.rs)
+                            print(fg(255, 80, 180) + "loccountrycode: " + fg(255, 180, 0) + h.get('loccountrycode') + fg.rs)
 
                             print("")
                             system_lista = int(input("" + lang.language.langs["main"][1]))
 
+                            if system_lista == 20:
+                                break
+
                         if system_lista == 20:
                             break
+
+    class SteamDB_finder:
+
+        @staticmethod
+        def steamdb_generate():
+            menu_list_def.clear()
+            logos.SteramDB_logo_v2()
+            verch.ver_ch_start()
+            url = 'http://api.steampowered.com/ISteamApps/GetAppList/v2'
+            x = requests.get(url)
+            h = x.json()['applist']['apps']
+            os.system("mkdir c:\\temp\\")
+            with open(r'c:\\temp\\steamdb.txt', 'w', encoding="utf8") as fp:
+                for item in h:
+                    # write each item on a new line
+                    fp.write("%s\n" % item)
+                    print('Done' + str(item))
+
+            menu_list_def.clear()
+
+            text_main = lang.language.langdb['steam_menu'][0]
+            text_inf = lang.language.langdb['steam_menu'][1]
+
+            sg.theme('DarkAmber')  # Add a little color to your windows
+            # All the stuff inside your window. This is the PSG magic code compactor...
+            layout = [[sg.Text(text_main)],
+                    [sg.Text(text_inf)],
+                    [sg.OK()]]
+
+            # Create the Window
+            window = sg.Window('Window Title', layout)
+            # Event Loop to process "events"
+            while True:
+                event, values = window.read()
+                if event in (sg.WIN_CLOSED, 'OK'):
+                    break
+
+            window.close()
+
+        @staticmethod
+        def steamdb_finder_a():
+            while True:
+                menu_list_def.clear()
+                logos.SteramDB_logo_v2()
+                verch.ver_ch_start()
+                # string to search in file
+                '''word = 'Global Offensive'''
+                word = input("" + lang.language.langs["main"][6])
+                with open(r'c:\\temp\\steamdb.txt', 'r', encoding="utf8") as fp:
+                    # read all lines in a list
+                    lines = fp.readlines()
+                    for line in lines:
+                        # check if string present on a current line
+                        if line.find(word) != -1:
+                            print(word, 'string exists in file')
+                            print('Line Number:', lines.index(line))
+                            print('Line:', line)
+
+                system_lista = int(input("" + lang.language.langs["main"][1]))
+
+                if system_lista == 20:
+                    break
+
+        @staticmethod
+        def steamdb_finder_b():
+            menu_list_def.clear()
+            logos.SteramDB_logo_v2()
+            verch.ver_ch_start()
+
+            notepad = ROOT_DIR + "\\lang\\language.json"
+            notepad_lang = ROOT_DIR + "\\lang\\notepad_lang.json"
+            json.load(codecs.open(notepad, 'r', 'utf-8-sig'))
+            with open(notepad, encoding='utf-8-sig') as f:
+                 datadb = json.load(f)
+
+            langnote = datadb['notepad_langs']
+
+            json.load(codecs.open(notepad_lang, 'r', 'utf-8-sig'))
+            with open(notepad_lang, encoding='utf-8-sig') as f:
+                notepad_lang = json.load(f)
+
+            if langnote == ['eng']:
+                app = Application().start("notepad.exe c:\\temp\\steamdb.txt")
+                app.UntitledNotepad.menu_select("Edit->Find")
+
+
+            if langnote == ['hun']:
+                app = Application().start("notepad.exe c:\\temp\\steamdb.txt")
+                app.UntitledNotepad.menu_select("S&zerkesztés->Keresés")
+
+
+            if langnote == ['de']:
+                app = Application().start("notepad.exe c:\\temp\\steamdb.txt")
+                app.UntitledNotepad.menu_select("Bearbeiten->Suchen")
+
+        @staticmethod
+        def steam_run_game():
+            appid = input("Added Appidd: ")
+            prgm_path = ""
+            if os.environ.get("PROGRAMFILES(X86)") is None:  # this case is 32bit
+                prgm_path = os.environ.get("PROGRAMFILES")
+            else:
+                prgm_path = os.environ.get("PROGRAMFILES(X86)")
+
+            print(prgm_path + "\\Steam\\steam.exe -applaunch " + appid)
+
+            startgame = prgm_path + "\\Steam\\steam.exe -applaunch " + appid
+            subprocess.Popen(startgame)
 
     class Accounts:
         @staticmethod
@@ -1796,7 +1925,27 @@ class modul:
                     break
 
     class my_script:
-        pass
+        @staticmethod
+        def beta_my_script():
+            while True:
+                menu_list_def.clear()
+                logos.main_logo()
+                verch.ver_ch_start()
+                menu_list_def.beta.beta_project_lang()
+                menu_list_def.exits_text()
+                system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                if system_lista == 0:
+                    Popen('powershell ' + net_disabled, creationflags=CREATE_NEW_CONSOLE)
+
+                if system_lista == 1:
+                    Popen('powershell ' + net_enabled, creationflags=CREATE_NEW_CONSOLE)
+
+                if system_lista == 2:
+                    Popen('powershell ' + host_edit, creationflags=CREATE_NEW_CONSOLE)
+
+                if system_lista == 20:
+                    break
 
     class Network_Internet:
         @staticmethod
@@ -3601,8 +3750,8 @@ class menu:
                     if system_lista == 16:
                         modul.Shell_Command.menu()
                     if system_lista == 17:
-                        # modul.GoogMod.good()
-                        pass
+                        modul.GoodMod.good()
+
 
                     if system_lista == 20:
                         break
@@ -3619,8 +3768,8 @@ class menu:
                     system_lista = int(input("" + lang.language.langs["main"][6]))
 
                     if system_lista == 0:
-                        # modul.my_script.beta_my_script()
-                        pass
+                        modul.my_script.beta_my_script()
+
 
                     if system_lista == 20:
                         break
@@ -3635,17 +3784,27 @@ class menu:
                     menu_list_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
+
                     if system_lista == 0:
-                        modul.SteamDB.game.CSGOServer_730()
+                        modul.SteamDB_finder.steamdb_generate()
                     if system_lista == 1:
-                        modul.SteamDB.userinfo.my_userid_info()
+                        modul.SteamDB_finder.steamdb_finder_a()
                     if system_lista == 2:
-                        modul.SteamDB.userinfo.userid_info()
+                        modul.SteamDB_finder.steamdb_finder_b()
                     if system_lista == 3:
-                        modul.SteamDB.playerbans.bann_user()
+                        modul.SteamDB_finder.steam_run_game()
+
                     if system_lista == 4:
-                        modul.SteamDB.playersummaries.GetPlayerSummaries()
+                        modul.SteamDB.game.CSGOServer_730()
                     if system_lista == 5:
+                        modul.SteamDB.userinfo.my_userid_info()
+                    if system_lista == 6:
+                        modul.SteamDB.userinfo.userid_info()
+                    if system_lista == 7:
+                        modul.SteamDB.playerbans.bann_user()
+                    if system_lista == 8:
+                        modul.SteamDB.playersummaries.GetPlayerSummaries()
+                    if system_lista == 9:
                         modul.SteamDB.playersummaries.GetPlayerSummaries_player()
 
                     if system_lista == 20:
