@@ -3,6 +3,7 @@ import codecs
 import requests
 import os
 import json
+import pandas as pd
 import lang.language
 import psutil
 import platform
@@ -17,7 +18,7 @@ from datetime import datetime
 from sty import fg
 from subprocess import Popen, CREATE_NEW_CONSOLE
 
-test = speedtest.Speedtest()
+test = speedtest.Speedtest(secure=True)
 
 ROOT_DIR = os.path.abspath(os.curdir)
 file_exists = os.path.exists('ver.json')
@@ -234,7 +235,7 @@ class verch:
 # ****************************************************************************
 class menu_list_def:
 
-    class menu_def():
+    class menu_def:
         @staticmethod
         def clear():
             os.system("cls")
@@ -820,8 +821,8 @@ class modul:
                             keyloadd = int(input("" + lang.language.langs["main"][6]))
                             if keyloadd == 0:
                                 url = (
-                                        "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                        keyin)
+                                        "https://api.steampowered.com/ICSGOServers_730/"
+                                        "GetGameServersStatus/v1/?key=" + keyin)
                                 x = requests.get(url)
                                 h = x.json()['result']['services']
 
@@ -845,9 +846,8 @@ class modul:
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
 
-                                    url = (
-                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                            keyin)
+                                    url = ("https://api.steampowered.com/ICSGOServers_730/"
+                                           "GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['datacenters']
 
@@ -1045,28 +1045,22 @@ class modul:
                                     menu_list_def.menu_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
-                                    url = (
-                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                            keyin)
+                                    url = ("https://api.steampowered.com/ICSGOServers_730/"
+                                           "GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']
                                     dict_list_matchmaking = (h['matchmaking'])
                                     print(fg(255, 80, 250) +
                                           "Matchmaking: " + fg(255, 180, 70) + '\n'
-                                                                               "      scheduler: " + fg(255, 180, 70) +
+                                          "      scheduler: " + fg(255, 180, 70) +
                                           dict_list_matchmaking.get('scheduler') + '\n'
-                                                                                   "      online_servers: " + fg(255,
-                                                                                                                 180,
-                                                                                                                 70) +
+                                          "      online_servers: " + fg(255, 180, 70) +
                                           str(dict_list_matchmaking.get('online_servers')) + '\n'
-                                                                                             "      online_players: " + fg(
-                                        255, 180, 70) +
+                                          "      online_players: " + fg(255, 180, 70) +
                                           str(dict_list_matchmaking.get('online_players')) + '\n'
-                                                                                             "      searching_players: " + fg(
-                                        255, 180, 70) +
+                                          "      searching_players: " + fg(255, 180, 70) +
                                           str(dict_list_matchmaking.get('searching_players')) + '\n'
-                                                                                                "      search_seconds_avg: " + fg(
-                                        255, 180, 70) +
+                                          "      search_seconds_avg: " + fg(255, 180, 70) +
                                           str(dict_list_matchmaking.get('search_seconds_avg')) + fg.rs)
 
                                     menu_list_def.menu_def.back_text()
@@ -1080,9 +1074,8 @@ class modul:
                                     menu_list_def.menu_def.clear()
                                     logos.SteramDB_logo_v2()
                                     verch.ver_ch_start()
-                                    url = (
-                                            "https://api.steampowered.com/ICSGOServers_730/GetGameServersStatus/v1/?key=" +
-                                            keyin)
+                                    url = ("https://api.steampowered.com/ICSGOServers_730/"
+                                           "GetGameServersStatus/v1/?key=" + keyin)
                                     x = requests.get(url)
                                     h = x.json()['result']['perfectworld']
                                     dict_list_perfectworld = (h['logon'])
@@ -1090,12 +1083,10 @@ class modul:
 
                                     print(fg(255, 80, 250) +
                                           "Perfectworld: " + fg(255, 10, 70) + '\n'
-                                                                               "   Logon: " + fg(255, 180, 70) + '\n'
-                                                                                                                 "      availability: " + fg(
-                                        255, 180, 70) +
+                                          "   Logon: " + fg(255, 180, 70) + '\n'
+                                          "      availability: " + fg(255, 180, 70) +
                                           dict_list_perfectworld.get('availability') + '\n'
-                                                                                       "      latency: " + fg(255, 180,
-                                                                                                              70) +
+                                          "      latency: " + fg(255, 180, 70) +
                                           dict_list_perfectworld.get('latency') + fg.rs)
 
                                     print(fg(255, 10, 70) +
@@ -1309,93 +1300,215 @@ class modul:
 
     class BattleNET:
         @staticmethod
-        def D3():
-
+        def acess_token():
             config = ROOT_DIR + "\\config\\battenet.json"
 
             json.load(codecs.open(config, 'r', 'utf-8-sig'))
             with open(config, encoding='utf-8-sig') as f:
                 configs = json.load(f)
 
-            account = str(configs['account'][0])
-            account_id = str(configs['account_num'][0])
-            locate = str(configs['locale'][0])
-            region = str(configs['region'][0])
-            hashtag = "%23"
+            Client_ID = str(configs['Client_ID'][0])
+            Client_Sicret = str(configs['Client_Sicret'][0])
 
-            url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + hashtag + account_id + \
-                      "/?locale=" + locate + "&access_token=EULxLe7GhUQkF8DQiUKOgIuQvPDxl8D3rY"
-            x = requests.get(url)
-            h = x.json()
+            command = "curl -u " + Client_ID + ":" + Client_Sicret + " -d grant_type=client_credentials https://oauth.battle.net/token"
+            save = command + " > c:\\temp\\battle_acess.json"
+            os.system("" + save)
 
-            '''
-            Black: \u001b[30m
-            Red: \u001b[31m
-            Green: \u001b[32m
-            Yellow: \u001b[33m
-            Blue: \u001b[34m
-            Magenta: \u001b[35m
-            Cyan: \u001b[36m
-            White: \u001b[37m
-            Reset: \u001b[0m
-            '''
+            config_save = "c:\\temp\\battle_acess.json"
+            json.load(codecs.open(config_save, 'r', 'utf-8-sig'))
+            with open(config_save, encoding='utf-8-sig') as f:
+                command = json.load(f)
+            keyword = "access_token: {access_token}".format(**command)
 
-            a1 = "\u001b[32m battleTag: \u001b[31m{battleTag} \n" \
-                "\u001b[32m paragonLevel: \u001b[31m{paragonLevel} \n" \
-                "\u001b[32m paragonLevelHardcore: \u001b[31m{paragonLevelHardcore} \n" \
-                "\u001b[32m paragonLevelSeason: \u001b[31m{paragonLevelSeason} \n" \
-                "\u001b[32m paragonLevelSeasonHardcore: \u001b[31m{paragonLevelSeasonHardcore} \n" \
-                "\u001b[32m guildName: \u001b[31m{guildName} \n" \
-                "\u001b[32m heroes: \n" \
-                "     \u001b[31m {heroes}\n \u001b[0m".format(**h)
+            print(keyword)
 
-            a2 = "\u001b[32m lastHeroPlayed: \u001b[31m{lastHeroPlayed}\n" \
-                "\u001b[32m lastUpdated: \u001b[31m{lastUpdated}\n" \
-                "\u001b[32m kills: \n" \
-                "     \u001b[31m{kills}\n" \
-                "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n" \
-                "\u001b[32m timePlayed: \u001b[31m{timePlayed}\n \u001b[0m".format(**h)
+        @staticmethod
+        def D3():
 
-            a3 = "\u001b[32m progression: \n" \
-                 "     \u001b[31m {progression}\n \u001b[0m".format(**h)
+            file_exists = os.path.exists('c:\\temp\\battle_acess.json')
+            if not file_exists:
+                modul.BattleNET.acess_token()
+                menu.menulista()
 
-            a4 = "\u001b[32m seasonalProfiles: \n" \
-                 "     \u001b[31m {seasonalProfiles}\n \u001b[0m".format(**h)
+            if file_exists:
+                config = ROOT_DIR + "\\config\\battenet.json"
 
-            a5 = "\u001b[32m timePlayed: \n" \
-                 "     \u001b[31m {timePlayed}\n \u001b[0m".format(**h)
+                json.load(codecs.open(config, 'r', 'utf-8-sig'))
+                with open(config, encoding='utf-8-sig') as f:
+                    configs = json.load(f)
 
-            a6 = "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n \u001b[0m".format(**h)
+                account = str(configs['account'][0])
+                account_id = str(configs['account_num'][0])
+                locate = str(configs['locale'][0])
+                region = str(configs['region'][0])
 
-            b1 = "\u001b[32m blacksmith: \n" \
-                "     \u001b[31m {blacksmith}\n" \
-                "\u001b[32m jeweler \n" \
-                "     \u001b[31m {jeweler}\n" \
-                "\u001b[32m mystic \n" \
-                "     \u001b[31m {mystic}\n" \
-                "\u001b[32m blacksmithSeason \n" \
-                "     \u001b[31m {blacksmithSeason}\n" \
-                "\u001b[32m jewelerSeason \n" \
-                "     \u001b[31m {jewelerSeason}\n" \
-                "\u001b[32m mysticSeason \n" \
-                "     \u001b[31m {mysticSeason}\n" \
-                "\u001b[32m blacksmithHardcore \n" \
-                "     \u001b[31m {blacksmithHardcore}\n" \
-                "\u001b[32m jewelerHardcore \n" \
-                "     \u001b[31m {jewelerHardcore}\n" \
-                "\u001b[32m mysticHardcore \n" \
-                "     \u001b[31m {mysticHardcore}\n" \
-                "\u001b[32m blacksmithSeasonHardcore \n" \
-                "     \u001b[31m {blacksmithSeasonHardcore}\n" \
-                "\u001b[32m jewelerSeasonHardcore \n" \
-                "     \u001b[31m {jewelerSeasonHardcore}\n" \
-                "\u001b[32m mysticSeasonHardcore \n" \
-                "     \u001b[31m {mysticSeasonHardcore}\n \u001b[0m".format(**h)
+                config_save = "c:\\temp\\battle_acess.json"
+                json.load(codecs.open(config_save, 'r', 'utf-8-sig'))
+                with open(config_save, encoding='utf-8-sig') as f:
+                    command = json.load(f)
+                keyword = "{access_token}".format(**command)
+                access_token = keyword
+                hashtag = "%23"
 
-            #: {}
-            print(a1 + a2 + a3 + a4 + a5 + a6 + b1)
-            print("")
+                url = "https://" + region + ".api.blizzard.com/d3/profile/" + \
+                      account + hashtag + account_id + "/?locale=" + locate + \
+                      "&access_token=" + access_token
 
+                print(url)
+                x = requests.get(url)
+                h = x.json()
+
+                '''
+                Black: \u001b[30m
+                Red: \u001b[31m
+                Green: \u001b[32m
+                Yellow: \u001b[33m
+                Blue: \u001b[34m
+                Magenta: \u001b[35m
+                Cyan: \u001b[36m
+                White: \u001b[37m
+                Reset: \u001b[0m
+                '''
+
+                a1 = "\u001b[32m battleTag: \u001b[31m{battleTag} \n" \
+                     "\u001b[32m paragonLevel: \u001b[31m{paragonLevel} \n" \
+                     "\u001b[32m paragonLevelHardcore: \u001b[31m{paragonLevelHardcore} \n" \
+                     "\u001b[32m paragonLevelSeason: \u001b[31m{paragonLevelSeason} \n" \
+                     "\u001b[32m paragonLevelSeasonHardcore: \u001b[31m{paragonLevelSeasonHardcore} \n" \
+                     "\u001b[32m guildName: \u001b[31m{guildName} \n" \
+                     "\u001b[32m heroes: \n" \
+                     "     \u001b[31m {heroes}\n \u001b[0m".format(**h)
+
+                a2 = "\u001b[32m lastHeroPlayed: \u001b[31m{lastHeroPlayed}\n" \
+                     "\u001b[32m lastUpdated: \u001b[31m{lastUpdated}\n" \
+                     "\u001b[32m kills: \n" \
+                     "     \u001b[31m{kills}\n" \
+                     "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n" \
+                     "\u001b[32m timePlayed: \u001b[31m{timePlayed}\n \u001b[0m".format(**h)
+
+                a3 = "\u001b[32m progression: \n" \
+                     "     \u001b[31m {progression}\n \u001b[0m".format(**h)
+
+                a4 = "\u001b[32m seasonalProfiles: \n" \
+                     "     \u001b[31m {seasonalProfiles}\n \u001b[0m".format(**h)
+
+                a5 = "\u001b[32m timePlayed: \n" \
+                     "     \u001b[31m {timePlayed}\n \u001b[0m".format(**h)
+
+                a6 = "\u001b[32m highestHardcoreLevel: \u001b[31m{highestHardcoreLevel}\n \u001b[0m".format(**h)
+
+                b1 = "\u001b[32m blacksmith: \n" \
+                     "     \u001b[31m {blacksmith}\n" \
+                     "\u001b[32m jeweler \n" \
+                     "     \u001b[31m {jeweler}\n" \
+                     "\u001b[32m mystic \n" \
+                     "     \u001b[31m {mystic}\n" \
+                     "\u001b[32m blacksmithSeason \n" \
+                     "     \u001b[31m {blacksmithSeason}\n" \
+                     "\u001b[32m jewelerSeason \n" \
+                     "     \u001b[31m {jewelerSeason}\n" \
+                     "\u001b[32m mysticSeason \n" \
+                     "     \u001b[31m {mysticSeason}\n" \
+                     "\u001b[32m blacksmithHardcore \n" \
+                     "     \u001b[31m {blacksmithHardcore}\n" \
+                     "\u001b[32m jewelerHardcore \n" \
+                     "     \u001b[31m {jewelerHardcore}\n" \
+                     "\u001b[32m mysticHardcore \n" \
+                     "     \u001b[31m {mysticHardcore}\n" \
+                     "\u001b[32m blacksmithSeasonHardcore \n" \
+                     "     \u001b[31m {blacksmithSeasonHardcore}\n" \
+                     "\u001b[32m jewelerSeasonHardcore \n" \
+                     "     \u001b[31m {jewelerSeasonHardcore}\n" \
+                     "\u001b[32m mysticSeasonHardcore \n" \
+                     "     \u001b[31m {mysticSeasonHardcore}\n \u001b[0m".format(**h)
+
+                #: {}
+                print(a1 + a2 + a3 + a4 + a5 + a6 + b1)
+                print("")
+
+        @staticmethod
+        def D3_hero():
+            file_exists = os.path.exists('c:\\temp\\battle_acess.json')
+            if not file_exists:
+                modul.BattleNET.acess_token()
+                menu.menulista()
+
+            if file_exists:
+                config = ROOT_DIR + "\\config\\battenet.json"
+
+                json.load(codecs.open(config, 'r', 'utf-8-sig'))
+                with open(config, encoding='utf-8-sig') as f:
+                    configs = json.load(f)
+
+                account = str(configs['account'][0])
+                account_id = str(configs['account_num'][0])
+                locate = str(configs['locale'][0])
+                region = str(configs['region'][0])
+
+                config_save = "c:\\temp\\battle_acess.json"
+                json.load(codecs.open(config_save, 'r', 'utf-8-sig'))
+                with open(config_save, encoding='utf-8-sig') as f:
+                    command = json.load(f)
+                keyword = "{access_token}".format(**command)
+                access_token = keyword
+                hashtag = "%23"
+
+                url = "https://" + region + ".api.blizzard.com/d3/profile/" + \
+                      account + hashtag + account_id + "/?locale=" + locate + \
+                      "&access_token=" + access_token
+                x = requests.get(url)
+                h = x.json()['heroes']
+
+                '''
+                Black: \u001b[30m
+                Red: \u001b[31m
+                Green: \u001b[32m
+                Yellow: \u001b[33m
+                Blue: \u001b[34m
+                Magenta: \u001b[35m
+                Cyan: \u001b[36m
+                White: \u001b[37m
+                Reset: \u001b[0m
+                '''
+
+                '''print("Printing lists Heroes")
+                print(*h, sep="\n")'''
+
+
+                data = h
+                s = pd.DataFrame(data[0:20], columns=data[0])
+                print("-" * 122)
+                print(s.to_string(index=False))
+                print("-" * 122)
+
+                print("\n")
+                heroid = str(input(" " + lang.language.langs["main"][6]))
+
+                url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + hashtag + account_id + \
+                      "/hero/" + heroid + "?locale=" + locate + "&access_token=" + access_token
+                x = requests.get(url)
+                d = x.json()
+                d1 = x.json()['kills']
+
+                print("\n")
+                print("\u001b[31m id: \u001b[36m {id}".format(**d))
+                print("\u001b[31m name: \u001b[36m {name}".format(**d))
+                print("\u001b[31m gender: \u001b[36m {gender}".format(**d))
+                print("\u001b[31m level: \u001b[36m {level}".format(**d))
+                print("\u001b[31m paragonLevel: \u001b[36m {paragonLevel}".format(**d))
+                print("\u001b[31m kills elites: \u001b[36m {elites} ".format(**d1))
+                print("\u001b[31m hardcore: \u001b[36m {hardcore}".format(**d))
+                print("\u001b[31m seasonal: \u001b[36m {seasonal}".format(**d))
+                print("\u001b[31m seasonCreated: \u001b[36m {seasonCreated}".format(**d))
+                print("\u001b[31m skills: \u001b[36m {skills}".format(**d))
+                print("\u001b[31m items: \u001b[36m {items}".format(**d))
+                print("\u001b[31m followers: \u001b[36m {followers}".format(**d))
+                print("\u001b[31m legendaryPowers: \u001b[36m {legendaryPowers}".format(**d))
+                print("\u001b[31m progression: \u001b[36m {progression}".format(**d))
+                print("\u001b[31m alive: \u001b[36m {alive}".format(**d))
+                print("\u001b[31m lastUpdated: \u001b[36m {lastUpdated}".format(**d))
+                print("\u001b[31m highestSoloRiftCompleted: \u001b[36m {highestSoloRiftCompleted}".format(**d))
+                print("\u001b[31m stats: \u001b[36m {stats} \u001b[0m".format(**d))
 
 
     class SteamDB_finder:
@@ -3922,6 +4035,8 @@ class menu:
                     logos.BattleNet()
                     verch.ver_ch_start()
                     print("[ 0]: Diablo III - Account")
+                    print("[ 1]; Diablo III - Heroes")
+                    print("[10]: Battlenet Access_Token")
                     menu_list_def.menu_def.back_text()
                     system_lista = int(input(" " + lang.language.langs["main"][6]))
 
@@ -3931,6 +4046,33 @@ class menu:
                             logos.BattleNet()
                             verch.ver_ch_start()
                             modul.BattleNET.D3()
+                            menu_list_def.menu_def.back_text()
+                            system_lista = int(input(" " + lang.language.langs["main"][6]))
+
+                            if system_lista == 20:
+                                break
+
+
+                    if system_lista == 1:
+                        while True:
+                            menu_list_def.menu_def.clear()
+                            logos.BattleNet()
+                            verch.ver_ch_start()
+                            modul.BattleNET.D3_hero()
+                            menu_list_def.menu_def.back_text()
+                            system_lista = int(input(" " + lang.language.langs["main"][6]))
+
+                            if system_lista == 20:
+                                break
+
+
+
+                    if system_lista == 10:
+                        while True:
+                            menu_list_def.menu_def.clear()
+                            logos.BattleNet()
+                            verch.ver_ch_start()
+                            modul.BattleNET.acess_token()
                             menu_list_def.menu_def.back_text()
                             system_lista = int(input(" " + lang.language.langs["main"][6]))
 
@@ -4098,6 +4240,35 @@ class menu:
 
                     if system_lista == 20:
                         break
+
+            if system_a == 5:
+                while True:
+                    import time
+                    import datetime
+
+                    print(datetime.datetime.now())
+
+                    time.sleep(0.5)
+                    print(fg(255, 80, 250) + "  _      ___         __                 __  _____  ____            " + fg.rs)
+                    time.sleep(0.2)
+                    print(fg(255, 80, 200) + " | | /| / (_)__  ___/ /__ _    _____   / / / / _ \/  _/ ___  __ __ " + fg.rs)
+                    time.sleep(0.2)
+                    print(fg(255, 80, 150) + " | |/ |/ / / _ \/ _  / _ \ |/|/ (_-<  / /_/ / , _// /  / _ \/ // / " + fg.rs)
+                    time.sleep(0.2)
+                    print(fg(255, 80, 100) + " |__/|__/_/_//_/\_,_/\___/__,__/___/  \____/_/|_/___/ / .__/\_, /  " + fg.rs)
+                    time.sleep(0.2)
+                    print(fg(20, 180, 90) + "                Create by LexyGuru" +
+                      fg(255, 80, 50) + "                   /_/   /___/   " + fg.rs)
+                    print("")
+
+                    menu_list_def.menu_def.back_text()
+
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 20:
+                        break
+
+
 
             if system_a == 20:
                 # os.remove("ver.json")
