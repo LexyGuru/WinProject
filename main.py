@@ -11,6 +11,13 @@ import GPUtil
 import subprocess
 import speedtest
 import PySimpleGUI as sg
+import time
+import sys
+import datetime
+print(datetime.datetime.now())
+
+
+import threading
 
 from colorama import Fore, Style
 from pywinauto import Application
@@ -82,17 +89,25 @@ def adjust_size(size):
             return f"{size:.3f}{i}"
 
 
+def code(text, delay=.001):
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print()
+
+
 # ****************************************************************************
 # logo
 # ****************************************************************************
 class logos:
     @staticmethod
     def main_logo():
-        print(fg(255, 80, 250) + "  _      ___         __                 __  _____  ____            " + fg.rs)
-        print(fg(255, 80, 200) + " | | /| / (_)__  ___/ /__ _    _____   / / / / _ \/  _/ ___  __ __ " + fg.rs)
-        print(fg(255, 80, 150) + " | |/ |/ / / _ \/ _  / _ \ |/|/ (_-<  / /_/ / , _// /  / _ \/ // / " + fg.rs)
-        print(fg(255, 80, 100) + " |__/|__/_/_//_/\_,_/\___/__,__/___/  \____/_/|_/___/ / .__/\_, /  " + fg.rs)
-        print(fg(255, 80, 50) + "                Create by LexyGuru                   /_/   /___/   " + fg.rs)
+        code(fg(255, 80, 250) + "  _      ___         __                 __  _____  ____            " + fg.rs)
+        code(fg(255, 80, 200) + " | | /| / (_)__  ___/ /__ _    _____   / / / / _ \/  _/ ___  __ __ " + fg.rs)
+        code(fg(255, 80, 150) + " | |/ |/ / / _ \/ _  / _ \ |/|/ (_-<  / /_/ / , _// /  / _ \/ // / " + fg.rs)
+        code(fg(255, 80, 100) + " |__/|__/_/_//_/\_,_/\___/__,__/___/  \____/_/|_/___/ / .__/\_, /  " + fg.rs)
+        code(fg(255, 80, 50) + "                Create by LexyGuru                   /_/   /___/   " + fg.rs)
         print("")
 
     @staticmethod
@@ -106,20 +121,20 @@ class logos:
 
     @staticmethod
     def beta_logo_v2():
-        print(fg(255, 80, 250) + "   ___      __         ___             _         __  " + fg.rs)
-        print(fg(255, 80, 200) + "  / _ )___ / /____ _  / _ \_______    (_)__ ____/ /_ " + fg.rs)
-        print(fg(255, 80, 150) + " / _  / -_) __/ _ `/ / ___/ __/ _ \  / / -_) __/ __/ " + fg.rs)
-        print(fg(255, 80, 100) + "/____/\__/\__/\_,_/ /_/  /_/  \___/_/ /\__/\__/\__/  " + fg.rs)
-        print(fg(255, 80, 950) + "         Create by LexyGuru" + fg(255, 80, 50) + "      |___/               " + fg.rs)
+        code(fg(255, 80, 250) + "   ___      __         ___             _         __  " + fg.rs)
+        code(fg(255, 80, 200) + "  / _ )___ / /____ _  / _ \_______    (_)__ ____/ /_ " + fg.rs)
+        code(fg(255, 80, 150) + " / _  / -_) __/ _ `/ / ___/ __/ _ \  / / -_) __/ __/ " + fg.rs)
+        code(fg(255, 80, 100) + "/____/\__/\__/\_,_/ /_/  /_/  \___/_/ /\__/\__/\__/  " + fg.rs)
+        code(fg(255, 80, 950) + "         Create by LexyGuru" + fg(255, 80, 50) + "      |___/               " + fg.rs)
         print("")
 
     @staticmethod
     def main_logo_v2():
-        print(fg(255, 80, 250) + "  _      ___         __                 __  _____  ____            " + fg.rs)
-        print(fg(255, 80, 200) + " | | /| / (_)__  ___/ /__ _    _____   / / / / _ \/  _/ ___  __ __ " + fg.rs)
-        print(fg(255, 80, 150) + " | |/ |/ / / _ \/ _  / _ \ |/|/ (_-<  / /_/ / , _// /  / _ \/ // / " + fg.rs)
-        print(fg(255, 80, 100) + " |__/|__/_/_//_/\_,_/\___/__,__/___/  \____/_/|_/___/ / .__/\_, /  " + fg.rs)
-        print(fg(20, 180, 90) + "                Create by LexyGuru" +
+        code(fg(255, 80, 250) + "  _      ___         __                 __  _____  ____            " + fg.rs)
+        code(fg(255, 80, 200) + " | | /| / (_)__  ___/ /__ _    _____   / / / / _ \/  _/ ___  __ __ " + fg.rs)
+        code(fg(255, 80, 150) + " | |/ |/ / / _ \/ _  / _ \ |/|/ (_-<  / /_/ / , _// /  / _ \/ // / " + fg.rs)
+        code(fg(255, 80, 100) + " |__/|__/_/_//_/\_,_/\___/__,__/___/  \____/_/|_/___/ / .__/\_, /  " + fg.rs)
+        code(fg(20, 180, 90) + "                Create by LexyGuru" +
               fg(255, 80, 50) + "                   /_/   /___/   " + fg.rs)
         print("")
 
@@ -134,22 +149,22 @@ class logos:
 
     @staticmethod
     def SteramDB_logo_v2():
-        print(fg(255, 80, 250) + "   ______                 ___  ___    ___        _ " + fg.rs)
-        print(fg(255, 80, 200) + "  / __/ /____ ___ ___ _  / _ \/ _ )  / _ | ___  (_)" + fg.rs)
-        print(fg(255, 80, 150) + " _\ \/ __/ -_) _ `/  ' \/ // / _  | / __ |/ _ \/ / " + fg.rs)
-        print(fg(255, 80, 100) + "/___/\__/\__/\_,_/_/_/_/____/____/ /_/ |_/ .__/_/  " + fg.rs)
-        print(fg(20, 180, 90) + "            Create by LexyGuru" + fg(255, 80, 50) + "          /_/        " + fg.rs)
+        code(fg(255, 80, 250) + "   ______                 ___  ___    ___        _ " + fg.rs)
+        code(fg(255, 80, 200) + "  / __/ /____ ___ ___ _  / _ \/ _ )  / _ | ___  (_)" + fg.rs)
+        code(fg(255, 80, 150) + " _\ \/ __/ -_) _ `/  ' \/ // / _  | / __ |/ _ \/ / " + fg.rs)
+        code(fg(255, 80, 100) + "/___/\__/\__/\_,_/_/_/_/____/____/ /_/ |_/ .__/_/  " + fg.rs)
+        code(fg(20, 180, 90) + "            Create by LexyGuru" + fg(255, 80, 50) + "          /_/        " + fg.rs)
         print("")
 
     @staticmethod
     def BattleNet():
-        print(fg(255, 80, 250) + "________       ________________ " +
+        code(fg(255, 80, 250) + "________       ________________ " +
               fg(20, 180, 90) + "Create by LexyGuru" +
               fg(255, 80, 250) + "_____ " + fg.rs)
-        print(fg(255, 80, 200) + "___  __ )_____ __  /__  /___  /____   ______________  /_" + fg.rs)
-        print(fg(255, 80, 150) + "__  __  |  __ `/  __/  __/_  /_  _ \  __  __ \  _ \  __/" + fg.rs)
-        print(fg(255, 80, 100) + "_  /_/ // /_/ // /_ / /_ _  / /  __/___  / / /  __/ /_  " + fg.rs)
-        print(fg(255, 80, 50) + "/_____/ \__,_/ \__/ \__/ /_/  \___/_(_)_/ /_/\___/\__/  " + fg.rs)
+        code(fg(255, 80, 200) + "___  __ )_____ __  /__  /___  /____   ______________  /_" + fg.rs)
+        code(fg(255, 80, 150) + "__  __  |  __ `/  __/  __/_  /_  _ \  __  __ \  _ \  __/" + fg.rs)
+        code(fg(255, 80, 100) + "_  /_/ // /_/ // /_ / /_ _  / /  __/___  / / /  __/ /_  " + fg.rs)
+        code(fg(255, 80, 50) + "/_____/ \__,_/ \__/ \__/ /_/  \___/_(_)_/ /_/\___/\__/  " + fg.rs)
         print("")
 
 
@@ -1711,7 +1726,6 @@ class modul:
                 print("\u001b[31m lastUpdated: \u001b[36m {lastUpdated}".format(**d))
                 print("\u001b[31m highestSoloRiftCompleted: \u001b[36m {highestSoloRiftCompleted}".format(**d))
                 print("\u001b[31m stats: \u001b[36m {stats} \u001b[0m".format(**d))
-
 
     class SteamDB_finder:
 
@@ -4443,17 +4457,13 @@ class menu:
                     if system_lista == 20:
                         break
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 # NOT VISIBLE BETA POPUP MENÜ
 # ----------------------------------------------------------------------------------------------------------------------
 
             if system_a == 5:
                 while True:
-                    import time
-                    import datetime
-                    import PySimpleGUI as sg
-                    import threading
-
                     print(datetime.datetime.now())
 
                     time.sleep(0.5)
@@ -4486,7 +4496,8 @@ class menu:
                         Client_ID = str(configs['Client_ID'][0])
                         Client_Sicret = str(configs['Client_Sicret'][0])
 
-                        command = "curl -u " + Client_ID + ":" + Client_Sicret + " -d grant_type=client_credentials https://oauth.battle.net/token"
+                        command = "curl -u " + Client_ID + ":" + Client_Sicret + \
+                                  " -d grant_type=client_credentials https://oauth.battle.net/token"
                         save = command + " > c:\\temp\\battle_acess.json"
                         os.system("" + save)
 
@@ -4524,9 +4535,39 @@ class menu:
                     if system_lista == 20:
                         break
 
+            if system_a == 6:
+                while True:
+                    import time
+                    from datetime import timedelta
+
+                    start = time.time()
+
+                    code(fg(255, 80, 250) + "  _      ___         __                 __  _____  ____            " + fg.rs)
+                    code(fg(255, 80, 200) + " | | /| / (_)__  ___/ /__ _    _____   / / / / _ \/  _/ ___  __ __ " + fg.rs)
+                    code(fg(255, 80, 150) + " | |/ |/ / / _ \/ _  / _ \ |/|/ (_-<  / /_/ / , _// /  / _ \/ // / " + fg.rs)
+                    code(fg(255, 80, 100) + " |__/|__/_/_//_/\_,_/\___/__,__/___/  \____/_/|_/___/ / .__/\_, /  " + fg.rs)
+                    code(fg(20, 180, 90) + "                Create by LexyGuru" +
+                          fg(255, 80, 50) + "                   /_/   /___/   " + fg.rs)
+
+                    end = time.time()
+
+                    elapsed_time = end - start
+
+                    print("elapsed time: " + str(timedelta(seconds=elapsed_time)))
+
+                    menu_list_def.menu_def.back_text()
+
+                    system_lista = int(input("" + lang.language.langs["main"][6]))
+
+                    if system_lista == 20:
+                        break
+
+
 
             if system_a == 20:
-                # os.remove("ver.json")
+                #os.remove("ver.json")
                 exit()
 
 menu.menulista()
+
+
