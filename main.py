@@ -1486,9 +1486,33 @@ class modul:
 
                 url = "https://" + region + ".api.blizzard.com/d3/profile/" + account + hashtag + account_id + \
                       "/hero/" + heroid + "?locale=" + locate + "&access_token=" + access_token
+
                 x = requests.get(url)
                 d = x.json()
                 d1 = x.json()['kills']
+
+                s0 = x.json()['skills']['active'][0]['skill']
+                s1 = x.json()['skills']['active'][1]['skill']
+                s2 = x.json()['skills']['active'][2]['skill']
+                s3 = x.json()['skills']['active'][3]['skill']
+                s4 = x.json()['skills']['active'][4]['skill']
+                s5 = x.json()['skills']['active'][5]['skill']
+
+                i0 = x.json()['items']['head']
+                i1 = x.json()['items']['neck']
+                i2 = x.json()['items']['torso']
+                i2_0 = x.json()['items']['torso']['dyeColor']
+                i3 = x.json()['items']['shoulders']
+                i3_0 = x.json()['items']['shoulders']['dyeColor']
+                i4 = x.json()['items']['legs']
+                i5 = x.json()['items']['waist']
+                i6 = x.json()['items']['hands']
+                i6_0 = x.json()['items']['hands']['dyeColor']
+                i7 = x.json()['items']['bracers']
+                i8 = x.json()['items']['feet']
+                i9 = x.json()['items']['leftFinger']
+                i10 = x.json()['items']['rightFinger']
+                i11 = x.json()['items']['mainHand']
 
                 print("\n")
                 print("\u001b[31m id: \u001b[36m {id}".format(**d))
@@ -1500,9 +1524,187 @@ class modul:
                 print("\u001b[31m hardcore: \u001b[36m {hardcore}".format(**d))
                 print("\u001b[31m seasonal: \u001b[36m {seasonal}".format(**d))
                 print("\u001b[31m seasonCreated: \u001b[36m {seasonCreated}".format(**d))
-                print("\u001b[31m skills: \u001b[36m {skills}".format(**d))
-                print("\u001b[31m items: \u001b[36m {items}".format(**d))
+
+                print("\u001b[31m skills:\u001b[0m")
+
+                print("\u001b[0m*" * 40 + "\u001b[31m skills 0 " + "\u001b[0m*" * 40)
+                print("\u001b[31m       slug: \u001b[36m {slug}".format(**s0))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**s0))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**s0))
+                print("\u001b[31m       level: \u001b[36m {level}".format(**s0))
+                print("\u001b[31m       tooltipUrl: \u001b[36m {tooltipUrl}".format(**s0))
+                print("\u001b[31m       description: \u001b[36m {description}".format(**s0))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m skills 1 " + "\u001b[0m*" * 40)
+                print("\u001b[31m       slug: \u001b[36m {slug}".format(**s1))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**s1))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**s1))
+                print("\u001b[31m       level: \u001b[36m {level}".format(**s1))
+                print("\u001b[31m       tooltipUrl: \u001b[36m {tooltipUrl}".format(**s1))
+                print("\u001b[31m       description: \u001b[36m {description}".format(**s1))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m skills 2 " + "\u001b[0m*" * 40)
+                print("\u001b[31m       slug: \u001b[36m {slug}".format(**s2))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**s2))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**s2))
+                print("\u001b[31m       level: \u001b[36m {level}".format(**s2))
+                print("\u001b[31m       tooltipUrl: \u001b[36m {tooltipUrl}".format(**s2))
+                print("\u001b[31m       description: \u001b[36m {description}".format(**s2))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m skills 3 " + "\u001b[0m*" * 40)
+                print("\u001b[31m       slug: \u001b[36m {slug}".format(**s3))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**s3))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**s3))
+                print("\u001b[31m       level: \u001b[36m {level}".format(**s3))
+                print("\u001b[31m       tooltipUrl: \u001b[36m {tooltipUrl}".format(**s3))
+                print("\u001b[31m       description: \u001b[36m {description}".format(**s3))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m skills 4 " + "\u001b[0m*" * 40)
+                print("\u001b[31m       slug: \u001b[36m {slug}".format(**s4))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**s4))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**s4))
+                print("\u001b[31m       level: \u001b[36m {level}".format(**s4))
+                print("\u001b[31m       tooltipUrl: \u001b[36m {tooltipUrl}".format(**s4))
+                print("\u001b[31m       description: \u001b[36m {description}".format(**s4))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m skills 5 " + "\u001b[0m*" * 40)
+                print("\u001b[31m       slug: \u001b[36m {slug}".format(**s5))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**s5))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**s5))
+                print("\u001b[31m       level: \u001b[36m {level}".format(**s5))
+                print("\u001b[31m       tooltipUrl: \u001b[36m {tooltipUrl}".format(**s5))
+                print("\u001b[31m       description: \u001b[36m {description}".format(**s5))
+
+                print("\u001b[0m*" * 45 + "" + "\u001b[0m*" * 45)
+
+                print("\u001b[31m items:".format(**d))
+                print("\u001b[0m*" * 42 + "\u001b[31m head " + "\u001b[0m*" * 42)
+
+                print("\u001b[31m   head: \u001b[36m")
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i0))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i0))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i0))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i0))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i0))
+
+                print("\u001b[0m*" * 42 + "\u001b[31m neck " + "\u001b[0m*" * 42)
+                print("\u001b[31m   neck: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i1))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i1))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i1))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i1))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i1))
+
+                print("\u001b[0m*" * 41 + "\u001b[31m torso " + "\u001b[0m*" * 42)
+                print("\u001b[31m   torso: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i2))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i2))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i2))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i2))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i2))
+                print("\u001b[31m       dyeColor: ")
+                print("\u001b[31m           id: \u001b[36m {id}".format(**i2_0))
+                print("\u001b[31m           name: \u001b[36m {name}".format(**i2_0))
+                print("\u001b[31m           icon: \u001b[36m {icon}".format(**i2_0))
+                print("\u001b[31m           tooltipParams: \u001b[36m {tooltipParams}".format(**i2_0))
+
+                print("\u001b[0m*" * 39 + "\u001b[31m shoulders " + "\u001b[0m*" * 40)
+                print("\u001b[31m   shoulders: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i3))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i3))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i3))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i3))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i3))
+                print("\u001b[31m       dyeColor: ")
+                print("\u001b[31m           id: \u001b[36m {id}".format(**i3_0))
+                print("\u001b[31m           name: \u001b[36m {name}".format(**i3_0))
+                print("\u001b[31m           icon: \u001b[36m {icon}".format(**i3_0))
+                print("\u001b[31m           tooltipParams: \u001b[36m {tooltipParams}".format(**i3_0))
+
+                print("\u001b[0m*" * 42 + "\u001b[31m legs " + "\u001b[0m*" * 42)
+                print("\u001b[31m   legs: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i4))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i4))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i4))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i4))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i4))
+
+                print("\u001b[0m*" * 41 + "\u001b[31m waist " + "\u001b[0m*" * 42)
+                print("\u001b[31m   waist: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i5))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i5))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i5))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i5))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i5))
+
+                print("\u001b[0m*" * 41 + "\u001b[31m hands " + "\u001b[0m*" * 42)
+                print("\u001b[31m   hands: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i6))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i6))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i6))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i6))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i6))
+                print("\u001b[31m       dyeColor: ")
+                print("\u001b[31m           id: \u001b[36m {id}".format(**i6_0))
+                print("\u001b[31m           name: \u001b[36m {name}".format(**i6_0))
+                print("\u001b[31m           icon: \u001b[36m {icon}".format(**i6_0))
+                print("\u001b[31m           tooltipParams: \u001b[36m {tooltipParams}".format(**i6_0))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m bracers " + "\u001b[0m*" * 41)
+                print("\u001b[31m   bracers: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i7))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i7))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i7))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i7))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i7))
+
+                print("\u001b[0m*" * 42 + "\u001b[31m feet " + "\u001b[0m*" * 42)
+                print("\u001b[31m   feet: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i8))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i8))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i8))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i8))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i8))
+
+                print("\u001b[0m*" * 38 + "\u001b[31m leftFinger " + "\u001b[0m*" * 38)
+                print("\u001b[31m   leftFinger: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i9))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i9))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i9))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i9))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i9))
+
+                print("\u001b[0m*" * 39 + "\u001b[31m rightFinger " + "\u001b[0m*" * 39)
+                print("\u001b[31m   rightFinger: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i10))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i10))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i10))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i10))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i10))
+
+                print("\u001b[0m*" * 40 + "\u001b[31m mainHand " + "\u001b[0m*" * 41)
+                print("\u001b[31m   mainHand: \u001b[36m")
+
+                print("\u001b[31m       id: \u001b[36m {id}".format(**i11))
+                print("\u001b[31m       name: \u001b[36m {name}".format(**i11))
+                print("\u001b[31m       icon: \u001b[36m {icon}".format(**i11))
+                print("\u001b[31m       displayColor: \u001b[36m {displayColor}".format(**i11))
+                print("\u001b[31m       tooltipParams: \u001b[36m {tooltipParams}".format(**i11))
+
+                print("\u001b[0m*" * 45 + "" + "\u001b[0m*" * 45)
+
                 print("\u001b[31m followers: \u001b[36m {followers}".format(**d))
+
                 print("\u001b[31m legendaryPowers: \u001b[36m {legendaryPowers}".format(**d))
                 print("\u001b[31m progression: \u001b[36m {progression}".format(**d))
                 print("\u001b[31m alive: \u001b[36m {alive}".format(**d))
@@ -4241,10 +4443,16 @@ class menu:
                     if system_lista == 20:
                         break
 
+# ----------------------------------------------------------------------------------------------------------------------
+# NOT VISIBLE BETA POPUP MENÜ
+# ----------------------------------------------------------------------------------------------------------------------
+
             if system_a == 5:
                 while True:
                     import time
                     import datetime
+                    import PySimpleGUI as sg
+                    import threading
 
                     print(datetime.datetime.now())
 
@@ -4261,6 +4469,54 @@ class menu:
                       fg(255, 80, 50) + "                   /_/   /___/   " + fg.rs)
                     print("")
 
+                    time.sleep(.5)
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Token Access
+# ----------------------------------------------------------------------------------------------------------------------
+
+                    def process_thread():
+                        global proc
+                        config = ROOT_DIR + "\\config\\battenet.json"
+
+                        json.load(codecs.open(config, 'r', 'utf-8-sig'))
+                        with open(config, encoding='utf-8-sig') as f:
+                            configs = json.load(f)
+
+                        Client_ID = str(configs['Client_ID'][0])
+                        Client_Sicret = str(configs['Client_Sicret'][0])
+
+                        command = "curl -u " + Client_ID + ":" + Client_Sicret + " -d grant_type=client_credentials https://oauth.battle.net/token"
+                        save = command + " > c:\\temp\\battle_acess.json"
+                        os.system("" + save)
+
+                        config_save = "c:\\temp\\battle_acess.json"
+                        json.load(codecs.open(config_save, 'r', 'utf-8-sig'))
+                        with open(config_save, encoding='utf-8-sig') as f:
+                            command = json.load(f)
+                        keyword = "access_token: {access_token}".format(**command)
+
+                        proc = keyword
+
+                    def main():
+                        thread = threading.Thread(target=process_thread, daemon=True)
+                        thread.start()
+
+                        while True:
+
+                            sg.popup_animated(sg.DEFAULT_BASE64_LOADING_GIF, 'Loading list of packages',
+                                              time_between_frames=100)
+                            thread.join(timeout=.1)
+                            if not thread.is_alive():
+                                break
+                        sg.popup_animated(None)
+
+                        output = proc.__str__().replace('\\r\\n', '\n')
+                        sg.popup_scrolled(output, font='Courier 10')
+
+
+                    main()
+
                     menu_list_def.menu_def.back_text()
 
                     system_lista = int(input("" + lang.language.langs["main"][6]))
@@ -4269,10 +4525,8 @@ class menu:
                         break
 
 
-
             if system_a == 20:
                 # os.remove("ver.json")
                 exit()
-
 
 menu.menulista()
